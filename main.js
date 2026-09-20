@@ -581,13 +581,74 @@ function initLoader() {
   const curtainRight = document.querySelector(".curtain-right");
   const loaderCenterpiece = document.querySelector(".loader-centerpiece");
 
-  if (!curtainLoader || !greetingWord || !greetingLang || !loaderProgress) return;
+  if (!curtainLoader) {
+    document.body.classList.remove("loading-locked");
+    return;
+  }
+
+  if (!greetingWord || !greetingLang || !loaderProgress) {
+    document.body.classList.remove("loading-locked");
+    curtainLoader.style.display = "none";
+    return;
+  }
 
   document.body.classList.add("loading-locked");
 
   let currentIndex = 0;
   const total = GREETINGS.length;
   const intervalTime = 130; // 130ms per greeting
+  let hasOpened = false;
+
+  function openCurtains() {
+    if (hasOpened) return;
+    hasOpened = true;
+    clearInterval(greetingInterval);
+    clearTimeout(failsafeTimeout);
+    document.body.classList.remove("loading-locked");
+    curtainLoader.style.pointerEvents = "none";
+
+    try {
+      if (typeof gsap !== "undefined" && loaderCenterpiece && curtainLeft && curtainRight) {
+        const tl = gsap.timeline({
+          onStart: () => {
+            document.body.classList.remove("loading-locked");
+          },
+          onComplete: () => {
+            curtainLoader.style.display = "none";
+            if (typeof initDiagramAnimation === "function") {
+              initDiagramAnimation();
+            }
+          }
+        });
+
+        tl.to(loaderCenterpiece, {
+          scale: 0.85,
+          opacity: 0,
+          duration: 0.35,
+          ease: "power2.in"
+        })
+        .to(curtainLeft, {
+          xPercent: -100,
+          duration: 1.1,
+          ease: "power4.inOut"
+        }, "-=0.08")
+        .to(curtainRight, {
+          xPercent: 100,
+          duration: 1.1,
+          ease: "power4.inOut"
+        }, "<");
+      } else {
+        curtainLoader.style.opacity = "0";
+        curtainLoader.style.transition = "opacity 0.4s ease";
+        setTimeout(() => {
+          curtainLoader.style.display = "none";
+        }, 400);
+      }
+    } catch (err) {
+      console.warn("GSAP curtain animation error, falling back:", err);
+      curtainLoader.style.display = "none";
+    }
+  }
 
   const greetingInterval = setInterval(() => {
     currentIndex++;
@@ -603,51 +664,14 @@ function initLoader() {
     }
   }, intervalTime);
 
-  function openCurtains() {
-    curtainLoader.style.pointerEvents = "none";
-    if (typeof gsap !== "undefined") {
-      const tl = gsap.timeline({
-        onStart: () => {
-          document.body.classList.remove("loading-locked");
-        },
-        onComplete: () => {
-          curtainLoader.style.display = "none";
-          if (typeof initDiagramAnimation === "function") {
-            initDiagramAnimation();
-          }
-        }
-      });
-
-      tl.to(loaderCenterpiece, {
-        scale: 0.85,
-        opacity: 0,
-        duration: 0.35,
-        ease: "power2.in"
-      })
-      .to(curtainLeft, {
-        xPercent: -100,
-        duration: 1.1,
-        ease: "power4.inOut"
-      }, "-=0.08")
-      .to(curtainRight, {
-        xPercent: 100,
-        duration: 1.1,
-        ease: "power4.inOut"
-      }, "<");
-
-    } else {
-      curtainLoader.style.opacity = "0";
-      curtainLoader.style.transition = "opacity 0.4s ease";
-      setTimeout(() => {
-        curtainLoader.style.display = "none";
-        document.body.classList.remove("loading-locked");
-      }, 400);
-    }
-  }
+  // Failsafe: Ensure curtain always opens even if background tab throttles or timer stalls
+  const failsafeTimeout = setTimeout(() => {
+    openCurtains();
+  }, 3200);
 }
 
 /* ================= APPLICATION INITIALIZATION ================= */
-document.addEventListener("DOMContentLoaded", () => {
+function initApp() {
   // 0. Theatrical Multilingual Curtain Loader
   initLoader();
 
@@ -964,4 +988,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}
+

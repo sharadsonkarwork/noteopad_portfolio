@@ -20,6 +20,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
+  <script type="module" crossorigin src="/assets/main-VCKFLFIB.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main-rA16uRe6.css">
 </head>
 
@@ -55,6 +56,22 @@
       </div>
     </div>
   </div>
+
+  <!-- INLINE FAILSAFE: Guarantee loader always dismisses even if external network/scripts hang -->
+  <script>
+    setTimeout(function () {
+      var loader = document.getElementById("curtain-loader");
+      if (loader && loader.style.display !== "none") {
+        document.body.classList.remove("loading-locked");
+        loader.style.opacity = "0";
+        loader.style.pointerEvents = "none";
+        loader.style.transition = "opacity 0.4s ease";
+        setTimeout(function () {
+          loader.style.display = "none";
+        }, 400);
+      }
+    }, 3800);
+  </script>
 
   <!-- CUSTOM NOTEBOOK INK CURSOR -->
   <div id="sketch-cursor" class="sketch-cursor" aria-hidden="true">
@@ -1505,7 +1522,6 @@
     <span id="toast-message">Design is thinking made visual.</span>
   </div>
 
-  <script src="./main.js"></script>
 </body>
 
 </html>

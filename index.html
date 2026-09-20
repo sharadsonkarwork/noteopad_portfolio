@@ -56,6 +56,22 @@
     </div>
   </div>
 
+  <!-- INLINE FAILSAFE: Guarantee loader always dismisses even if external network/scripts hang -->
+  <script>
+    setTimeout(function () {
+      var loader = document.getElementById("curtain-loader");
+      if (loader && loader.style.display !== "none") {
+        document.body.classList.remove("loading-locked");
+        loader.style.opacity = "0";
+        loader.style.pointerEvents = "none";
+        loader.style.transition = "opacity 0.4s ease";
+        setTimeout(function () {
+          loader.style.display = "none";
+        }, 400);
+      }
+    }, 3800);
+  </script>
+
   <!-- CUSTOM NOTEBOOK INK CURSOR -->
   <div id="sketch-cursor" class="sketch-cursor" aria-hidden="true">
     <div class="cursor-dot"></div>
@@ -1505,7 +1521,7 @@
     <span id="toast-message">Design is thinking made visual.</span>
   </div>
 
-  <script src="./main.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>
