@@ -45,8 +45,9 @@
   --text-5xs: 0.5rem;     /* 8px  - mockup labels (decorative) */
   --text-4xs: 0.5625rem;  /* 9px  - mockup / fine meta */
   --text-3xs: 0.625rem;   /* 10px - micro tags */
-  --text-2xs: 0.6875rem;  /* 11px - small labels / eyebrows */
-  --text-xs:  0.75rem;    /* 12px - captions, meta */
+  --text-2xs: 0.875rem;   /* 14px - small labels (min readable floor) */
+  --text-xs:  0.875rem;   /* 14px - captions/meta (min readable floor) */
+  --text-rare: 0.75rem;   /* 12px - RARE fine print only */
   --text-sm:  0.875rem;   /* 14px - dense / secondary body */
   --text-md:  1rem;       /* 16px - card body (matches base) */
   --text-base: 1rem;      /* 16px - default body */
@@ -1321,7 +1322,8 @@
       grid-template-columns: 90px repeat(6, 1fr);
       gap: 4px;
       margin-bottom: 4px;
-      font-size: var(--text-2xs);
+      /* decorative roster mockup grid: intentionally small, exempt from 14px floor */
+      font-size: 0.6875rem;
       font-weight: 600;
     }
 
@@ -1890,6 +1892,12 @@
     }
 
     @media(max-width: 640px) {
+      /* let wide UI-mockup screens & tables scroll instead of pushing the page */
+      .grid-2 > *, .screen { min-width: 0; }
+      .screen-content { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .roster-row { min-width: 360px; }
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
       .notebook-workspace {
         padding: 0 8px;
         margin: 10px auto 28px;

@@ -42,8 +42,9 @@
   --text-5xs: 0.5rem;     /* 8px  - mockup labels (decorative) */
   --text-4xs: 0.5625rem;  /* 9px  - mockup / fine meta */
   --text-3xs: 0.625rem;   /* 10px - micro tags */
-  --text-2xs: 0.6875rem;  /* 11px - small labels / eyebrows */
-  --text-xs:  0.75rem;    /* 12px - captions, meta */
+  --text-2xs: 0.875rem;   /* 14px - small labels (min readable floor) */
+  --text-xs:  0.875rem;   /* 14px - captions/meta (min readable floor) */
+  --text-rare: 0.75rem;   /* 12px - RARE fine print only */
   --text-sm:  0.875rem;   /* 14px - dense / secondary body */
   --text-md:  1rem;       /* 16px - card body (matches base) */
   --text-base: 1rem;      /* 16px - default body */
@@ -283,7 +284,7 @@
     .crumb-badge {
       display: inline-block;
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       letter-spacing: 0.08em;
       color: var(--ink-muted);
@@ -367,7 +368,7 @@
     .sidenav a {
       text-decoration: none;
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       letter-spacing: 0.02em;
       color: var(--ink-muted);
@@ -406,7 +407,7 @@
     .hero-tag-pill {
       display: inline-block;
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       letter-spacing: 0.04em;
       color: var(--ink-secondary);
@@ -517,7 +518,7 @@
 
     .hero-meta-label {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -635,7 +636,7 @@
     .section-kicker {
       margin-left: auto;
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-muted);
       text-transform: uppercase;
@@ -710,7 +711,7 @@
 
     .quote-src {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       color: var(--ink-muted);
     }
 
@@ -774,7 +775,7 @@
 
     .theme-tag {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-red);
       margin-bottom: 6px;
@@ -853,7 +854,7 @@
 
     .persona-role {
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       color: var(--ink-muted);
       margin-top: 3px;
     }
@@ -864,7 +865,7 @@
 
     .persona-key {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-red);
       text-transform: uppercase;
@@ -906,7 +907,7 @@
 
     .journey-who {
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       color: var(--ink-muted);
       font-weight: 700;
     }
@@ -934,7 +935,7 @@
     .journey-row-header {
       flex: 0 0 100px;
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-red);
       padding: 12px 10px;
@@ -997,7 +998,7 @@
 
     .emotion-chart-label {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-muted);
       text-transform: uppercase;
@@ -1045,7 +1046,7 @@
     }
 
     .ia-col-desc {
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       color: var(--ink-muted);
       margin-bottom: 12px;
       font-family: var(--font-mono);
@@ -1142,14 +1143,14 @@
 
     .iter-version {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-muted);
     }
 
     .iter-stamp {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       padding: 3px 7px;
       border-radius: 3px;
@@ -1620,7 +1621,7 @@
     }
 
     .swatch .name {
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       font-weight: 700;
     }
 
@@ -1638,7 +1639,7 @@
 
     .type-sample .tag {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       color: var(--ink-muted);
       margin-bottom: 4px;
     }
@@ -1739,7 +1740,7 @@
 
     .impact-note {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       color: var(--ink-muted);
       margin-top: 18px;
     }
@@ -1773,7 +1774,7 @@
 
     .next-tag {
       font-family: var(--font-mono);
-      font-size: var(--text-4xs);
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-red);
       padding-top: 2px;
@@ -1822,7 +1823,7 @@
 
     .footer-meta-box {
       font-family: var(--font-mono);
-      font-size: var(--text-3xs);
+      font-size: var(--text-rare);
       line-height: 1.8;
       color: #a9a091;
       text-align: right;
