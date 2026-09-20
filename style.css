@@ -11,6 +11,40 @@
    ======================================================== */
 
 :root {
+  /* ============================================================
+     TYPE SCALE  (rem-based modular scale, base 16px = 1rem)
+     One source of truth for every font-size in the portal.
+     rem (not px) so text honors the user's browser font setting
+     — WCAG 2.2 SC 1.4.4 Resize Text.
+     ------------------------------------------------------------
+     --text-6xs 7px   --text-md   14px   --text-4xl 28px
+     --text-5xs 8px   --text-base 16px   --text-5xl 32px
+     --text-4xs 9px   --text-lg   18px   --text-6xl 40px
+     --text-3xs 10px  --text-xl   20px   --text-7xl 46px
+     --text-2xs 11px  --text-2xl  22px   --text-8xl 52px
+     --text-xs  12px  --text-3xl  24px   --text-9xl 64px
+     --text-sm  13px
+     ============================================================ */
+  --text-6xs: 0.4375rem;  /* 7px  - micro mockup labels (decorative) */
+  --text-5xs: 0.5rem;     /* 8px  - mockup labels (decorative) */
+  --text-4xs: 0.5625rem;  /* 9px  - mockup / fine meta */
+  --text-3xs: 0.625rem;   /* 10px - micro tags */
+  --text-2xs: 0.6875rem;  /* 11px - small labels / eyebrows */
+  --text-xs:  0.75rem;    /* 12px - captions, meta */
+  --text-sm:  0.8125rem;  /* 13px - dense / secondary body */
+  --text-md:  0.875rem;   /* 14px - compact body */
+  --text-base: 1rem;      /* 16px - default body */
+  --text-lg:  1.125rem;   /* 18px - lead / large body */
+  --text-xl:  1.25rem;    /* 20px - subheadings */
+  --text-2xl: 1.375rem;   /* 22px - card titles */
+  --text-3xl: 1.5rem;     /* 24px - small section titles */
+  --text-4xl: 1.75rem;    /* 28px - section titles */
+  --text-5xl: 2rem;       /* 32px - large section titles */
+  --text-6xl: 2.5rem;     /* 40px - display */
+  --text-7xl: 2.875rem;   /* 46px - display */
+  --text-8xl: 3.25rem;    /* 52px - hero */
+  --text-9xl: 4rem;       /* 64px - hero */
+
   /* Color System */
   --bg-desk: #ECE4D0;
   --bg-canvas: #FAF6ED;
@@ -67,7 +101,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 100%;
   background-color: var(--bg-desk);
   overflow-x: hidden;
 }
@@ -325,7 +359,7 @@ body.loading-locked {
 }
 
 .brand-title {
-  font-size: 26px;
+  font-size: var(--text-3xl);
   font-weight: 800;
   letter-spacing: 2px;
   line-height: 1.1;
@@ -333,7 +367,7 @@ body.loading-locked {
 }
 
 .brand-subtitle {
-  font-size: 11.5px;
+  font-size: var(--text-2xs);
   font-weight: 500;
   letter-spacing: 0.8px;
   color: var(--ink-muted);
@@ -353,7 +387,7 @@ body.loading-locked {
 }
 
 .nav-item {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--ink-secondary);
@@ -402,7 +436,7 @@ body.loading-locked {
 
 .header-quote {
   font-family: var(--font-hand);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-secondary);
@@ -499,7 +533,7 @@ body.loading-locked {
 
 .note-handwritten-title {
   font-family: var(--font-hand);
-  font-size: 21px;
+  font-size: var(--text-xl);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-primary);
@@ -512,7 +546,7 @@ body.loading-locked {
 
 .focus-title {
   font-family: var(--font-hand);
-  font-size: 22px;
+  font-size: var(--text-2xl);
   font-weight: 700;
   margin-bottom: 8px;
 }
@@ -523,7 +557,7 @@ body.loading-locked {
 }
 
 .focus-list li {
-  font-size: 13.5px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--ink-secondary);
   line-height: 1.45;
@@ -533,13 +567,13 @@ body.loading-locked {
 }
 
 .focus-list .bullet {
-  font-size: 14px;
+  font-size: var(--text-md);
   color: var(--ink-primary);
 }
 
 .focus-footer {
   font-family: var(--font-hand);
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-secondary);
@@ -547,7 +581,7 @@ body.loading-locked {
 
 .focus-star {
   font-family: var(--font-hand);
-  font-size: 20px;
+  font-size: var(--text-xl);
   margin-top: 2px;
   color: var(--ink-muted);
 }
@@ -571,7 +605,7 @@ body.loading-locked {
 }
 
 .statement-line {
-  font-size: 52px;
+  font-size: var(--text-8xl);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.5px;
@@ -625,7 +659,7 @@ body.loading-locked {
 }
 
 .hero-bio {
-  font-size: 14.5px;
+  font-size: var(--text-md);
   color: var(--ink-secondary);
   line-height: 1.5;
   margin-bottom: 12px;
@@ -633,7 +667,7 @@ body.loading-locked {
 }
 
 .hero-tags {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 500;
   color: var(--ink-muted);
   line-height: 1.6;
@@ -650,7 +684,7 @@ body.loading-locked {
   display: inline-block;
   background-color: var(--ink-primary);
   color: var(--bg-canvas);
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 1.2px;
   padding: 12px 24px;
@@ -668,7 +702,7 @@ body.loading-locked {
 }
 
 .btn-sketch-link {
-  font-size: 12.5px;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.8px;
   color: var(--ink-primary);
@@ -689,7 +723,7 @@ body.loading-locked {
   gap: 7px;
   background-color: transparent;
   color: var(--ink-primary);
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 1px;
   padding: 12px 24px;
@@ -794,7 +828,7 @@ body.loading-locked {
   z-index: 2;
   text-align: center;
   font-weight: 800;
-  font-size: 13.5px;
+  font-size: var(--text-sm);
   line-height: 1.18;
   letter-spacing: 0.5px;
   color: var(--ink-primary);
@@ -819,7 +853,7 @@ body.loading-locked {
   border-radius: 4px;
   background-color: var(--paper-card-bg);
   text-align: center;
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.6px;
   line-height: 1.22;
@@ -899,7 +933,7 @@ body.loading-locked {
 
 .red-quote-text {
   font-family: var(--font-hand);
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 700;
   line-height: 1.15;
   color: var(--ink-red);
@@ -919,7 +953,7 @@ body.loading-locked {
 
 .exploring-title {
   font-family: var(--font-hand);
-  font-size: 21px;
+  font-size: var(--text-xl);
   font-weight: 700;
   margin-bottom: 8px;
 }
@@ -929,7 +963,7 @@ body.loading-locked {
 }
 
 .exploring-list li {
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--ink-secondary);
   line-height: 1.55;
@@ -939,7 +973,7 @@ body.loading-locked {
 }
 
 .sketch-checkbox {
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--ink-primary);
 }
 
@@ -952,7 +986,7 @@ body.loading-locked {
 .thought-header {
   display: block;
   font-family: var(--font-hand);
-  font-size: 17px;
+  font-size: var(--text-lg);
   font-weight: 700;
   margin-bottom: 6px;
   color: var(--ink-secondary);
@@ -960,7 +994,7 @@ body.loading-locked {
 
 .thought-text {
   font-family: var(--font-hand);
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.22;
   color: var(--ink-primary);
@@ -970,7 +1004,7 @@ body.loading-locked {
   display: block;
   text-align: right;
   font-family: var(--font-hand);
-  font-size: 17px;
+  font-size: var(--text-lg);
   color: var(--ink-muted);
   margin-top: 4px;
 }
@@ -1031,7 +1065,7 @@ body.loading-locked {
 
 .lofi-title {
   display: block;
-  font-size: 14px;
+  font-size: var(--text-md);
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -1041,7 +1075,7 @@ body.loading-locked {
 
 .lofi-track {
   display: block;
-  font-size: 14px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--ink-primary);
   white-space: nowrap;
@@ -1059,7 +1093,7 @@ body.loading-locked {
 .lofi-btn {
   background: none;
   border: 1px solid transparent;
-  font-size: 11.5px;
+  font-size: var(--text-2xs);
   cursor: pointer;
   color: var(--ink-primary);
   padding: 4px 6px;
@@ -1076,13 +1110,13 @@ body.loading-locked {
 }
 
 .lofi-btn.play-pause-btn {
-  font-size: 16px;
+  font-size: var(--text-base);
   min-width: 24px;
   height: 24px;
 }
 
 .lofi-btn.reload-btn {
-  font-size: 16px;
+  font-size: var(--text-base);
   min-width: 24px;
   height: 24px;
   line-height: 1;
@@ -1110,7 +1144,7 @@ body.loading-locked {
 /* Organic Hand-Drawn Underline on Section Headings */
 .section-title {
   font-family: var(--font-hand);
-  font-size: 38px;
+  font-size: var(--text-6xl);
   font-weight: 700;
   line-height: 1.1;
   color: var(--ink-primary);
@@ -1131,7 +1165,7 @@ body.loading-locked {
 }
 
 .section-intro {
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 500;
   color: var(--ink-muted);
   line-height: 1.45;
@@ -1164,7 +1198,7 @@ body.loading-locked {
 
 .quote-subtle {
   font-family: var(--font-hand);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-secondary);
@@ -1177,7 +1211,7 @@ body.loading-locked {
 
 .quote-solutions {
   font-family: var(--font-hand);
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-primary);
@@ -1186,7 +1220,7 @@ body.loading-locked {
 
 .quote-observing {
   font-family: var(--font-hand);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-secondary);
@@ -1195,7 +1229,7 @@ body.loading-locked {
 
 .quote-trust {
   font-family: var(--font-hand);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-secondary);
@@ -1203,7 +1237,7 @@ body.loading-locked {
 
 .red-quote-responsibility {
   font-family: var(--font-hand);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.18;
   color: var(--ink-secondary);
@@ -1214,13 +1248,13 @@ body.loading-locked {
 }
 
 .crown-sketch {
-  font-size: 20px;
+  font-size: var(--text-xl);
   margin-top: 6px;
 }
 
 .rocket-quote {
   font-family: var(--font-hand);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-secondary);
@@ -1233,7 +1267,7 @@ body.loading-locked {
   border-radius: 4px;
   padding: 8px 10px;
   font-family: var(--font-hand);
-  font-size: 17px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.15;
   color: var(--ink-primary);
@@ -1250,7 +1284,7 @@ body.loading-locked {
 .kbd-key {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
   border: 1px solid var(--paper-card-border);
   padding: 1px 5px;
@@ -1285,7 +1319,7 @@ body.loading-locked {
 
 .card-num-badge {
   display: inline-block;
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.5px;
   color: var(--ink-muted);
@@ -1297,7 +1331,7 @@ body.loading-locked {
 }
 
 .card-headline {
-  font-size: 15px;
+  font-size: var(--text-md);
   font-weight: 700;
   line-height: 1.22;
   color: var(--ink-primary);
@@ -1370,7 +1404,7 @@ body.loading-locked {
 
 .card-bullet-list {
   list-style: none;
-  font-size: 11.5px;
+  font-size: var(--text-2xs);
   font-weight: 500;
   color: var(--ink-secondary);
   line-height: 1.45;
@@ -1383,7 +1417,7 @@ body.loading-locked {
 }
 
 .card-link {
-  font-size: 11.5px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   color: var(--ink-primary);
   text-decoration: none;
@@ -1424,14 +1458,14 @@ body.loading-locked {
 }
 
 .venn-text {
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-weight: 800;
   letter-spacing: 0.6px;
   fill: var(--ink-primary);
 }
 
 .venn-sweet-spot {
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-weight: 800;
   letter-spacing: 0.5px;
   fill: var(--ink-primary);
@@ -1449,7 +1483,7 @@ body.loading-locked {
 
 .venn-quote {
   font-family: var(--font-hand);
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.1;
   color: var(--ink-secondary);
@@ -1515,7 +1549,7 @@ body.loading-locked {
 }
 
 .mockup-badge {
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-weight: 800;
   letter-spacing: 0.5px;
   padding: 1px 5px;
@@ -1529,7 +1563,7 @@ body.loading-locked {
 }
 
 .mockup-url {
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-family: var(--font-mono);
   color: #888;
   margin-left: auto;
@@ -1586,7 +1620,7 @@ body.loading-locked {
 
 .stat-number {
   display: block;
-  font-size: 9px;
+  font-size: var(--text-4xs);
   font-weight: 800;
   color: #fff;
   line-height: 1.1;
@@ -1594,7 +1628,7 @@ body.loading-locked {
 
 .stat-lbl {
   display: block;
-  font-size: 6.5px;
+  font-size: var(--text-6xs);
   color: #888;
 }
 
@@ -1621,7 +1655,7 @@ body.loading-locked {
 }
 
 .mock-chat-bubble {
-  font-size: 7.5px;
+  font-size: var(--text-6xs);
   padding: 4px 6px;
   border-radius: 4px;
   line-height: 1.25;
@@ -1645,7 +1679,7 @@ body.loading-locked {
 
 .ai-sparkle {
   color: #a855f7;
-  font-size: 9px;
+  font-size: var(--text-4xs);
 }
 
 .mock-action-tags {
@@ -1655,7 +1689,7 @@ body.loading-locked {
 }
 
 .mock-tag {
-  font-size: 6.5px;
+  font-size: var(--text-6xs);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #94a3b8;
@@ -1683,13 +1717,13 @@ body.loading-locked {
 }
 
 .metric-val {
-  font-size: 10px;
+  font-size: var(--text-3xs);
   font-weight: 800;
   color: #0f172a;
 }
 
 .metric-val.sm {
-  font-size: 8px;
+  font-size: var(--text-5xs);
 }
 
 .mini-bar-chart {
@@ -1758,7 +1792,7 @@ body.loading-locked {
   background: #6366f1;
   color: #fff;
   border: none;
-  font-size: 7px;
+  font-size: var(--text-6xs);
   font-weight: 700;
   padding: 3px 6px;
   border-radius: 2px;
@@ -1768,13 +1802,13 @@ body.loading-locked {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   border: none;
-  font-size: 7px;
+  font-size: var(--text-6xs);
   padding: 3px 6px;
   border-radius: 2px;
 }
 
 .mock-input-field {
-  font-size: 7px;
+  font-size: var(--text-6xs);
   color: #64748b;
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 3px 6px;
@@ -1790,7 +1824,7 @@ body.loading-locked {
 }
 
 .work-title {
-  font-size: 15px;
+  font-size: var(--text-md);
   font-weight: 800;
   letter-spacing: 0.5px;
   color: var(--ink-primary);
@@ -1798,7 +1832,7 @@ body.loading-locked {
 }
 
 .work-category {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 600;
   color: var(--ink-muted);
   margin-top: 2px;
@@ -1806,7 +1840,7 @@ body.loading-locked {
 }
 
 .work-desc {
-  font-size: 11.5px;
+  font-size: var(--text-2xs);
   color: var(--ink-secondary);
   line-height: 1.45;
   margin-bottom: 12px;
@@ -1814,14 +1848,14 @@ body.loading-locked {
 }
 
 .work-tags {
-  font-size: 10.5px;
+  font-size: var(--text-3xs);
   color: var(--ink-muted);
   line-height: 1.55;
   margin-bottom: 14px;
 }
 
 .case-study-link {
-  font-size: 11.5px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   color: var(--ink-primary);
   text-decoration: none;
@@ -1847,7 +1881,7 @@ body.loading-locked {
 
 .sticky-title {
   font-family: var(--font-hand);
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 8px;
@@ -1859,7 +1893,7 @@ body.loading-locked {
 }
 
 .case-checklist li {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 600;
   color: var(--ink-secondary);
   line-height: 1.45;
@@ -1874,7 +1908,7 @@ body.loading-locked {
 
 .impact-text {
   font-family: var(--font-hand);
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.2;
   color: var(--ink-primary);
@@ -1915,7 +1949,7 @@ body.loading-locked {
 }
 
 .side-preview-header .pill-label {
-  font-size: 7.5px;
+  font-size: var(--text-6xs);
   font-weight: 800;
   letter-spacing: 0.5px;
   color: #a1a1aa;
@@ -1965,7 +1999,7 @@ body.loading-locked {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: var(--text-4xs);
   font-weight: bold;
 }
 
@@ -1982,14 +2016,14 @@ body.loading-locked {
 
 .portal-chip-status {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-weight: 700;
   color: #34d399;
   letter-spacing: 0.5px;
 }
 
 .portal-chip-sub {
-  font-size: 8px;
+  font-size: var(--text-5xs);
   color: rgba(255, 255, 255, 0.65);
 }
 
@@ -2002,7 +2036,7 @@ body.loading-locked {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 9px;
+  font-size: var(--text-4xs);
   font-weight: 700;
   color: #fff;
 }
@@ -2048,7 +2082,7 @@ body.loading-locked {
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 3px;
   padding: 4px 8px;
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-weight: 700;
   color: #18181b;
 }
@@ -2065,14 +2099,14 @@ body.loading-locked {
 }
 
 .side-card-title {
-  font-size: 13.5px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--ink-primary);
   margin-bottom: 4px;
 }
 
 .side-card-desc {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   color: var(--ink-secondary);
   line-height: 1.4;
   margin-bottom: 10px;
@@ -2080,7 +2114,7 @@ body.loading-locked {
 }
 
 .side-card-link {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   color: var(--ink-primary);
   text-decoration: none;
@@ -2109,7 +2143,7 @@ body.loading-locked {
 
 .note-quote {
   font-family: var(--font-hand);
-  font-size: 17px;
+  font-size: var(--text-lg);
   font-weight: 600;
   line-height: 1.2;
   color: var(--ink-primary);
@@ -2118,7 +2152,7 @@ body.loading-locked {
 
 .note-star-bottom {
   font-family: var(--font-hand);
-  font-size: 16px;
+  font-size: var(--text-base);
   color: var(--ink-muted);
   text-align: right;
   display: block;
@@ -2161,7 +2195,7 @@ body.loading-locked {
 
 .lead-label {
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: var(--text-5xs);
   font-weight: 700;
   letter-spacing: 0.5px;
   color: var(--ink-muted);
@@ -2170,12 +2204,12 @@ body.loading-locked {
 }
 
 .lead-icon {
-  font-size: 20px;
+  font-size: var(--text-xl);
   margin-bottom: 8px;
 }
 
 .lead-title {
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 700;
   line-height: 1.25;
   color: var(--ink-primary);
@@ -2183,7 +2217,7 @@ body.loading-locked {
 }
 
 .lead-desc {
-  font-size: 10.5px;
+  font-size: var(--text-3xs);
   color: var(--ink-secondary);
   line-height: 1.4;
   margin-bottom: 12px;
@@ -2191,7 +2225,7 @@ body.loading-locked {
 }
 
 .lead-link {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   color: var(--ink-primary);
   text-decoration: none;
@@ -2218,7 +2252,7 @@ body.loading-locked {
 
 .footer-section-title {
   font-family: var(--font-hand);
-  font-size: 24px;
+  font-size: var(--text-3xl);
   font-weight: 700;
   margin-bottom: 14px;
   color: var(--ink-primary);
@@ -2266,14 +2300,14 @@ body.loading-locked {
 }
 
 .about-text p {
-  font-size: 14px;
+  font-size: var(--text-md);
   color: var(--ink-secondary);
   line-height: 1.45;
   margin-bottom: 8px;
 }
 
 .about-location {
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 600;
   color: var(--ink-muted);
 }
@@ -2311,7 +2345,7 @@ body.loading-locked {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
   margin-bottom: 2px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: var(--text-4xs);
   letter-spacing: 0.8px;
   color: #8e877c;
   user-select: none;
@@ -2501,7 +2535,7 @@ body.loading-locked {
   gap: 6px;
   white-space: nowrap;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -2572,7 +2606,7 @@ body.loading-locked {
 }
 
 .connect-link {
-  font-size: 14px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--ink-primary);
   text-decoration: none;
@@ -2587,13 +2621,13 @@ body.loading-locked {
 }
 
 .connect-icon {
-  font-size: 13px;
+  font-size: var(--text-sm);
 }
 
 /* Build Note */
 .build-invite {
   font-family: var(--font-hand);
-  font-size: 24px;
+  font-size: var(--text-3xl);
   padding-top: 4px;
   font-weight: 600;
   line-height: 1.18;
@@ -2603,7 +2637,7 @@ body.loading-locked {
 
 .let-build-link {
   font-family: var(--font-hand);
-  font-size: 24px;
+  font-size: var(--text-3xl);
   font-weight: 700;
   color: var(--ink-primary);
   text-decoration: underline;
@@ -2666,7 +2700,7 @@ body.loading-locked {
 
 .resume-pill-badge {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: var(--text-4xs);
   font-weight: 700;
   letter-spacing: 0.8px;
   background-color: var(--highlight-yellow);
@@ -2678,14 +2712,14 @@ body.loading-locked {
 
 .resume-format-text {
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: var(--text-4xs);
   color: var(--ink-muted);
   letter-spacing: 0.5px;
 }
 
 .resume-footer-title {
   font-family: var(--font-hand);
-  font-size: 26px;
+  font-size: var(--text-3xl);
   font-weight: 700;
   color: var(--ink-primary);
   margin-bottom: 4px;
@@ -2693,7 +2727,7 @@ body.loading-locked {
 }
 
 .resume-footer-desc {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--ink-secondary);
   line-height: 1.45;
   margin: 0;
@@ -2709,7 +2743,7 @@ body.loading-locked {
   align-items: center;
   gap: 8px;
   padding: 11px 24px;
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 /* ================= MODAL & TOAST ================= */
@@ -2742,27 +2776,27 @@ body.loading-locked {
   right: 14px;
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: var(--text-2xl);
   cursor: pointer;
   color: var(--ink-primary);
 }
 
 .modal-content h3 {
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 800;
   color: var(--ink-primary);
   margin-bottom: 4px;
 }
 
 .modal-tagline {
-  font-size: 12.5px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--ink-muted);
   margin-bottom: 16px;
 }
 
 .modal-content p {
-  font-size: 13.5px;
+  font-size: var(--text-sm);
   color: var(--ink-secondary);
   line-height: 1.55;
   margin-bottom: 10px;
@@ -2781,7 +2815,7 @@ body.loading-locked {
   align-items: center;
   gap: 10px;
   font-family: var(--font-hand);
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 600;
   color: var(--ink-primary);
   z-index: 10000;
@@ -2815,7 +2849,7 @@ body.loading-locked {
   }
 
   .statement-line {
-    font-size: 46px;
+    font-size: var(--text-7xl);
   }
 
   .diagram-interactive-canvas {
@@ -2887,7 +2921,7 @@ body.loading-locked {
   }
 
   .nav-item {
-    font-size: 11.5px;
+    font-size: var(--text-2xs);
     letter-spacing: 1px;
   }
 }
@@ -2952,7 +2986,7 @@ body.loading-locked {
   }
 
   .brand-title {
-    font-size: 22px;
+    font-size: var(--text-2xl);
   }
 
   .mobile-menu-toggle {
@@ -2984,11 +3018,11 @@ body.loading-locked {
   }
 
   .header-quote {
-    font-size: 16px;
+    font-size: var(--text-base);
   }
 
   .statement-line {
-    font-size: 40px;
+    font-size: var(--text-6xl);
   }
 
   .hero-actions {
@@ -3003,11 +3037,12 @@ body.loading-locked {
   }
 
   .diagram-interactive-canvas {
-    transform: scale(0.8);
-    transform-origin: center top;
-    height: 250px;
-    width: 390px;
-    max-width: 100%;
+    /* keep the 440px coordinate system the nodes are positioned in,
+       and scale the whole diagram down so no node clips off-screen */
+    width: 440px;
+    height: 210px;
+    transform: scale(0.66);
+    transform-origin: top center;
     margin: 0 auto;
   }
 
@@ -3050,7 +3085,7 @@ body.loading-locked {
   }
 
   .section-title {
-    font-size: 30px;
+    font-size: var(--text-4xl);
   }
 }
 
@@ -3061,16 +3096,19 @@ body.loading-locked {
   }
 
   .statement-line {
-    font-size: 34px;
+    font-size: var(--text-5xl);
   }
 
   .diagram-interactive-canvas {
-    transform: scale(0.72);
-    height: 225px;
+    width: 440px;
+    height: 190px;
+    transform: scale(0.58);
+    transform-origin: top center;
+    margin: 0 auto;
   }
 
   .hero-bio {
-    font-size: 13.5px;
+    font-size: var(--text-sm);
   }
 
   .tools-grid.macropad-chassis {
@@ -3089,7 +3127,7 @@ body.loading-locked {
   }
 
   .tool-badge .keycap-tooltip {
-    font-size: 9.5px;
+    font-size: var(--text-4xs);
     padding: 3px 6px;
     bottom: calc(100% + 8px);
   }
