@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Portal: When Bots Negotiate for Each Other — Speculative UX Case Study | Sharad Sonkar</title>
+  <meta name="description"
+    content="Speculative UX case study merging autonomous AI agent negotiation, explainable AI, intent-first interfaces, and human-in-the-loop travel design.">
+
+  <!-- Google Fonts: Caveat & Plus Jakarta Sans (Strictly 2 font families) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ========================================================
+       THE LAST PORTAL — NOTEBOOK CASE STUDY STYLESHEET
+       Matches Portfolio Notebook & Editorial Sketchbook:
+       - Warm Paper Canvas (#FAF6ED) & Desk Background (#ECE4D0)
+       - Hand-Drawn Wobbly Borders & Rotated Paper Cards
+       - Authentic Marker Highlighters (Yellow, Green, Blue, Coral)
+       - Top Notebook Binding Clips & Washi Tape Strips
+       - Interactive Agent Simulation & Decision Sandbox
+       - Fully WCAG 2.2 AA Accessible
+       ======================================================== */
+
+    :root {
+      /* Color System */
+      --bg-desk: #ECE4D0;
+      --bg-canvas: #FAF6ED;
+      --paper-card-bg: #FFFDF8;
+      --paper-card-border: #232220;
+      --paper-card-border-subtle: #8a857b;
+      --paper-divider: rgba(35, 34, 32, 0.14);
+
+      --ink-primary: #18181B;
+      --ink-secondary: #3B3833;
+      --ink-muted: #6B665E;
+      --ink-light: #948E84;
+      --ink-red: #DC2626;
+
+      /* Marker Highlighters */
+      --marker-yellow: #FDE047;
+      --marker-yellow-soft: #FEF9C3;
+      --marker-green: #86EFAC;
+      --marker-green-soft: #DCFCE7;
+      --marker-blue: #93C5FD;
+      --marker-blue-soft: #DBEAFE;
+      --marker-red: #FCA5A5;
+      --marker-red-soft: #FEE2E2;
+      --marker-purple: #D8B4FE;
+      --marker-purple-soft: #F3E8FF;
+
+      /* Tech Theme Accents */
+      --tech-dark-bg: #0C0D14;
+      --tech-panel-bg: #131422;
+      --tech-panel-border: #28293D;
+      --tech-accent-blue: #3B82F6;
+      --tech-accent-emerald: #10B981;
+      --tech-accent-amber: #F59E0B;
+      --tech-accent-rose: #F43F5E;
+
+      /* Tape & Clips */
+      --note-tape: rgba(255, 255, 255, 0.8);
+      --note-tape-border: rgba(0, 0, 0, 0.09);
+
+      /* Typography - Strictly 2 Font Families */
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-hand: 'Caveat', cursive, sans-serif;
+      --font-patrick: var(--font-hand);
+      --font-mono: var(--font-body);
+      --font-display: var(--font-body);
+
+      --max-width: 1160px;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--bg-desk);
+      overflow-x: clip;
+      scroll-padding-top: 58px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink-primary);
+      background-color: var(--bg-desk);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Paper Grain Texture */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    ::selection {
+      background: var(--marker-yellow);
+      color: var(--ink-primary);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-hand);
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.15;
+    }
+
+    p {
+      margin-bottom: 1em;
+      color: var(--ink-secondary);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    strong {
+      color: var(--ink-primary);
+      font-weight: 700;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 1rem;
+      z-index: 9999;
+      background: var(--ink-primary);
+      color: var(--bg-canvas);
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Reading Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #DC2626, #F59E0B, #10B981, #3B82F6);
+      z-index: 500;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* Notebook Workspace & Canvas Sheet */
+    .notebook-workspace {
+      max-width: 1320px;
+      margin: 18px auto 48px;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .paper-sheet {
+      width: 100%;
+      background: var(--bg-canvas);
+      border: 2px solid var(--paper-card-border);
+      border-radius: 6px 8px 10px 8px;
+      box-shadow: 0 16px 48px rgba(45, 38, 28, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      position: relative;
+    }
+
+    /* Top Binding Clips */
+    .paper-clip-marker {
+      position: absolute;
+      top: -12px;
+      width: 22px;
+      height: 44px;
+      border: 3px solid #6b665e;
+      border-radius: 12px;
+      background: transparent;
+      z-index: 20;
+      pointer-events: none;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .clip-left { left: 80px; transform: rotate(-4deg); }
+    .clip-right { right: 80px; transform: rotate(3deg); }
+
+    /* Washi Tape Strip */
+    .tape-strip {
+      position: absolute;
+      background: var(--note-tape);
+      border: 1px solid var(--note-tape-border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Topbar */
+    .notebook-topbar {
+      position: relative;
+      z-index: 15;
+      padding: 24px 38px 18px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1.5px solid var(--paper-card-border);
+      background: rgba(250, 246, 237, 0.96);
+      border-radius: 5px 7px 0 0;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1.5px solid var(--paper-card-border);
+      padding: 6px 14px;
+      border-radius: 4px;
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.12);
+      transition: all 0.15s ease;
+    }
+
+    .back-home-link:hover {
+      transform: translate(-1px, -1px);
+      background: var(--marker-yellow-soft);
+      box-shadow: 2.5px 2.5px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .brand-lockup {
+      border-left: 1px dashed var(--paper-card-border-subtle);
+      padding-left: 14px;
+    }
+
+    .brand-name {
+      font-family: var(--font-hand);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .topbar-center {
+      text-align: center;
+    }
+
+    .crumb-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      background: rgba(0, 0, 0, 0.04);
+      padding: 4px 12px;
+      border-radius: 3px;
+      border: 1px dashed var(--paper-card-border-subtle);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-self: end;
+    }
+
+    .badge-pill-spec {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ink-primary);
+      color: var(--bg-canvas);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1.5px solid var(--ink-primary);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .learning-tag {
+      font-family: var(--font-hand);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--ink-secondary);
+      transform: rotate(-2deg);
+      text-align: right;
+    }
+    .learning-tag span {
+      color: var(--ink-red);
+    }
+
+    /* Sticky Chapter Navigation */
+    .sidenav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 10px 38px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: auto;
+      background: rgba(250, 246, 237, 0.98);
+      border-bottom: 1.5px dashed var(--paper-card-border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(45, 38, 28, 0.07);
+      scrollbar-width: thin;
+    }
+
+    .sidenav a {
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+      padding: 5px 9px;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .sidenav a:hover {
+      color: var(--ink-primary);
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .sidenav a.active {
+      color: var(--ink-primary);
+      background: var(--marker-yellow);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 54px 42px 42px;
+      position: relative;
+      border-bottom: 2px solid var(--paper-card-border);
+      background: transparent;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-tag-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink-secondary);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 6px 14px;
+      border: 1.5px dashed var(--paper-card-border);
+      border-radius: 4px;
+      margin-bottom: 22px;
+      transform: rotate(-0.5deg);
+    }
+
+    .hero-tag-pill b {
+      color: var(--ink-red);
+    }
+
+    .hero h1 {
+      font-family: var(--font-hand);
+      font-size: clamp(52px, 7vw, 96px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .hero-title-highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title-highlight::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      bottom: -4px;
+      width: 104%;
+      height: 14px;
+      background: var(--marker-yellow);
+      opacity: 0.85;
+      border-radius: 40% 30% 50% 20%;
+      transform: rotate(-1.2deg);
+      z-index: -1;
+    }
+
+    .hero-marginal-note {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      font-family: var(--font-hand);
+      font-size: 23px;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink-red);
+      max-width: 250px;
+      transform: rotate(3deg);
+      background: rgba(254, 240, 138, 0.35);
+      padding: 10px 14px;
+      border: 1px dashed var(--marker-orange);
+      border-radius: 4px;
+    }
+
+    .hero-marginal-note .tape-corner {
+      position: absolute;
+      top: -7px;
+      left: 24px;
+      width: 44px;
+      height: 14px;
+      background: var(--note-tape);
+      border: 1px solid var(--note-tape-border);
+      transform: rotate(-5deg);
+    }
+
+    .hero-sub {
+      font-family: var(--font-hand);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.35;
+      max-width: 820px;
+      color: var(--ink-secondary);
+      margin-bottom: 34px;
+    }
+
+    /* Hero Metadata Grid */
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 22px 0 24px;
+      border-top: 1.5px solid var(--paper-divider);
+    }
+
+    .hero-meta-item {
+      position: relative;
+      min-height: 94px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 4px;
+      background: var(--paper-card-bg);
+      box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .hero-meta-item:nth-child(1) { transform: rotate(-0.5deg); }
+    .hero-meta-item:nth-child(2) { transform: rotate(0.6deg); }
+    .hero-meta-item:nth-child(3) { transform: rotate(-0.4deg); }
+    .hero-meta-item:nth-child(4) { transform: rotate(0.5deg); }
+
+    .hero-meta-item:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .hero-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-red);
+      margin-bottom: 6px;
+    }
+
+    .hero-meta-val {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--ink-primary);
+      font-weight: 500;
+    }
+
+    /* Key Metrics Strip */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 16px 20px;
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 4px;
+      box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .stat-card:nth-child(1) { transform: rotate(-0.6deg); }
+    .stat-card:nth-child(2) { transform: rotate(0.5deg); }
+    .stat-card:nth-child(3) { transform: rotate(-0.4deg); }
+    .stat-card:nth-child(4) { transform: rotate(0.6deg); }
+
+    .stat-card:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .stat-number {
+      font-family: var(--font-hand);
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .stat-number::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--marker-yellow);
+      border-radius: 2px;
+    }
+
+    .stat-caption {
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--ink-secondary);
+    }
+
+    /* Section General Layout */
+    .section {
+      padding: 58px 42px;
+      border-bottom: 1.5px dashed var(--paper-card-border);
+      position: relative;
+      scroll-margin-top: 58px;
+    }
+
+    .section.section-tint {
+      background: rgba(236, 228, 208, 0.35);
+    }
+
+    .section-head {
+      max-width: var(--max-width);
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-red);
+    }
+
+    .section-title {
+      font-size: 42px;
+      line-height: 1;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: var(--marker-yellow);
+      opacity: 0.8;
+      margin-top: 3px;
+      transform: rotate(-0.8deg);
+    }
+
+    .section-kicker {
+      font-family: var(--font-hand);
+      font-size: 22px;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .section-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* Sketch Cards & Panels */
+    .paper-card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      padding: 24px;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* Sticky notes inside sections */
+    .sticky-note {
+      position: relative;
+      padding: 18px 20px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+      font-family: var(--font-hand);
+      font-size: 19px;
+      line-height: 1.35;
+      color: var(--ink-primary);
+    }
+
+    .sticky-note.yellow { background: var(--marker-yellow-soft); }
+    .sticky-note.green { background: var(--marker-green-soft); }
+    .sticky-note.blue { background: var(--marker-blue-soft); }
+    .sticky-note.pink { background: var(--marker-red-soft); }
+
+    .sticky-note .tape-pin {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 14px;
+      background: var(--note-tape);
+      border: 1px solid var(--note-tape-border);
+    }
+
+    /* Comparison Table: Broken Inventory vs. Mind-Space */
+    .table-compare {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--paper-card-bg);
+      margin: 20px 0;
+    }
+
+    .table-compare th, .table-compare td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--paper-divider);
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .table-compare th {
+      background: #F4EEDF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      border-bottom: 2px solid var(--paper-card-border);
+    }
+
+    .table-compare tr:last-child td {
+      border-bottom: none;
+    }
+
+    .col-bad {
+      color: #B91C1C;
+      font-weight: 500;
+    }
+
+    .col-good {
+      color: #047857;
+      font-weight: 600;
+    }
+
+    /* Storyboard Grid (6 Scenes) */
+    .storyboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .storyboard-card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .storyboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 4px 8px 16px rgba(45, 38, 28, 0.12);
+    }
+
+    .storyboard-header {
+      padding: 10px 14px;
+      background: #F4EEDF;
+      border-bottom: 1.5px solid var(--paper-card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .story-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink-red);
+      letter-spacing: 0.05em;
+    }
+
+    .story-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 7px;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .story-viewport {
+      background: var(--tech-panel-bg);
+      padding: 18px;
+      color: white;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1.5px solid var(--paper-card-border);
+    }
+
+    .story-body {
+      padding: 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .story-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink-primary);
+    }
+
+    .story-desc {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .story-principle-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      border-top: 1px dashed var(--paper-divider);
+      padding-top: 8px;
+    }
+
+    /* Interactive Agent Terminal */
+    .agent-console-wrap {
+      background: var(--tech-panel-bg);
+      border: 2px solid var(--paper-card-border);
+      border-radius: 8px;
+      box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      color: white;
+      margin-top: 24px;
+    }
+
+    .console-chrome {
+      background: #181824;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--tech-panel-border);
+    }
+
+    .chrome-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .chrome-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+
+    .chrome-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #9CA3AF;
+      letter-spacing: 0.05em;
+    }
+
+    .console-nav-tabs {
+      display: flex;
+      background: #11111B;
+      border-bottom: 1px solid var(--tech-panel-border);
+      overflow-x: auto;
+    }
+
+    .console-tab {
+      padding: 12px 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: #9CA3AF;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-right: 1px solid var(--tech-panel-border);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .console-tab:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .console-tab.active {
+      color: #60A5FA;
+      background: #161726;
+      border-bottom: 2px solid #3B82F6;
+    }
+
+    .console-body {
+      padding: 24px;
+      min-height: 380px;
+      position: relative;
+    }
+
+    .console-panel {
+      display: none;
+    }
+    .console-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Live Chat / Activity Log Elements */
+    .bubble-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .terminal-bubble {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+      position: relative;
+      max-width: 85%;
+    }
+
+    .bubble-agent {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #DBEAFE;
+      align-self: flex-start;
+    }
+
+    .bubble-portal {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #D1FAE5;
+      align-self: flex-end;
+    }
+
+    .bubble-human {
+      background: #232238;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #F3F4F6;
+      align-self: flex-start;
+    }
+
+    .bubble-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0.75;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Negotiation Matrix Cards */
+    .negotiate-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .hotel-offer-card {
+      background: #131422;
+      border: 1.5px solid var(--tech-panel-border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .hotel-offer-card.selected {
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.08);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+    }
+
+    .hotel-status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    .badge-win { background: #10B981; color: #064E3B; }
+    .badge-alt { background: #F59E0B; color: #78350F; }
+    .badge-rej { background: #EF4444; color: #7F1D1D; }
+
+    /* Explainable AI ("Why This?") */
+    .why-transparency-card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .why-factor-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--paper-divider);
+    }
+    .why-factor-row:last-child {
+      border-bottom: none;
+    }
+
+    .factor-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .icon-pass { background: var(--marker-green-soft); color: #065F46; border: 1px solid #10B981; }
+    .icon-info { background: var(--marker-blue-soft); color: #1E40AF; border: 1px solid #3B82F6; }
+    .icon-warn { background: var(--marker-yellow-soft); color: #92400E; border: 1px solid #F59E0B; }
+    .icon-fail { background: var(--marker-red-soft); color: #991B1B; border: 1px solid #EF4444; }
+
+    .factor-body {
+      flex: 1;
+    }
+    .factor-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      color: var(--ink-primary);
+    }
+    .factor-desc {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* Trip Canvas & Timeline */
+    .timeline-container {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .day-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 220px;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--paper-divider);
+      align-items: center;
+    }
+    .day-row:last-child {
+      border-bottom: none;
+    }
+
+    .day-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px 10px;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 4px;
+      background: var(--marker-yellow-soft);
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .day-details h4 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .day-details p {
+      font-size: 13px;
+      margin-bottom: 0;
+      color: var(--ink-secondary);
+    }
+
+    .intensity-slider-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .intensity-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--ink-muted);
+    }
+    .intensity-slider {
+      width: 100%;
+      accent-color: #3B82F6;
+      cursor: pointer;
+    }
+
+    /* Decision Snapshot & Autonomy Switcher */
+    .autonomy-control-box {
+      background: #121320;
+      border: 2px solid var(--paper-card-border);
+      border-radius: 8px;
+      padding: 24px;
+      color: white;
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .autonomy-toggle-group {
+      display: flex;
+      gap: 8px;
+      background: #090910;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #28293D;
+      margin: 14px 0 20px;
+    }
+
+    .aut-btn {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: #9CA3AF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+    .aut-btn:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .aut-btn.active {
+      background: #3B82F6;
+      color: white;
+      border-color: #60A5FA;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .snapshot-matrix {
+      background: #18192A;
+      border: 1px solid #2D2E45;
+      border-radius: 6px;
+      padding: 16px;
+    }
+
+    .snapshot-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+    }
+    .snapshot-row:last-child {
+      border-bottom: none;
+    }
+    .snap-lbl { color: #9CA3AF; }
+    .snap-val { font-weight: 600; color: white; }
+    .snap-green { color: #34D399; }
+    .snap-amber { color: #FBBF24; }
+
+    /* Personas Cards */
+    .persona-card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      padding: 22px;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .persona-avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1.5px dashed var(--paper-divider);
+      padding-bottom: 12px;
+    }
+
+    .persona-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--paper-card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background: var(--marker-yellow-soft);
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .persona-quote {
+      font-family: var(--font-hand);
+      font-size: 21px;
+      line-height: 1.25;
+      color: var(--ink-secondary);
+      margin-bottom: 14px;
+      padding-left: 10px;
+      border-left: 3px solid var(--marker-yellow);
+    }
+
+    /* Manifesto Section */
+    .manifesto-box {
+      background: #111118;
+      border: 2px solid var(--paper-card-border);
+      border-radius: 8px;
+      padding: 48px 36px;
+      text-align: center;
+      color: white;
+      position: relative;
+      box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.15);
+      margin: 32px 0;
+    }
+
+    .manifesto-line {
+      font-family: var(--font-hand);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.2;
+      color: #9CA3AF;
+      margin-bottom: 6px;
+    }
+    .manifesto-line.bright {
+      color: #F3F4F6;
+    }
+    .manifesto-line.accent {
+      color: #60A5FA;
+      font-size: clamp(34px, 5vw, 54px);
+    }
+
+    /* Notebook Footer */
+    .notebook-footer {
+      background: #232220;
+      color: #faf6ed;
+      padding: 44px 42px 34px;
+      position: relative;
+      border-radius: 0 0 8px 6px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .footer-top-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .footer-top-row h4 {
+      color: #fff;
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+
+    .footer-top-row p {
+      font-size: 12px;
+      color: #b8ae9d;
+      max-width: 560px;
+      margin: 0;
+    }
+
+    .footer-meta-box {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.8;
+      color: #a9a091;
+      text-align: right;
+    }
+
+    .footer-links-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-back-link {
+      font-family: var(--font-hand);
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: underline;
+      transition: color 0.15s ease;
+    }
+
+    .footer-back-link:hover {
+      color: var(--marker-yellow);
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .footer-social-links a {
+      color: #d1c8b8;
+      transition: color 0.15s;
+    }
+
+    .footer-social-links a:hover {
+      color: var(--marker-yellow);
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-meta { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .grid-2col { grid-template-columns: 1fr; }
+      .grid-3col { grid-template-columns: 1fr; }
+      .storyboard-grid { grid-template-columns: 1fr; }
+      .negotiate-matrix { grid-template-columns: 1fr; }
+      .day-row { grid-template-columns: 1fr; gap: 8px; }
+      .notebook-topbar { grid-template-columns: 1fr; text-align: left; }
+      .topbar-right { justify-self: start; }
+      .hero-marginal-note { position: static; transform: none; margin-bottom: 20px; }
+      .section { padding: 42px 20px; }
+      .hero { padding: 42px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Skip to Case Study Content</a>
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
+
+  <div class="notebook-workspace">
+
+    <article class="paper-sheet" id="main">
+
+      <!-- Binding clips -->
+      <div class="paper-clip-marker clip-left" aria-hidden="true"></div>
+      <div class="paper-clip-marker clip-right" aria-hidden="true"></div>
+
+      <!-- Topbar Header -->
+      <header class="notebook-topbar">
+        <div class="topbar-left">
+          <a href="../index.html" class="back-home-link" id="btn-back-home">
+            <span>&larr;</span> Back to Notebook
+          </a>
+          <div class="brand-lockup">
+            <div class="brand-name">Sharad Sonkar</div>
+            <div class="brand-sub">Speculative UX &amp; Systems Lab</div>
+          </div>
+        </div>
+
+        <div class="topbar-center">
+          <span class="crumb-badge">SIDE QUEST №01 &bull; 2028–2038 HORIZON</span>
+        </div>
+
+        <div class="topbar-right">
+          <span class="badge-pill-spec">WCAG 2.2 AA &bull; AGENT ERA</span>
+          <div class="learning-tag">
+            <span>Autonomous</span> UX
+          </div>
+        </div>
+      </header>
+
+      <!-- Sticky Chapter Navigation -->
+      <nav class="sidenav" aria-label="Case study chapters">
+        <a href="#problem" class="active">01 The Problem</a>
+        <a href="#storyboard">02 6-Scene Storyboard</a>
+        <a href="#interactive-demo">03 Agent Terminal</a>
+        <a href="#explainability">04 Explainable "Why This?"</a>
+        <a href="#trip-canvas">05 Trip Canvas</a>
+        <a href="#autonomy">06 Autonomy Control</a>
+        <a href="#architecture">07 System Architecture</a>
+        <a href="#pretrip">08 Living Surface</a>
+        <a href="#personas">09 Personas</a>
+        <a href="#manifesto">10 Manifesto &amp; Impact</a>
+      </nav>
+
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div class="hero-tag-pill">
+            <span>✦ SPECULATIVE UX CASE STUDY &bull; <b>DESIGN FUTURES</b></span>
+          </div>
+
+          <aside class="hero-marginal-note" aria-hidden="true">
+            <div class="tape-corner"></div>
+            "What if booking a 5-day trip required 3 taps instead of 47 screens?"
+          </aside>
+
+          <h1 id="hero-title">
+            The Last Portal:<br>
+            <span class="hero-title-highlight">When Bots Negotiate</span> for Each Other
+          </h1>
+
+          <p class="hero-sub">
+            When the interface transforms from inventory forms into a collaborative mind-space. A comprehensive exploration of agentic delegation, bot-to-bot bargaining, explainable confidence, and human-in-the-loop travel design.
+          </p>
+
+          <!-- Metadata Grid -->
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <div class="hero-meta-label">Timeline &amp; Horizon</div>
+              <div class="hero-meta-val">2028–2038 Speculative Concept</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-label">Domain Focus</div>
+              <div class="hero-meta-val">Agentic AI &bull; Travel &bull; Hospitality Protocol</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-label">Design Role</div>
+              <div class="hero-meta-val">Principal Speculative UX &amp; Systems Architect</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-label">Standards Applied</div>
+              <div class="hero-meta-val">WCAG 2.2 AA &bull; Hick's &amp; Fitts's Laws</div>
+            </div>
+          </div>
+
+          <!-- Impact Metrics Strip -->
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="stat-number">47 &rarr; 3</div>
+              <p class="stat-caption">User interactions reduced from 47 manual taps down to 3 high-leverage review checkpoints.</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">&ndash;91%</div>
+              <p class="stat-caption">Active planning time slashed from 2.3 hours to under 12 minutes of calm attention.</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">13.4%</div>
+              <p class="stat-caption">Average cost savings unlocked via multi-merchant bot-to-bot bundle negotiation.</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <p class="stat-caption">Behavioral preference retention across trips — zero repetitive filter fatigue.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 01: THE PROBLEM ================= -->
+      <section class="section" id="problem" aria-labelledby="prob-title">
+        <div class="section-head">
+          <span class="section-num">CH.01</span>
+          <h2 class="section-title" id="prob-title">The Breakdown of Modern Travel</h2>
+          <span class="section-kicker">Why Humans Shouldn't Be the Middlemen</span>
+        </div>
+
+        <div class="section-content">
+          <div class="grid-2col">
+            <div>
+              <p>
+                Today, booking even a simple business trip requires navigating <strong>6 to 12 disconnected platforms</strong>, repeatedly typing payment details, re-entering dietary and seating preferences, and losing hours to comparison shopping that an algorithm could compute in 300 milliseconds.
+              </p>
+              <p>
+                Travelers are forced to act as human message brokers between airlines, hotel booking engines, expense trackers, and calendar apps. We have digitized travel inventory, but we have completely failed to build an intelligent delegate.
+              </p>
+
+              <div class="sticky-note yellow" style="margin-top: 20px; transform: rotate(-1deg);">
+                <div class="tape-pin"></div>
+                "The modern traveler doesn't suffer from a lack of options. They suffer from cognitive friction and decision fatigue."
+              </div>
+            </div>
+
+            <div>
+              <div class="paper-card">
+                <h4 style="font-family:var(--font-mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-red); margin-bottom:12px;">
+                  Five Critical Friction Points Today
+                </h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
+                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                    <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">01.</span>
+                    <span><strong>Preference Repetition:</strong> Every airline, OTA, and hotel asks for the same seat, diet, and loyalty credentials from scratch.</span>
+                  </li>
+                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                    <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">02.</span>
+                    <span><strong>Comparison Paralysis:</strong> 68% of business travelers report anxiety sorting through 200+ conflicting search filters.</span>
+                  </li>
+                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                    <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">03.</span>
+                    <span><strong>Zero Personalized Negotiation:</strong> Static checkout pages give everyone the same price with zero real-time loyalty bundling.</span>
+                  </li>
+                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                    <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">04.</span>
+                    <span><strong>Fragmented Confirmation:</strong> Boarding passes in Apple Wallet, hotel codes in email, and restaurant reservations in SMS.</span>
+                  </li>
+                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                    <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">05.</span>
+                    <span><strong>Zero Cross-Trip Memory:</strong> Platforms forget past anxiety triggers (e.g. 6 AM departures) and push them repeatedly.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparison Table -->
+          <table class="table-compare" aria-label="Comparison between current paradigm and agentic mind-space">
+            <thead>
+              <tr>
+                <th>UX Dimension</th>
+                <th>Current Legacy Paradigm</th>
+                <th>The Last Portal Mind-Space</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Primary Interaction</strong></td>
+                <td class="col-bad">&times; Inventory-first search forms &amp; dropdown filters</td>
+                <td class="col-good">&check; Intent-first conversational &amp; ambient canvas</td>
+              </tr>
+              <tr>
+                <td><strong>Option Architecture</strong></td>
+                <td class="col-bad">&times; Endless unsorted comparison tables (Hick's Law failure)</td>
+                <td class="col-good">&check; Curated top-3 match clusters with confidence scoring</td>
+              </tr>
+              <tr>
+                <td><strong>Pricing &amp; Bundling</strong></td>
+                <td class="col-bad">&times; Static markup with hidden fees and drip pricing</td>
+                <td class="col-good">&check; Real-time bot-to-bot counteroffers &amp; loyalty bundling</td>
+              </tr>
+              <tr>
+                <td><strong>Transparency</strong></td>
+                <td class="col-bad">&times; "Sponsored" listings and black-box recommendations</td>
+                <td class="col-good">&check; "Why This?" explainable AI decision audit trails</td>
+              </tr>
+              <tr>
+                <td><strong>User Agency</strong></td>
+                <td class="col-bad">&times; Forced manual clicking across 47 individual form fields</td>
+                <td class="col-good">&check; Dynamic Autonomy Slider (Fully Auto &bull; Review Each &bull; Manual)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 02: 6-SCENE STORYBOARD ================= -->
+      <section class="section section-tint" id="storyboard" aria-labelledby="story-title">
+        <div class="section-head">
+          <span class="section-num">CH.02</span>
+          <h2 class="section-title" id="story-title">The 6-Scene Narrative Storyboard</h2>
+          <span class="section-kicker">Arjun's Journey from Morning Trigger to Closed Deal</span>
+        </div>
+
+        <div class="section-content">
+          <p>
+            To understand the human experience of autonomous delegation, we follow Arjun — a senior product consultant planning a trip to Mumbai (and onward to Lisbon) — through six sequential milestones.
+          </p>
+
+          <div class="storyboard-grid">
+
+            <!-- Scene 1 -->
+            <article class="storyboard-card">
+              <div class="storyboard-header">
+                <span class="story-num">SCENE 01</span>
+                <span class="story-tag">CONTEXT DETECTION</span>
+              </div>
+              <div class="story-viewport">
+                <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
+                  <rect width="320" height="180" rx="4" fill="#0C0D14" />
+                  <circle cx="160" cy="90" r="45" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" />
+                  <circle cx="160" cy="90" r="28" fill="url(#orbGrad)" />
+                  <text x="160" y="94" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="14" fill="white" text-anchor="middle">✦</text>
+                  <rect x="30" y="24" width="130" height="26" rx="4" fill="rgba(255,255,255,0.06)" />
+                  <text x="38" y="41" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#93C5FD">📅 June 10–15 Open</text>
+                  <rect x="170" y="24" width="120" height="26" rx="4" fill="rgba(255,255,255,0.06)" />
+                  <text x="178" y="41" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#34D399">💰 Travel Fund: ₹2.1L</text>
+                  <rect x="50" y="138" width="220" height="24" rx="12" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" />
+                  <text x="160" y="154" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#E0E7FF" text-anchor="middle">"Plan a 5-day vacation. Warm, good food."</text>
+                  <defs>
+                    <linearGradient id="orbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#3B82F6" />
+                      <stop offset="100%" stop-color="#10B981" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="story-body">
+                <h3 class="story-title">01. The Trigger &bull; Ambient Presence</h3>
+                <p class="story-desc">
+                  Arjun doesn't open an app. His on-device agent reads calendar openings, weather forecasts, and travel balances. Arjun speaks a single unconstrained natural sentence.
+                </p>
+                <div class="story-principle-badge">
+                  <span>UX Law:</span> Progressive Disclosure &bull; Zero Form Interrogation
+                </div>
+              </div>
+            </article>
+
+            <!-- Scene 2 -->
+            <article class="storyboard-card">
+              <div class="storyboard-header">
+                <span class="story-num">SCENE 02</span>
+                <span class="story-tag">API HANDSHAKE</span>
+              </div>
+              <div class="story-viewport">
+                <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
+                  <rect width="320" height="180" rx="4" fill="#0C0D14" />
+                  <!-- Human Agent -->
+                  <circle cx="65" cy="90" r="28" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+                  <text x="65" y="94" font-size="14" text-anchor="middle">👤</text>
+                  <text x="65" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="8" fill="#93C5FD" text-anchor="middle">ARJUN'S AGENT</text>
+                  <!-- Handshake line -->
+                  <line x1="98" y1="90" x2="222" y2="90" stroke="#10B981" stroke-width="2" stroke-dasharray="5,3" />
+                  <rect x="120" y="78" width="80" height="24" rx="4" fill="#0F172A" stroke="#10B981" />
+                  <text x="160" y="93" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="8" fill="#34D399" text-anchor="middle">AUTH TOKEN &check;</text>
+                  <!-- Portal Bot -->
+                  <circle cx="255" cy="90" r="28" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+                  <text x="255" y="94" font-size="14" text-anchor="middle">🌐</text>
+                  <text x="255" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="8" fill="#34D399" text-anchor="middle">PORTAL GATEWAY</text>
+                </svg>
+              </div>
+              <div class="story-body">
+                <h3 class="story-title">02. Verified Cryptographic Delegate</h3>
+                <p class="story-desc">
+                  Arjun's agent authenticates with verified merchant gateways as an authorized proxy. Zero passwords or sensitive credentials leave the device unencrypted.
+                </p>
+                <div class="story-principle-badge">
+                  <span>Principle:</span> Privacy as Infrastructure &bull; Zero Raw Data Leakage
+                </div>
+              </div>
+            </article>
+
+            <!-- Scene 3 -->
+            <article class="storyboard-card">
+              <div class="storyboard-header">
+                <span class="story-num">SCENE 03</span>
+                <span class="story-tag">PREFERENCE MANIFEST</span>
+              </div>
+              <div class="story-viewport">
+                <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
+                  <rect width="320" height="180" rx="4" fill="#0C0D14" />
+                  <rect x="25" y="25" width="270" height="130" rx="6" fill="#131422" stroke="#28293D" />
+                  <text x="40" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#F59E0B">PREFERENCE_MANIFEST_V3.JSON</text>
+                  <text x="40" y="72" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Seat: Window &bull; Meal: Vegetarian</text>
+                  <text x="40" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Crowd Index: Max 2.5/5 (Prefers Pondicherry vibe)</text>
+                  <text x="40" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Flight Fatigue Constraint: De-rank departures &lt; 07:00</text>
+                  <text x="40" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#34D399">&bull; Culinary Score: Weight seafood, markets, local-first</text>
+                </svg>
+              </div>
+              <div class="story-body">
+                <h3 class="story-title">03. Preference Manifest Broadcast</h3>
+                <p class="story-desc">
+                  Learned from 3 years of booking telemetry. The agent broadcasts structured constraints: no crack-of-dawn flights, vegetarian meals, and high-walkability neighborhoods.
+                </p>
+                <div class="story-principle-badge">
+                  <span>UX Law:</span> Hick's Law &bull; Progressive Constraint Automation
+                </div>
+              </div>
+            </article>
+
+            <!-- Scene 4 -->
+            <article class="storyboard-card">
+              <div class="storyboard-header">
+                <span class="story-num">SCENE 04</span>
+                <span class="story-tag">BOT-TO-BOT BARGAIN</span>
+              </div>
+              <div class="story-viewport">
+                <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
+                  <rect width="320" height="180" rx="4" fill="#0C0D14" />
+                  <rect x="20" y="24" width="130" height="32" rx="4" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" />
+                  <text x="28" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#93C5FD">"Request late check-out"</text>
+                  <rect x="170" y="44" width="130" height="32" rx="4" fill="rgba(16,185,129,0.2)" stroke="#10B981" />
+                  <text x="178" y="64" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#34D399">"13:00 granted with bundle"</text>
+                  <rect x="20" y="88" width="130" height="32" rx="4" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" />
+                  <text x="28" y="108" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#93C5FD">"Counter: 5% loyalty tier"</text>
+                  <rect x="170" y="108" width="130" height="32" rx="4" fill="rgba(16,185,129,0.2)" stroke="#10B981" />
+                  <text x="178" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#34D399">"Deal: ₹14,320 saved ₹2,180"</text>
+                </svg>
+              </div>
+              <div class="story-body">
+                <h3 class="story-title">04. Sub-Second Autonomous Bargaining</h3>
+                <p class="story-desc">
+                  Machine-to-machine micro-negotiation. Arjun's agent leverages historical brand loyalty points to unlock complimentary late checkout and a 13% bundled flight/hotel rebate.
+                </p>
+                <div class="story-principle-badge">
+                  <span>Outcome:</span> Automated Dynamic Bundling &bull; Zero Human Waiting
+                </div>
+              </div>
+            </article>
+
+            <!-- Scene 5 -->
+            <article class="storyboard-card">
+              <div class="storyboard-header">
+                <span class="story-num">SCENE 05</span>
+                <span class="story-tag">HUMAN-IN-THE-LOOP</span>
+              </div>
+              <div class="story-viewport">
+                <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
+                  <rect width="320" height="180" rx="4" fill="#0C0D14" />
+                  <rect x="45" y="18" width="230" height="144" rx="8" fill="#181824" stroke="#3B82F6" />
+                  <text x="60" y="40" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#F59E0B">DECISION SNAPSHOT &bull; 94% MATCH</text>
+                  <text x="60" y="60" font-size="9" fill="#E2E8F0">✈ IndiGo 6E-4491 &bull; 10:30 (Low Fatigue)</text>
+                  <text x="60" y="78" font-size="9" fill="#E2E8F0">🏨 Bairro Alto Hotel &bull; 4 Nights</text>
+                  <text x="60" y="96" font-size="9" fill="#34D399">Total: ₹1,84,200 (Refundable)</text>
+                  <rect x="60" y="116" width="200" height="30" rx="4" fill="#10B981" />
+                  <text x="160" y="135" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#064E3B" text-anchor="middle">[TAP TO CONFIRM TRIP]</text>
+                </svg>
+              </div>
+              <div class="story-body">
+                <h3 class="story-title">05. The Apex Decision Snapshot</h3>
+                <p class="story-desc">
+                  The system asks for human attention exactly once. A high-contrast, thumb-friendly snapshot highlights tradeoffs, cancellation terms, and savings before any money moves.
+                </p>
+                <div class="story-principle-badge">
+                  <span>UX Law:</span> Fitts's Law &bull; Error Prevention (WCAG 3.3.4)
+                </div>
+              </div>
+            </article>
+
+            <!-- Scene 6 -->
+            <article class="storyboard-card">
+              <div class="storyboard-header">
+                <span class="story-num">SCENE 06</span>
+                <span class="story-tag">LIVING SURFACE</span>
+              </div>
+              <div class="story-viewport">
+                <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
+                  <rect width="320" height="180" rx="4" fill="#0C0D14" />
+                  <circle cx="160" cy="65" r="32" fill="rgba(16,185,129,0.15)" stroke="#10B981" />
+                  <text x="160" y="74" font-size="24" fill="#34D399" text-anchor="middle">&check;</text>
+                  <text x="160" y="120" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="white" text-anchor="middle">MISSION PREP: 14 DAYS OUT</text>
+                  <text x="160" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#9CA3AF" text-anchor="middle">Calendar Locked &bull; Visa Clear &bull; Packing Ready</text>
+                </svg>
+              </div>
+              <div class="story-body">
+                <h3 class="story-title">06. Transition to Living Companion</h3>
+                <p class="story-desc">
+                  Post-booking, the UI doesn't close. It shifts into a proactive companion: tracking weather variations, auto-generating packing checklists, and queuing dining reservations.
+                </p>
+                <div class="story-principle-badge">
+                  <span>Concept:</span> The Mind-Space Evolves with Time
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 03: INTERACTIVE DEMO ================= -->
+      <section class="section" id="interactive-demo" aria-labelledby="demo-title">
+        <div class="section-head">
+          <span class="section-num">CH.03</span>
+          <h2 class="section-title" id="demo-title">Interactive Agent Terminal</h2>
+          <span class="section-kicker">Experience the Sub-Second Machine Negotiation</span>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Click through the operational phases below to observe the telemetry exchanged between Arjun's personal client agent and the hospitality portal gateway in real time.
+          </p>
+
+          <div class="agent-console-wrap">
+            <div class="console-chrome">
+              <div class="chrome-dots">
+                <span class="chrome-dot dot-red"></span>
+                <span class="chrome-dot dot-yellow"></span>
+                <span class="chrome-dot dot-green"></span>
+              </div>
+              <div class="chrome-title">TERMINAL &bull; AGENT-TO-AGENT TRACE RUNNER v4.2</div>
+              <div style="font-family:var(--font-mono); font-size:10px; color:#34D399;">● LIVE PROTOCOL</div>
+            </div>
+
+            <div class="console-nav-tabs" role="tablist">
+              <button class="console-tab active" role="tab" aria-selected="true" data-panel="panel-detect">
+                <span>01</span> Context Ingestion
+              </button>
+              <button class="console-tab" role="tab" aria-selected="false" data-panel="panel-negotiate">
+                <span>02</span> Bot-to-Bot Bargaining
+              </button>
+              <button class="console-tab" role="tab" aria-selected="false" data-panel="panel-matrix">
+                <span>03</span> Competing Matrix
+              </button>
+              <button class="console-tab" role="tab" aria-selected="false" data-panel="panel-confirm">
+                <span>04</span> Apex Review
+              </button>
+            </div>
+
+            <div class="console-body">
+              <!-- Panel 1 -->
+              <div class="console-panel active" id="panel-detect">
+                <div class="bubble-stream">
+                  <div class="terminal-bubble bubble-agent">
+                    <div class="bubble-label">👤 Arjun's Client Agent &bull; 07:42:01.104</div>
+                    Event detected in Google Calendar: <em>"Tech Summit Mumbai &bull; Mar 14–16"</em>. Location requires interstate travel. Ingesting Arjun's 3-year behavioral profile...
+                  </div>
+                  <div class="terminal-bubble bubble-agent">
+                    <div class="bubble-label">👤 Arjun's Client Agent &bull; 07:42:01.320</div>
+                    Constraints validated: Preferred airline = IndiGo/Vistara, Window seat, Vegetarian meal, Max budget = ₹8,000/night for hotel, Departure after 08:30 AM (avoid fatigue spike).
+                  </div>
+                  <div class="terminal-bubble bubble-portal">
+                    <div class="bubble-label">🌐 Travel Gateway Bot &bull; 07:42:01.450</div>
+                    Gateway handshake acknowledged. Cryptographic token verified for Arjun Sonkar (Tier: Titanium). Querying real-time inventory across 847 Mumbai properties.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 2 -->
+              <div class="console-panel" id="panel-negotiate">
+                <div class="bubble-stream">
+                  <div class="terminal-bubble bubble-agent">
+                    <div class="bubble-label">👤 Arjun's Client Agent &bull; 07:42:02.012</div>
+                    Transmitting preference manifest: Proximity target &lt; 2km from BKC, late checkout required on Mar 16 (flight at 19:40). Counter-propose bundle discount.
+                  </div>
+                  <div class="terminal-bubble bubble-portal">
+                    <div class="bubble-label">🌐 Hotel Concierge Bot (Taj Lands End) &bull; 07:42:02.180</div>
+                    Room inventory available. Standard rate: ₹7,400/night. Counter-offer: Apply 5% corporate affinity + free 13:00 late check-out if flight bundle confirmed.
+                  </div>
+                  <div class="terminal-bubble bubble-agent">
+                    <div class="bubble-label">👤 Arjun's Client Agent &bull; 07:42:02.290</div>
+                    Counter accepted. Linking IndiGo 6E-4491 (Departure 10:30, zero layovers). Total package generated in 288ms. Pre-locking price for 15 minutes.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 3 -->
+              <div class="console-panel" id="panel-matrix">
+                <p style="font-family:var(--font-mono); font-size:11px; color:#9CA3AF; margin-bottom:12px;">
+                  AGENT TRADEOFF MATRIX &bull; EVALUATED 3 COMPETING BUNDLES
+                </p>
+                <div class="negotiate-matrix">
+                  <div class="hotel-offer-card selected">
+                    <span class="hotel-status-badge badge-win">SELECTED (94% MATCH)</span>
+                    <div>
+                      <h4 style="color:white; font-size:14px; margin-bottom:4px;">Taj Lands End + IndiGo Bundle</h4>
+                      <p style="color:#9CA3AF; font-size:12px; margin-bottom:10px;">0.4 km to venue &bull; Late checkout &check; &bull; Veg curated</p>
+                      <div style="font-family:var(--font-mono); font-size:11px; color:#34D399; margin-bottom:8px;">Fatigue Index: 1.2/5 (Low)</div>
+                    </div>
+                    <div style="border-top:1px solid #28293D; padding-top:10px; display:flex; justify-content:space-between; align-items:baseline;">
+                      <span style="font-size:11px; color:#9CA3AF;">Total</span>
+                      <span style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#34D399;">₹14,320</span>
+                    </div>
+                  </div>
+
+                  <div class="hotel-offer-card">
+                    <span class="hotel-status-badge badge-alt">FALLBACK (78% MATCH)</span>
+                    <div>
+                      <h4 style="color:white; font-size:14px; margin-bottom:4px;">JW Marriott BKC</h4>
+                      <p style="color:#9CA3AF; font-size:12px; margin-bottom:10px;">1.4 km to venue &bull; Late checkout &cross; (₹1,500 fee)</p>
+                      <div style="font-family:var(--font-mono); font-size:11px; color:#F59E0B; margin-bottom:8px;">Fatigue Index: 2.4/5 (Medium)</div>
+                    </div>
+                    <div style="border-top:1px solid #28293D; padding-top:10px; display:flex; justify-content:space-between; align-items:baseline;">
+                      <span style="font-size:11px; color:#9CA3AF;">Total</span>
+                      <span style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#F3F4F6;">₹16,800</span>
+                    </div>
+                  </div>
+
+                  <div class="hotel-offer-card">
+                    <span class="hotel-status-badge badge-rej">REJECTED (42% MATCH)</span>
+                    <div>
+                      <h4 style="color:white; font-size:14px; margin-bottom:4px;">Trident Nariman Point</h4>
+                      <p style="color:#9CA3AF; font-size:12px; margin-bottom:10px;">18 km from venue &bull; Severe peak traffic bottleneck</p>
+                      <div style="font-family:var(--font-mono); font-size:11px; color:#EF4444; margin-bottom:8px;">Fatigue Index: 4.6/5 (Severe)</div>
+                    </div>
+                    <div style="border-top:1px solid #28293D; padding-top:10px; display:flex; justify-content:space-between; align-items:baseline;">
+                      <span style="font-size:11px; color:#9CA3AF;">Total</span>
+                      <span style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#EF4444;">₹12,400</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 4 -->
+              <div class="console-panel" id="panel-confirm">
+                <div style="max-width:540px; margin:0 auto; background:#181928; border:1.5px solid #3B82F6; border-radius:8px; padding:20px;">
+                  <div style="display:flex; justify-content:space-between; margin-bottom:14px;">
+                    <div>
+                      <h4 style="color:white; font-size:16px;">Trip Confirmation &bull; Mumbai Tech Summit</h4>
+                      <p style="color:#9CA3AF; font-size:12px; margin:0;">Mar 14 &ndash; 16 &bull; Negotiated by Personal AI</p>
+                    </div>
+                    <span style="font-family:var(--font-mono); font-size:11px; color:#34D399; background:rgba(16,185,129,0.15); padding:4px 8px; border-radius:4px; height:fit-content;">94% MATCH</span>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); padding:12px 0;">
+                    <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Flight:</span><span>IndiGo 6E-4491 &bull; 10:30 Departure (Window Seat)</span></div>
+                    <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Stay:</span><span>Taj Lands End &bull; Deluxe King &bull; 2 Nights</span></div>
+                    <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Perks:</span><span style="color:#34D399;">13:00 Late Checkout &bull; Breakfast Included</span></div>
+                    <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Policy:</span><span style="color:#60A5FA;">100% Refundable up to 24h before travel</span></div>
+                  </div>
+
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin:16px 0 14px;">
+                    <div>
+                      <div style="font-size:11px; color:#9CA3AF; text-transform:uppercase;">Total Negotiated Price</div>
+                      <div style="font-size:22px; font-weight:700; color:#34D399; font-family:var(--font-mono);">₹14,320</div>
+                    </div>
+                    <div style="text-align:right; font-size:11px; color:#F59E0B;">Saved ₹2,180 vs. manual booking</div>
+                  </div>
+
+                  <button id="btn-demo-confirm" style="width:100%; padding:12px; background:#10B981; color:#064E3B; font-weight:700; font-family:var(--font-mono); font-size:12px; border:none; border-radius:6px; cursor:pointer; transition:transform 0.15s ease;">
+                    [TAP TO CONFIRM WITH TOUCH ID]
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 04: EXPLAINABLE AI ================= -->
+      <section class="section section-tint" id="explainability" aria-labelledby="exp-title">
+        <div class="section-head">
+          <span class="section-num">CH.04</span>
+          <h2 class="section-title" id="exp-title">Radical Transparency &bull; "Why This?"</h2>
+          <span class="section-kicker">Trust is the New Usability</span>
+        </div>
+
+        <div class="section-content">
+          <div class="grid-2col">
+            <div>
+              <p>
+                In the agent era, usability is no longer about click-paths or button colors. <strong>Usability is explainability.</strong> If an autonomous agent cannot explain why it favored Lisbon over Ibiza, or Taj Lands End over Trident, the user will immediately revert to manual verification.
+              </p>
+              <p>
+                The "Why This?" architecture makes every algorithmic scoring weight legible, auditable, and traceable to explicit user history.
+              </p>
+
+              <div class="sticky-note blue" style="margin-top:20px; transform:rotate(1deg);">
+                <div class="tape-pin"></div>
+                "Humans do not want complete abdication of control; they desire radical reassurance and transparent boundaries."
+              </div>
+            </div>
+
+            <!-- Explainability Inspection Panel -->
+            <div class="why-transparency-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:10px; border-bottom:1.5px solid var(--paper-card-border);">
+                <div>
+                  <h4 style="font-family:var(--font-mono); font-size:12px; text-transform:uppercase; color:var(--ink-primary); margin:0;">
+                    Decision Trace Audit &bull; Lisbon Selection
+                  </h4>
+                </div>
+                <span style="font-family:var(--font-mono); font-size:10px; background:var(--marker-green-soft); color:#065F46; padding:2px 8px; border-radius:3px; font-weight:700;">94% MATCH</span>
+              </div>
+
+              <div class="why-factor-row">
+                <div class="factor-icon icon-pass">&check;</div>
+                <div class="factor-body">
+                  <div class="factor-title">Weather Modeling Alignment</div>
+                  <p class="factor-desc">June meteorological forecast: Average 24°C, 8.4 daily sunshine hours, 11% precipitation risk. Matches Arjun’s historical "warm, dry, non-sweltering" preference.</p>
+                </div>
+              </div>
+
+              <div class="why-factor-row">
+                <div class="factor-icon icon-pass">&check;</div>
+                <div class="factor-body">
+                  <div class="factor-title">Crowd Density Index (2.1 / 5.0)</div>
+                  <p class="factor-desc">Peak tourist season hits July&ndash;August. June density sits at 2.1. Arjun rated his 2024 Pondicherry stay (density 2.0) as "ideal unhurried pace".</p>
+                </div>
+              </div>
+
+              <div class="why-factor-row">
+                <div class="factor-icon icon-pass">&check;</div>
+                <div class="factor-body">
+                  <div class="factor-title">Culinary Affinity Index</div>
+                  <p class="factor-desc">94 verified dining venues within 1.2km radius matching dietary profiles: seafood-heavy, traditional tasca markets, zero high-sodium chains.</p>
+                </div>
+              </div>
+
+              <div class="why-factor-row">
+                <div class="factor-icon icon-fail">&cross;</div>
+                <div class="factor-body">
+                  <div class="factor-title">Transparent Rejection: Ibiza (Match: 32%)</div>
+                  <p class="factor-desc">Eliminated by rule engine: June crowd density exceeds 4.8/5.0, accommodations run 44% above standard pricing curve, and sleep score drops by 60%.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 05: TRIP CANVAS & LOGISTICS ================= -->
+      <section class="section" id="trip-canvas" aria-labelledby="canvas-title">
+        <div class="section-head">
+          <span class="section-num">CH.05</span>
+          <h2 class="section-title" id="canvas-title">The Modular Trip Canvas</h2>
+          <span class="section-kicker">One Constraint Slider Instead of 200 Filters</span>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Rather than forcing travelers into rigid, unchangeable itineraries, the Trip Canvas is completely modular. Adjusting a single day's intensity dynamically recalculates logistics, fatigue indices, and buffer times in real time.
+          </p>
+
+          <div class="timeline-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; padding-bottom:12px; border-bottom:1.5px solid var(--paper-card-border);">
+              <h4 style="font-family:var(--font-display); font-size:16px;">5-Day Auto-Structured Canvas &bull; Lisbon Horizon</h4>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">Drag sliders to reshape day rhythms</span>
+            </div>
+
+            <!-- Day 1 -->
+            <div class="day-row">
+              <div class="day-pill">DAY 01</div>
+              <div class="day-details">
+                <h4>Arrival &amp; Sunset Miradouro Stroll</h4>
+                <p>Touchdown at 14:00 &rarr; Alfama pedestrian district check-in &rarr; Miradouro de Santa Luzia sunset drinks.</p>
+              </div>
+              <div class="intensity-slider-wrap">
+                <div class="intensity-label-row"><span>Rhythm:</span><strong style="color:#10B981;">Relaxed (30%)</strong></div>
+                <input type="range" class="intensity-slider" min="10" max="100" value="30" aria-label="Day 1 intensity">
+              </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day-row">
+              <div class="day-pill">DAY 02</div>
+              <div class="day-details">
+                <h4>Mercado da Ribeira &amp; Belém Food Route</h4>
+                <p>Morning market sampling &rarr; Tram 28 transit &rarr; Pastéis de Belém culinary walk &rarr; Evening Fado performance.</p>
+              </div>
+              <div class="intensity-slider-wrap">
+                <div class="intensity-label-row"><span>Rhythm:</span><strong style="color:#F59E0B;">Balanced (55%)</strong></div>
+                <input type="range" class="intensity-slider" min="10" max="100" value="55" aria-label="Day 2 intensity">
+              </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day-row">
+              <div class="day-pill">DAY 03</div>
+              <div class="day-details">
+                <h4>Coastal Day Expedition to Sintra &amp; Cascais</h4>
+                <p>Regional rail link &rarr; Pena Palace morning tour &rarr; Cascais coastal seafood lunch &rarr; Cabo da Roca overlook.</p>
+              </div>
+              <div class="intensity-slider-wrap">
+                <div class="intensity-label-row"><span>Rhythm:</span><strong style="color:#EF4444;">Active (75%)</strong></div>
+                <input type="range" class="intensity-slider" min="10" max="100" value="75" aria-label="Day 3 intensity">
+              </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="day-row">
+              <div class="day-pill">DAY 04</div>
+              <div class="day-details">
+                <h4>Serendipity Buffer &bull; Unstructured Space</h4>
+                <p>Completely open block. No alarms. 3 nearby quiet design studios and bookshops pre-cached on device.</p>
+              </div>
+              <div class="intensity-slider-wrap">
+                <div class="intensity-label-row"><span>Rhythm:</span><strong style="color:#3B82F6;">Open (20%)</strong></div>
+                <input type="range" class="intensity-slider" min="10" max="100" value="20" aria-label="Day 4 intensity">
+              </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="day-row">
+              <div class="day-pill">DAY 05</div>
+              <div class="day-details">
+                <h4>LX Factory Brunch &amp; Evening Departure</h4>
+                <p>Late check-out verified at 13:00 &rarr; LX Factory creative precinct &rarr; Airport express transfer &rarr; Flight 19:40.</p>
+              </div>
+              <div class="intensity-slider-wrap">
+                <div class="intensity-label-row"><span>Rhythm:</span><strong style="color:#10B981;">Easy (25%)</strong></div>
+                <input type="range" class="intensity-slider" min="10" max="100" value="25" aria-label="Day 5 intensity">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 06: AUTONOMY CONTROL ================= -->
+      <section class="section section-tint" id="autonomy" aria-labelledby="aut-title">
+        <div class="section-head">
+          <span class="section-num">CH.06</span>
+          <h2 class="section-title" id="aut-title">Autonomy is a UX Control</h2>
+          <span class="section-kicker">The Emotional Core of Autonomous Interfaces</span>
+        </div>
+
+        <div class="section-content">
+          <div class="grid-2col">
+            <div>
+              <p>
+                The central dilemma of AI interaction design is binary thinking: either the system is <em>dumb manual labor</em> or it is an <em>opaque black-box automaton</em> that spends your money without warning.
+              </p>
+              <p>
+                <strong>The Last Portal treats autonomy as a continuous spectrum.</strong> The traveler selects their preferred delegation posture. Control is never stripped away; it is explicitly granted and revoked at will.
+              </p>
+
+              <div class="paper-card" style="margin-top:20px;">
+                <h4 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-red); margin-bottom:10px;">
+                  The 3 Autonomy Postures
+                </h4>
+                <div style="font-size:13.5px; display:flex; flex-direction:column; gap:10px;">
+                  <div>🤖 <strong>Fully Auto:</strong> Agent executes transactions silently within pre-approved budget boundaries.</div>
+                  <div style="background:var(--marker-yellow-soft); padding:6px 10px; border-radius:4px; border-left:3px solid #D97706;">
+                    👁️ <strong>Review Each (Recommended):</strong> Agent negotiates everything but requires a 1-tap confirmation before checkout.
+                  </div>
+                  <div>✋ <strong>Manual Control:</strong> Agent serves purely as an investigative advisor; user must click every merchant portal.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Autonomy Interactive Box -->
+            <div class="autonomy-control-box">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-family:var(--font-mono); font-size:11px; color:#F59E0B;">ACTIVE POSTURE CONTROLLER</span>
+                <span id="posture-indicator" style="font-family:var(--font-mono); font-size:10px; color:#34D399;">HUMAN-IN-THE-LOOP</span>
+              </div>
+
+              <div class="autonomy-toggle-group" role="radiogroup" aria-label="Select autonomy level">
+                <button class="aut-btn" data-mode="auto" role="radio" aria-checked="false">🤖 FULLY AUTO</button>
+                <button class="aut-btn active" data-mode="review" role="radio" aria-checked="true">👁️ REVIEW EACH</button>
+                <button class="aut-btn" data-mode="manual" role="radio" aria-checked="false">✋ MANUAL</button>
+              </div>
+
+              <div class="snapshot-matrix">
+                <div class="snapshot-row">
+                  <span class="snap-lbl">Execution Mode:</span>
+                  <span class="snap-val" id="snap-exec-mode">Single Notification Review</span>
+                </div>
+                <div class="snapshot-row">
+                  <span class="snap-lbl">Total Estimated Budget:</span>
+                  <span class="snap-val snap-green">₹1,84,200</span>
+                </div>
+                <div class="snapshot-row">
+                  <span class="snap-lbl">Peak Crowd Density Days:</span>
+                  <span class="snap-val snap-amber">June 12 Only (2.8/5)</span>
+                </div>
+                <div class="snapshot-row">
+                  <span class="snap-lbl">Weather Confidence Score:</span>
+                  <span class="snap-val snap-green">88% Sunny / Mild</span>
+                </div>
+                <div class="snapshot-row">
+                  <span class="snap-lbl">Merchant Cancellation:</span>
+                  <span class="snap-val snap-green">100% Refundable &ge; 48h</span>
+                </div>
+              </div>
+
+              <p id="autonomy-explainer" style="font-size:12px; color:#9CA3AF; margin-top:14px; line-height:1.5;">
+                Currently set to <strong>Review Each</strong>: Arjun's agent will prepare the complete hotel, flight, and dining package, then freeze for a single tap approval.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 07: ARCHITECTURE ================= -->
+      <section class="section" id="architecture" aria-labelledby="arch-title">
+        <div class="section-head">
+          <span class="section-num">CH.07</span>
+          <h2 class="section-title" id="arch-title">System Architecture &amp; Protocol</h2>
+          <span class="section-kicker">Four Layers from Human Intent to Merchant Execution</span>
+        </div>
+
+        <div class="section-content">
+          <div class="paper-card" style="padding: 32px 24px;">
+            <div style="display:flex; flex-direction:column; gap:20px; max-width:860px; margin:0 auto;">
+
+              <!-- Layer 1 -->
+              <div style="background:#1E293B; color:white; padding:18px 24px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #3B82F6;">
+                <div>
+                  <div style="font-family:var(--font-mono); font-size:10px; color:#93C5FD; text-transform:uppercase;">LAYER 01 &bull; HUMAN REASONING</div>
+                  <div style="font-weight:700; font-size:16px;">The User (Arjun) &bull; Intent Expression &amp; Apex Review</div>
+                </div>
+                <span style="font-family:var(--font-mono); font-size:11px; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:3px;">Touch ID / Voice</span>
+              </div>
+
+              <!-- Arrow -->
+              <div style="text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-muted);">
+                &darr; Natural Intent Broadcast ("Warm place, good food, flexible budget")
+              </div>
+
+              <!-- Layer 2 -->
+              <div style="background:#0F172A; color:white; padding:18px 24px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #10B981;">
+                <div>
+                  <div style="font-family:var(--font-mono); font-size:10px; color:#6EE7B7; text-transform:uppercase;">LAYER 02 &bull; ON-DEVICE PERSONAL AGENT</div>
+                  <div style="font-weight:700; font-size:16px;">Local Behavioral Profile Model (Encrypted Keychain Storage)</div>
+                </div>
+                <span style="font-family:var(--font-mono); font-size:11px; background:rgba(16,185,129,0.2); color:#34D399; padding:4px 8px; border-radius:3px;">Zero Cloud Leak</span>
+              </div>
+
+              <!-- Arrow -->
+              <div style="text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-muted);">
+                &darr; Ephemeral Preference Manifest &amp; Dynamic Negotiation Tokens
+              </div>
+
+              <!-- Layer 3 -->
+              <div style="background:#111827; color:white; padding:18px 24px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #F59E0B;">
+                <div>
+                  <div style="font-family:var(--font-mono); font-size:10px; color:#FCD34D; text-transform:uppercase;">LAYER 03 &bull; AGENT-FIRST GATEWAY</div>
+                  <div style="font-weight:700; font-size:16px;">Federated Portal AI Gateway &bull; Micro-Auction Matching Engine</div>
+                </div>
+                <span style="font-family:var(--font-mono); font-size:11px; background:rgba(245,158,11,0.2); color:#FBBF24; padding:4px 8px; border-radius:3px;">288ms Response</span>
+              </div>
+
+              <!-- Arrow -->
+              <div style="text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-muted);">
+                &darr; Multi-Merchant Protocol APIs
+              </div>
+
+              <!-- Layer 4 -->
+              <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;">
+                <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
+                  <div style="font-size:20px; margin-bottom:4px;">✈️</div>
+                  <div style="font-size:12px; font-weight:700;">Airlines API</div>
+                  <div style="font-size:10px; color:var(--ink-muted);">Seat lock &bull; GDS</div>
+                </div>
+                <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
+                  <div style="font-size:20px; margin-bottom:4px;">🏨</div>
+                  <div style="font-size:12px; font-weight:700;">Hotels API</div>
+                  <div style="font-size:10px; color:var(--ink-muted);">Room upgrade logic</div>
+                </div>
+                <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
+                  <div style="font-size:20px; margin-bottom:4px;">🍽️</div>
+                  <div style="font-size:12px; font-weight:700;">Dining API</div>
+                  <div style="font-size:10px; color:var(--ink-muted);">Table availability</div>
+                </div>
+                <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
+                  <div style="font-size:20px; margin-bottom:4px;">🚖</div>
+                  <div style="font-size:12px; font-weight:700;">Transit API</div>
+                  <div style="font-size:10px; color:var(--ink-muted);">Last-mile transfers</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 08: LIVING SURFACE ================= -->
+      <section class="section section-tint" id="pretrip" aria-labelledby="pretrip-title">
+        <div class="section-head">
+          <span class="section-num">CH.08</span>
+          <h2 class="section-title" id="pretrip-title">The Living Pre-Trip Surface</h2>
+          <span class="section-kicker">The Interface Transforms into a Calm Companion</span>
+        </div>
+
+        <div class="section-content">
+          <div class="grid-2col">
+            <div>
+              <p>
+                In today's web, once payment is submitted, the user is dumped onto a static confirmation page and abandoned.
+              </p>
+              <p>
+                In <strong>The Last Portal</strong>, confirming the trip transitions the surface into an active pre-trip dashboard that lives in the background, surfacing timely tasks only when relevant.
+              </p>
+
+              <div class="sticky-note green" style="margin-top:20px; transform:rotate(-1deg);">
+                <div class="tape-pin"></div>
+                "The hallmark of calm technology: informing without intruding, anticipating without demanding."
+              </div>
+            </div>
+
+            <!-- Living Companion Card -->
+            <div class="paper-card" style="background:#0E101A; color:white; border-color:#28293D;">
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid #28293D; padding-bottom:10px;">
+                <div>
+                  <div style="font-family:var(--font-mono); font-size:10px; color:#10B981; letter-spacing:0.08em; text-transform:uppercase;">COMPANION STATUS: ACTIVE</div>
+                  <div style="font-family:var(--font-display); font-size:18px; font-weight:700; color:white;">14 Days Until Departure &bull; Lisbon</div>
+                </div>
+                <span style="font-family:var(--font-mono); font-size:12px; color:#34D399; font-weight:700;">PREP: 75% &check;</span>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+                <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>🛫 <strong>Flight 6E-4491:</strong> Seats confirmed (12A/12B Window)</span>
+                  <span style="font-family:var(--font-mono); font-size:10px; color:#34D399;">LOCKED</span>
+                </div>
+                <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>🏨 <strong>Bairro Alto Hotel:</strong> Early check-in requested at 13:00</span>
+                  <span style="font-family:var(--font-mono); font-size:10px; color:#F59E0B;">PENDING</span>
+                </div>
+                <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>🧳 <strong>Packing List:</strong> Tailored for 24°C coastal winds + comfortable shoes</span>
+                  <span style="font-family:var(--font-mono); font-size:10px; color:#34D399;">SYNCED</span>
+                </div>
+                <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>🍽️ <strong>Tasca do Chico (Fado):</strong> Booking queue opens in 4 days</span>
+                  <span style="font-family:var(--font-mono); font-size:10px; color:#60A5FA;">AUTO-QUEUE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 09: PERSONAS ================= -->
+      <section class="section" id="personas" aria-labelledby="per-title">
+        <div class="section-head">
+          <span class="section-num">CH.09</span>
+          <h2 class="section-title" id="per-title">User Personas &amp; Inclusion</h2>
+          <span class="section-kicker">Designing for Diverse Delegation Comfort Levels</span>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Trust in autonomous agents varies wildly by age, technical literacy, and personal risk tolerance. Our UX framework is designed to serve three distinct archetypes.
+          </p>
+
+          <div class="grid-3col" style="margin-top:24px;">
+
+            <!-- Persona 1 -->
+            <article class="persona-card">
+              <div class="persona-avatar-row">
+                <div class="persona-avatar">🧑‍💼</div>
+                <div>
+                  <h4 style="font-size:16px; margin:0;">Arjun, 34</h4>
+                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">Senior Consultant &bull; Bengaluru</div>
+                </div>
+              </div>
+              <blockquote class="persona-quote">
+                "I travel 3 times a month. I want maximum speed and corporate compliance without spending my Sunday comparing flights."
+              </blockquote>
+              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+                <li>&bull; <strong>Goal:</strong> Zero-click logistics with 1-tap review.</li>
+                <li>&bull; <strong>Frustration:</strong> Re-entering passport numbers and expense codes.</li>
+                <li>&bull; <strong>Posture:</strong> Prefers <em>Review Each</em> on domestic, <em>Manual</em> on international.</li>
+              </ul>
+            </article>
+
+            <!-- Persona 2 -->
+            <article class="persona-card">
+              <div class="persona-avatar-row">
+                <div class="persona-avatar" style="background:var(--marker-blue-soft);">👩‍🎨</div>
+                <div>
+                  <h4 style="font-size:16px; margin:0;">Meera, 28</h4>
+                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">UX Designer &bull; Remote Worker</div>
+                </div>
+              </div>
+              <blockquote class="persona-quote">
+                "I'm hesitant to trust an AI with hotel bookings. What if it picks a noisy sterile corporate hotel instead of a local gem?"
+              </blockquote>
+              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+                <li>&bull; <strong>Goal:</strong> Complete transparency into why an option was chosen.</li>
+                <li>&bull; <strong>Frustration:</strong> Algorithmic black boxes with sponsored biases.</li>
+                <li>&bull; <strong>Posture:</strong> Relies heavily on the <em>"Why This?"</em> audit pane.</li>
+              </ul>
+            </article>
+
+            <!-- Persona 3 -->
+            <article class="persona-card">
+              <div class="persona-avatar-row">
+                <div class="persona-avatar" style="background:var(--marker-green-soft);">👴</div>
+                <div>
+                  <h4 style="font-size:16px; margin:0;">Rajan, 61</h4>
+                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">Retired Engineer &bull; Hyderabad</div>
+                </div>
+              </div>
+              <blockquote class="persona-quote">
+                "I prefer to book things myself, but I hate small fonts, hidden baggage fees, and countdown timers."
+              </blockquote>
+              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+                <li>&bull; <strong>Goal:</strong> Calm assistance with voice confirmation fallback.</li>
+                <li>&bull; <strong>Frustration:</strong> Dark patterns, sudden price surges, small touch targets.</li>
+                <li>&bull; <strong>Posture:</strong> Uses <em>Manual Posture</em> with WCAG high-contrast mode.</li>
+              </ul>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHAPTER 10: MANIFESTO & IMPACT ================= -->
+      <section class="section" id="manifesto" aria-labelledby="man-title">
+        <div class="section-head">
+          <span class="section-num">CH.10</span>
+          <h2 class="section-title" id="man-title">The Closing Manifesto &amp; UX Laws</h2>
+          <span class="section-kicker">Designing the Boundary of Human-Machine Collaboration</span>
+        </div>
+
+        <div class="section-content">
+
+          <!-- Core UX Laws Applied -->
+          <div class="grid-2col" style="margin-bottom:32px;">
+            <div class="paper-card">
+              <h4 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-red); margin-bottom:12px;">
+                Applied Behavioral Laws
+              </h4>
+              <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;">
+                <div>
+                  <strong>Hick's Law (Choice Minimization):</strong> Decision latency increases logarithmically with the number of choices. We never show 47 options; we present a top-3 tradeoff matrix.
+                </div>
+                <div>
+                  <strong>Fitts's Law (Target Accessibility):</strong> The apex decision confirmation button is thumb-reachable, spans 48px+ in touch height, and is isolated from destructive dismissals.
+                </div>
+                <div>
+                  <strong>Nielsen Heuristic #1 (Visibility of System Status):</strong> Real-time activity telemetry makes the machine's inner bargaining visible, building user trust through motion.
+                </div>
+                <div>
+                  <strong>WCAG 2.2 AA (Error Prevention - 3.3.4):</strong> Financial transactions require explicit human review, reversible holds, and a minimum 24-hour full refund cancellation safety net.
+                </div>
+              </div>
+            </div>
+
+            <div class="paper-card">
+              <h4 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-primary); margin-bottom:12px;">
+                Projected Quantitative Impact
+              </h4>
+              <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--paper-divider); padding-bottom:8px;">
+                  <span>Average Screens per Booking:</span>
+                  <strong style="color:#10B981;">Reduced from 11 &rarr; 1 canvas</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--paper-divider); padding-bottom:8px;">
+                  <span>Cognitive Interaction Time:</span>
+                  <strong style="color:#10B981;">Dropped by 91% (138m &rarr; 12m)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--paper-divider); padding-bottom:8px;">
+                  <span>Average Cost Savings:</span>
+                  <strong style="color:#10B981;">13.4% through bot negotiation</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span>Booking Drop-off Rate:</span>
+                  <strong style="color:#10B981;">Decreased from 42% &rarr; 4%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Manifesto Centerpiece -->
+          <div class="manifesto-box">
+            <div class="manifesto-line">You are not designing screens.</div>
+            <div class="manifesto-line bright">You are designing the boundary</div>
+            <div class="manifesto-line accent">between human intent</div>
+            <div class="manifesto-line bright">and machine execution.</div>
+
+            <div style="width:60px; height:2px; background:#3B82F6; margin:24px auto;"></div>
+
+            <div style="font-family:var(--font-mono); font-size:12px; color:#9CA3AF; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">
+              THE FUTURE PORTAL IS NOT A SEARCH FORM.
+            </div>
+            <div style="font-family:var(--font-hand); font-size:32px; color:#34D399;">
+              It is a collaborative mind-space.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Notebook Footer -->
+      <footer class="notebook-footer">
+        <div class="footer-inner">
+
+          <!-- Top summary row -->
+          <div class="footer-top-row">
+            <div>
+              <h4>The Last Portal</h4>
+              <p>A speculative UX case study in autonomous agent delegation, bot-to-bot bargaining, and explainable decision spaces. Prepared for the 2028–2038 human-computer interaction horizon.</p>
+            </div>
+            <div class="footer-meta-box">
+              Side Quest №01 &bull; Speculative UX<br>
+              Sharad Sonkar Systems Lab<br>
+              Agent Protocol &bull; WCAG 2.2 AA &bull; Autonomous Travel
+            </div>
+          </div>
+
+          <!-- Bottom Links Row: Back link on LEFT, metadata/social on RIGHT -->
+          <div class="footer-links-row">
+            <a href="../index.html" class="footer-back-link">&larr; Back to Portfolio (View More Projects)</a>
+            <div class="footer-social-links">
+              <a href="mailto:sharadsonkarofficial@gmail.com">sharadsonkarofficial@gmail.com</a>
+              <a href="https://www.linkedin.com/in/sharadsonkar/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+    </article>
+  </div>
+
+  <script>
+    // ─── Reading Progress Bar ───
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
+      bar.style.width = progress + '%';
+      bar.setAttribute('aria-valuenow', Math.round(progress));
+    });
+
+    // ─── Sticky Chapter Sidenav Highlight ───
+    const navLinks = document.querySelectorAll('.sidenav a');
+    const sections = document.querySelectorAll('.section');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // ─── Interactive Console Tab Switching ───
+    const tabs = document.querySelectorAll('.console-tab');
+    const panels = document.querySelectorAll('.console-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const targetId = tab.getAttribute('data-panel');
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      });
+    });
+
+    // Confirm button in terminal demo
+    const confirmBtn = document.getElementById('btn-demo-confirm');
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', () => {
+        confirmBtn.innerHTML = "&check; TRIP CONFIRMED &bull; PASSENGER NOTIFIED";
+        confirmBtn.style.background = "#059669";
+        confirmBtn.style.color = "#FFFFFF";
+      });
+    }
+
+    // ─── Autonomy Posture Switcher ───
+    const autButtons = document.querySelectorAll('.aut-btn');
+    const postureIndicator = document.getElementById('posture-indicator');
+    const snapExecMode = document.getElementById('snap-exec-mode');
+    const explainer = document.getElementById('autonomy-explainer');
+
+    const postureMap = {
+      auto: {
+        indicator: "FULLY AUTONOMOUS",
+        color: "#60A5FA",
+        modeText: "Background Execution (Pre-authorized limits)",
+        explainerText: "Set to <strong>Fully Auto</strong>: The agent books and locks transactions silently without waiting for manual confirmation as long as cost stays below ₹1,85,000."
+      },
+      review: {
+        indicator: "HUMAN-IN-THE-LOOP",
+        color: "#34D399",
+        modeText: "Single Notification Review",
+        explainerText: "Currently set to <strong>Review Each</strong>: Arjun's agent will negotiate the complete package, then pause for a single-tap Touch ID approval before money moves."
+      },
+      manual: {
+        indicator: "ADVISORY ONLY",
+        color: "#F59E0B",
+        modeText: "Manual User Checkout",
+        explainerText: "Set to <strong>Manual</strong>: The agent suggests recommendations and finds links, but requires the human to click out and complete every individual payment form."
+      }
+    };
+
+    autButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        autButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-checked', 'true');
+
+        const mode = btn.getAttribute('data-mode');
+        if (postureMap[mode]) {
+          postureIndicator.textContent = postureMap[mode].indicator;
+          postureIndicator.style.color = postureMap[mode].color;
+          snapExecMode.textContent = postureMap[mode].modeText;
+          explainer.innerHTML = postureMap[mode].explainerText;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

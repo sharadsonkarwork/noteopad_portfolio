@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sharad Sonkar — Designer • Builder • Leader</title>
+  <meta name="description"
+    content="Editorial sketchbook portfolio of Sharad Sonkar () — Senior Product Designer, Builder, Leader." />
+
+  <!-- Google Fonts: Caveat & Plus Jakarta Sans (Strictly 2 font families) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet" />
+
+  <!-- GSAP & Confetti -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" crossorigin href="/assets/main-rA16uRe6.css">
+</head>
+
+<body class="theme-paper loading-locked">
+
+  <!-- THEATRICAL CURTAIN LOADER -->
+  <div id="curtain-loader" class="curtain-loader" aria-hidden="true">
+    <div class="curtain-half curtain-left">
+      <div class="curtain-pleats">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="curtain-half curtain-right">
+      <div class="curtain-pleats">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="loader-centerpiece">
+      <div class="loader-paper-badge">
+        <div class="loader-pin"></div>
+        <div class="greeting-box">
+          <div class="greeting-lang-tag" id="greeting-lang">English</div>
+          <h1 class="greeting-word" id="greeting-word">Hello</h1>
+        </div>
+        <div class="loader-progress-track">
+          <div class="loader-progress-fill" id="loader-progress"></div>
+        </div>
+        <div class="loader-sub">
+          <span class="pulse-dot"></span>
+          <span class="loader-brand">SHARAD SONKAR &bull; PORTFOLIO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM NOTEBOOK INK CURSOR -->
+  <div id="sketch-cursor" class="sketch-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- PAPER GRAIN TEXTURE OVERLAY -->
+  <div class="paper-texture" aria-hidden="true"></div>
+
+  <!-- MAIN SKETCHBOOK OUTER WORKSPACE -->
+  <div class="notebook-outer-canvas">
+
+    <!-- CENTRAL SKETCHBOOK PAGE WITH ORGANIC INK BORDER -->
+    <div class="sketchbook-page" id="main-content">
+
+      <!-- ================= HEADER ================= -->
+      <header class="site-header">
+        <div class="header-left">
+          <a href="#hero" class="brand-link">
+            <span class="brand-title">Sharad Sonkar</span>
+            <span class="brand-subtitle">Designer &bull; Builder &bull; Leader</span>
+          </a>
+        </div>
+
+        <nav class="site-nav" aria-label="Main Navigation">
+          <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"
+            aria-expanded="false">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+          <ul class="nav-links" id="nav-links-list">
+            <li><a href="#work" class="nav-item">WORK</a></li>
+            <li><a href="#side-quests" class="nav-item">SIDE QUESTS</a></li>
+            <li><a href="#notebook" class="nav-item">NOTEBOOK</a></li>
+            <li><a href="#leadership" class="nav-item">LEADERSHIP</a></li>
+            <li><a href="#about" class="nav-item">ABOUT</a></li>
+            <li><a href="#contact" class="nav-item">CONTACT</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-right">
+          <div class="learning-tag-group">
+            <span class="handwritten-tag header-quote">always<br>learning. ✦</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ================= MAIN CONTENT ================= -->
+      <main>
+
+        <!-- ================= HERO SECTION ================= -->
+        <section class="hero-section" id="hero">
+
+          <!-- Column 1: Left Sticky Note & Focus List -->
+          <div class="hero-col hero-left">
+            <!-- Pinned Note: Good design is honest -->
+            <div class="sticky-note yellow-note pinned-honest" style="transform: rotate(-2deg);">
+              <div class="tape-strip top-tape"></div>
+              <p class="note-handwritten-title">Good<br>design is<br>honest.</p>
+            </div>
+
+            <!-- Focus Checklist -->
+            <div class="focus-box">
+              <h3 class="focus-title handwritten-underline">Focus</h3>
+              <ul class="focus-list">
+                <li><span class="bullet">&bull;</span> User</li>
+                <li><span class="bullet">&bull;</span> Problem</li>
+                <li><span class="bullet">&bull;</span> Clarity</li>
+                <li><span class="bullet">&bull;</span> Impact</li>
+              </ul>
+              <p class="focus-footer handwritten">
+                Everything<br>else is<br>decoration.
+              </p>
+              <div class="focus-star">☆</div>
+            </div>
+          </div>
+
+          <!-- Column 2: Center (Intro Statement + SOLVE REAL PROBLEMS Diagram) -->
+          <div class="hero-col hero-center-group">
+
+            <!-- Left Sub-column: Headline, Subtitle, CTAs -->
+            <div class="hero-intro-pane">
+              <!-- Big Triple Statement with Juicy Realistic Highlighter Strokes -->
+              <div class="hero-statement">
+                <h2 class="statement-line">
+                  <span class="statement-prefix">I</span>
+                  <span class="highlight-wrapper yellow-highlight">
+                    <span class="highlight-marker" aria-hidden="true"></span>
+                    <span class="highlight-text">design.</span>
+                  </span>
+                </h2>
+                <h2 class="statement-line">
+                  <span class="statement-prefix">I</span>
+                  <span class="highlight-wrapper green-highlight">
+                    <span class="highlight-marker" aria-hidden="true"></span>
+                    <span class="highlight-text">build.</span>
+                  </span>
+                </h2>
+                <h2 class="statement-line">
+                  <span class="statement-prefix">I</span>
+                  <span class="highlight-wrapper blue-highlight">
+                    <span class="highlight-marker" aria-hidden="true"></span>
+                    <span class="highlight-text">lead.</span>
+                  </span>
+                </h2>
+              </div>
+
+              <p class="hero-bio">
+                I help teams turn complex problems into simple, meaningful products.
+              </p>
+
+              <div class="hero-tags">
+                <span>UX/UI</span> &bull; <span>Design Systems</span> &bull; <span>Product Design</span><br>
+                <span>Frontend</span> &bull; <span>Leadership</span>
+              </div>
+
+              <div class="hero-actions">
+                <a href="#work" class="btn-sketch-primary">VIEW MY WORK</a>
+                <a href="./assets/Sharad_Sonkar_Resume.pdf" download="Sharad_Sonkar_Resume.pdf"
+                  class="btn-sketch-secondary resume-download-hero" title="Download Resume (PDF)">
+                  <svg class="download-icon" viewBox="0 0 20 20" width="15" height="15" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5" />
+                    <path d="M4 17h12" />
+                  </svg>
+                  <span>DOWNLOAD RESUME</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Sub-column: The Animated SOLVE REAL PROBLEMS Diagram -->
+            <div class="hero-diagram-pane" id="hero-diagram-wrapper">
+
+              <div class="diagram-interactive-canvas" id="solve-problems-diagram">
+
+                <!-- Central Hand-Drawn Oval -->
+                <div class="diagram-node node-center" id="node-center">
+                  <svg class="center-oval-svg" viewBox="0 0 170 90" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="oval-stroke-path"
+                      d="M 85,6 C 132,6 164,22 164,45 C 164,68 132,84 85,84 C 38,84 6,68 6,45 C 6,22 38,6 85,6 Z" />
+                  </svg>
+                  <div class="center-text-content">
+                    <span class="center-line-1">SOLVE REAL</span>
+                    <span class="center-line-2">PROBLEMS</span>
+                  </div>
+                </div>
+
+                <!-- 5 Surrounding Nodes -->
+                <!-- 1. USER RESEARCH (Top Left) -->
+                <div class="diagram-node node-satellite node-user-research" data-node="user-research"
+                  id="node-user-research">
+                  <div class="node-box-inner">
+                    <span>USER</span>
+                    <span>RESEARCH</span>
+                  </div>
+                </div>
+
+                <!-- 2. INTERACTION DESIGN (Top Right) -->
+                <div class="diagram-node node-satellite node-interaction-design" data-node="interaction-design"
+                  id="node-interaction-design">
+                  <div class="node-box-inner">
+                    <span>INTERACTION</span>
+                    <span>DESIGN</span>
+                  </div>
+                </div>
+
+                <!-- 3. UI DESIGN (Far Right) -->
+                <div class="diagram-node node-satellite node-ui-design" data-node="ui-design" id="node-ui-design">
+                  <div class="node-box-inner">
+                    <span>UI DESIGN</span>
+                  </div>
+                </div>
+
+                <!-- 4. BUILD & PROTOTYPE (Bottom Center) -->
+                <div class="diagram-node node-satellite node-build-prototype" data-node="build-prototype"
+                  id="node-build-prototype">
+                  <div class="node-box-inner">
+                    <span>BUILD &amp;</span>
+                    <span>PROTOTYPE</span>
+                  </div>
+                </div>
+
+                <!-- 5. DESIGN SYSTEMS (Bottom Left) -->
+                <div class="diagram-node node-satellite node-design-systems" data-node="design-systems"
+                  id="node-design-systems">
+                  <div class="node-box-inner">
+                    <span>DESIGN</span>
+                    <span>SYSTEMS</span>
+                  </div>
+                </div>
+
+                <!-- SVG Connecting Hand-Drawn Arrows -->
+                <svg class="diagram-connecting-arrows" viewBox="0 0 440 300" preserveAspectRatio="xMidYMid meet"
+                  aria-hidden="true">
+                  <defs>
+                    <marker id="sketch-arrowhead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6"
+                      orient="auto-start-reverse">
+                      <path d="M 0 1 L 9 5 L 0 9 z" fill="#18181b" />
+                    </marker>
+                    <marker id="sketch-arrowhead-active" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6"
+                      markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 1 L 9 5 L 0 9 z" fill="#dc2626" />
+                    </marker>
+                  </defs>
+
+                  <!-- Arrow 1: Center to User Research -->
+                  <path class="diagram-arrow-path arrow-user-research" d="M 185,120 C 160,90 140,75 125,55"
+                    marker-end="url(#sketch-arrowhead)" />
+                  <!-- Arrow 2: Center to Interaction Design -->
+                  <path class="diagram-arrow-path arrow-interaction-design" d="M 255,120 C 275,90 300,75 315,55"
+                    marker-end="url(#sketch-arrowhead)" />
+                  <!-- Arrow 3: Center to UI Design -->
+                  <path class="diagram-arrow-path arrow-ui-design" d="M 290,145 C 315,145 335,145 350,145"
+                    marker-end="url(#sketch-arrowhead)" />
+                  <!-- Arrow 4: Center to Build & Prototype -->
+                  <path class="diagram-arrow-path arrow-build-prototype" d="M 220,182 C 220,198 220,212 220,230"
+                    marker-end="url(#sketch-arrowhead)" />
+                  <!-- Arrow 5: Center to Design Systems -->
+                  <path class="diagram-arrow-path arrow-design-systems" d="M 160,155 C 135,170 120,180 105,190"
+                    marker-end="url(#sketch-arrowhead)" />
+                </svg>
+
+                <!-- Red Handwritten Note -->
+                <div class="diagram-red-note" id="diagram-red-note">
+                  <p class="red-quote-text">
+                    Design is not just<br>how it looks. It's how<br><span class="red-underline">it works.</span>
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Column 3: Right Column (Exploring, Thought, Focus Mode) -->
+          <div class="hero-col hero-right">
+
+            <!-- Currently Exploring Box -->
+            <div class="exploring-box">
+              <h3 class="exploring-title handwritten-underline">Currently Exploring:</h3>
+              <ul class="exploring-list">
+                <li><span class="sketch-checkbox checked">☑</span> AI in Product Design</li>
+                <li><span class="sketch-checkbox checked">☑</span> Design Systems</li>
+                <li><span class="sketch-checkbox checked">☑</span> Creative Coding</li>
+                <li><span class="sketch-checkbox checked">☑</span> Building in Public</li>
+              </ul>
+            </div>
+
+            <!-- Sticky Note: Today's Thought -->
+            <div class="sticky-note white-paper-note paper-thought-note" style="transform: rotate(1.2deg);">
+              <div class="tape-strip center-tape"></div>
+              <span class="thought-header">Today's Thought</span>
+              <p class="thought-text">
+                Don't design for features.<br>
+                Design for <span class="red-underline">decisions.</span>
+              </p>
+              <span class="thought-star">☆</span>
+            </div>
+
+            <!-- Focus Mode Lo-Fi Widget -->
+            <div class="lofi-widget" id="lofi-player">
+              <div class="lofi-art">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="64" height="64" x="0" y="0" viewBox="0 0 496 496" style="enable-background:new 0 0 512 512"
+                  xml:space="preserve" class="">
+                  <g>
+                    <path fill="#795a21"
+                      d="M248 0C111.03 0 0 111.03 0 248s111.03 248 248 248 248-111.03 248-248S384.97 0 248 0m0 268c-11.05 0-20-8.95-20-20s8.95-20 20-20 20 8.95 20 20-8.95 20-20 20"
+                      opacity="1" data-original="#795a21" class=""></path>
+                    <path fill="#f2b441"
+                      d="M248 152c-53.02 0-96 42.98-96 96s42.98 96 96 96 96-42.98 96-96-42.98-96-96-96m0 116c-11.05 0-20-8.95-20-20s8.95-20 20-20 20 8.95 20 20-8.95 20-20 20"
+                      opacity="1" data-original="#f2b441" class=""></path>
+                    <path fill="#b78f43"
+                      d="M66 257.01a8 8 0 0 1-8-8V248c0-36.009 10.12-71.057 29.265-101.356a190.55 190.55 0 0 1 76.087-68.784 8 8 0 0 1 10.729 3.592 8 8 0 0 1-3.592 10.728C110.972 121.839 74 181.545 74 248v1.01a8 8 0 0 1-8 8M329.086 418.982a8 8 0 0 1-7.166-4.434 8 8 0 0 1 3.592-10.728C385.028 374.161 422 314.455 422 248v-1.01a8 8 0 0 1 16 0V248c0 36.009-10.119 71.057-29.265 101.356a190.54 190.54 0 0 1-76.087 68.784 8 8 0 0 1-3.562.842"
+                      opacity="1" data-original="#b78f43"></path>
+                    <path fill="#b78f43"
+                      d="M108.96 232.491q-.661.001-1.335-.112a8 8 0 0 1-6.564-9.215c4.767-28.376 17.62-54.624 37.168-75.906a8 8 0 0 1 11.303-.48 8 8 0 0 1 .48 11.303c-17.449 18.997-28.92 42.419-33.172 67.734a8 8 0 0 1-7.88 6.676M352.878 351.33a7.998 7.998 0 0 1-5.889-13.411c17.449-18.998 28.92-42.419 33.172-67.734a8 8 0 1 1 15.779 2.651c-4.767 28.375-17.619 54.623-37.168 75.906a7.98 7.98 0 0 1-5.894 2.588"
+                      opacity="1" data-original="#b78f43"></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="lofi-info">
+                <span class="lofi-title">Focus Mode</span>
+                <span class="lofi-track" id="lofi-track-name">lofi beats</span>
+              </div>
+              <div class="lofi-controls">
+                <button class="lofi-btn play-pause-btn" id="lofi-toggle-btn" title="Play / Pause Lo-Fi"
+                  aria-label="Play or pause sound">
+                  <span class="play-icon">&#9658;</span>
+                  <span class="pause-icon" style="display:none;">&#10074;&#10074;</span>
+                </button>
+                <button class="lofi-btn reload-btn" id="lofi-vibe-btn" title="Reload Lo-Fi Chords"
+                  aria-label="Reload vibe">&#8635;</button>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ================= SECTION 1: WHEN PEOPLE BRING ME IN ================= -->
+        <section class="section-container" id="bring-me-in">
+
+          <!-- Section Header -->
+          <div class="section-header">
+            <div class="section-title-wrapper">
+              <h2 class="section-title">When people bring me in</h2>
+            </div>
+            <p class="section-intro">
+              Most engagements start with one of these situations,<br>
+              not with a request for screens. Each one has a defined shape.
+            </p>
+          </div>
+
+          <div class="section-body-with-sides">
+
+            <!-- Left Gutter Side Annotation -->
+            <aside class="side-annotation left-annotation" aria-hidden="true">
+              <p class="handwritten quote-subtle">
+                I don't just<br>
+                make things<br>
+                look better.<br>
+                I make things<br>
+                work better.
+              </p>
+              <div class="doodle-curve-arrow">
+                <svg width="45" height="45" viewBox="0 0 50 50">
+                  <path d="M 12,8 Q 28,38 42,26" fill="none" stroke="currentColor" stroke-width="1.6"
+                    stroke-dasharray="3,3" />
+                  <path d="M 36,22 L 43,26 L 40,34" fill="none" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+              </div>
+              <span class="sketch-star">☆</span>
+            </aside>
+
+            <!-- 4 Cards Grid -->
+            <div class="bring-cards-grid">
+
+              <!-- Card 01 -->
+              <div class="sketch-card" data-modal="Working Product Prototype">
+                <div class="card-num-badge">01</div>
+                <h3 class="card-headline">Working Product<br>Prototype</h3>
+
+                <!-- Sketch Illustration: Wireframe + Laptop -->
+                <div class="card-sketch-illus">
+                  <svg viewBox="0 0 160 85" class="sketch-svg">
+                    <!-- Notepad wireframe -->
+                    <rect x="12" y="14" width="46" height="58" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <line x1="18" y1="24" x2="50" y2="24" class="sketch-line" />
+                    <line x1="18" y1="32" x2="44" y2="32" class="sketch-line" />
+                    <line x1="18" y1="40" x2="50" y2="40" class="sketch-line" />
+                    <line x1="18" y1="48" x2="38" y2="48" class="sketch-line" />
+                    <rect x="18" y="55" width="14" height="9" rx="1" class="sketch-line" />
+                    <!-- Laptop -->
+                    <rect x="72" y="18" width="76" height="48" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <rect x="78" y="23" width="64" height="36" rx="1" class="sketch-line-light"
+                      fill="rgba(0,0,0,0.03)" />
+                    <line x1="62" y1="66" x2="156" y2="66" class="sketch-line-thick" />
+                    <!-- Laptop UI elements -->
+                    <rect x="82" y="27" width="24" height="10" rx="1" class="sketch-line-blue" />
+                    <circle cx="128" cy="41" r="10" class="sketch-line-amber" fill="none" />
+                    <line x1="82" y1="45" x2="114" y2="45" class="sketch-line" />
+                    <line x1="82" y1="51" x2="104" y2="51" class="sketch-line" />
+                  </svg>
+                </div>
+
+                <ul class="card-bullet-list">
+                  <li>&ndash; Your idea, in your head or on paper</li>
+                  <li>&ndash; Validate quickly</li>
+                  <li>&ndash; Know what to build, kill or park</li>
+                  <li>&ndash; Define the next step</li>
+                </ul>
+
+                <a href="#work" class="card-link modal-trigger" data-title="Working Product Prototype">How this works
+                  &rarr;</a>
+              </div>
+
+              <!-- Card 02 -->
+              <div class="sketch-card" data-modal="Design System Foundation">
+                <div class="card-num-badge">02</div>
+                <h3 class="card-headline">Design System<br>Foundation</h3>
+
+                <!-- Sketch Illustration: UI Component Library -->
+                <div class="card-sketch-illus">
+                  <svg viewBox="0 0 160 85" class="sketch-svg">
+                    <!-- Component Windows -->
+                    <rect x="10" y="10" width="66" height="62" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <line x1="10" y1="21" x2="76" y2="21" class="sketch-line" />
+                    <circle cx="16" cy="15" r="2" class="sketch-dot" />
+                    <circle cx="23" cy="15" r="2" class="sketch-dot" />
+                    <!-- Components inside -->
+                    <rect x="16" y="27" width="22" height="9" rx="2" class="sketch-line-blue" />
+                    <rect x="42" y="27" width="26" height="9" rx="2" class="sketch-line-amber" />
+                    <rect x="16" y="40" width="52" height="6" rx="1" class="sketch-line" />
+                    <circle cx="23" cy="56" r="6" class="sketch-line-green" />
+                    <circle cx="39" cy="56" r="6" class="sketch-line-rose" />
+                    <!-- Secondary window -->
+                    <rect x="85" y="18" width="66" height="54" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <line x1="85" y1="29" x2="151" y2="29" class="sketch-line" />
+                    <rect x="92" y="35" width="32" height="6" rx="1" class="sketch-line" />
+                    <rect x="92" y="45" width="52" height="4" rx="1" class="sketch-line-light" />
+                    <rect x="92" y="53" width="42" height="4" rx="1" class="sketch-line-light" />
+                  </svg>
+                </div>
+
+                <ul class="card-bullet-list">
+                  <li>&ndash; One consistent language</li>
+                  <li>&ndash; Components your team actually uses</li>
+                  <li>&ndash; New screens assembled, not redesigned</li>
+                  <li>&ndash; Governance that keeps it alive</li>
+                </ul>
+
+                <a href="#work" class="card-link modal-trigger" data-title="Design System Foundation">How this works
+                  &rarr;</a>
+              </div>
+
+              <!-- Card 03 -->
+              <div class="sketch-card" data-modal="Embedded Senior Product Design">
+                <div class="card-num-badge">03</div>
+                <h3 class="card-headline">Embedded Senior<br>Product Design</h3>
+
+                <!-- Sketch Illustration: Team Collaborating -->
+                <div class="card-sketch-illus">
+                  <svg viewBox="0 0 160 85" class="sketch-svg">
+                    <!-- Whiteboard -->
+                    <rect x="38" y="8" width="84" height="48" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <line x1="46" y1="18" x2="74" y2="18" class="sketch-line-blue" />
+                    <line x1="46" y1="26" x2="68" y2="26" class="sketch-line-blue" />
+                    <rect x="86" y="16" width="28" height="22" rx="1" class="sketch-line-amber" />
+                    <line x1="38" y1="56" x2="122" y2="56" class="sketch-line" />
+                    <!-- Figures / People -->
+                    <circle cx="26" cy="46" r="5" class="sketch-line" />
+                    <path d="M 18,68 Q 26,54 34,68" class="sketch-line" />
+                    <circle cx="80" cy="50" r="5" class="sketch-line" />
+                    <path d="M 72,72 Q 80,60 88,72" class="sketch-line" />
+                    <circle cx="134" cy="46" r="5" class="sketch-line" />
+                    <path d="M 126,68 Q 134,55 142,68" class="sketch-line" />
+                  </svg>
+                </div>
+
+                <ul class="card-bullet-list">
+                  <li>&ndash; Product-level thinking</li>
+                  <li>&ndash; Full ownership without a permanent hire</li>
+                  <li>&ndash; Patterns & decisions your team can reuse</li>
+                  <li>&ndash; A clean handover, never a cliff</li>
+                </ul>
+
+                <a href="#work" class="card-link modal-trigger" data-title="Embedded Senior Product Design">How this
+                  works &rarr;</a>
+              </div>
+
+              <!-- Card 04 -->
+              <div class="sketch-card" data-modal="Brand, Identity & Experience">
+                <div class="card-num-badge">04</div>
+                <h3 class="card-headline">Brand, Identity &amp;<br>Experience</h3>
+
+                <!-- Sketch Illustration: Mobile Brand Posters -->
+                <div class="card-sketch-illus">
+                  <svg viewBox="0 0 160 85" class="sketch-svg">
+                    <!-- Poster 1 -->
+                    <rect x="14" y="12" width="40" height="60" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <circle cx="34" cy="28" r="8" class="sketch-line-amber" fill="rgba(235,170,50,0.2)" />
+                    <path d="M 18,56 Q 34,42 50,56" class="sketch-line-blue" />
+                    <line x1="22" y1="63" x2="46" y2="63" class="sketch-line" />
+                    <!-- Poster 2 -->
+                    <rect x="61" y="8" width="40" height="64" rx="2" class="sketch-line" fill="var(--paper-card-bg)" />
+                    <circle cx="81" cy="24" r="7" class="sketch-line-rose" fill="rgba(220,100,100,0.15)" />
+                    <line x1="67" y1="42" x2="95" y2="42" class="sketch-line" />
+                    <line x1="67" y1="49" x2="91" y2="49" class="sketch-line" />
+                    <rect x="67" y="56" width="18" height="8" rx="1" class="sketch-line-green" />
+                    <!-- Poster 3 -->
+                    <rect x="108" y="12" width="40" height="60" rx="2" class="sketch-line"
+                      fill="var(--paper-card-bg)" />
+                    <path d="M 114,36 L 128,20 L 142,36 Z" class="sketch-line-blue" fill="rgba(70,130,220,0.15)" />
+                    <circle cx="138" cy="20" r="3" class="sketch-dot-amber" />
+                    <line x1="116" y1="52" x2="140" y2="52" class="sketch-line" />
+                    <line x1="116" y1="59" x2="134" y2="59" class="sketch-line" />
+                  </svg>
+                </div>
+
+                <ul class="card-bullet-list">
+                  <li>&ndash; A product that no longer looks generic</li>
+                  <li>&ndash; One visual language, applied in place</li>
+                  <li>&ndash; An identity your team can extend alone</li>
+                  <li>&ndash; Honest guidance on AI-assisted production.</li>
+                </ul>
+
+                <a href="#work" class="card-link modal-trigger" data-title="Brand, Identity & Experience">How this works
+                  &rarr;</a>
+              </div>
+
+            </div>
+
+            <!-- Right Gutter Venn Diagram -->
+            <aside class="side-annotation right-annotation venn-column" aria-hidden="true">
+              <div class="venn-diagram-container">
+                <div class="venn-diagram-container">
+                  <svg class="venn-svg" viewBox="0 0 160 160">
+                    <!-- Top Left Circle: USER -->
+                    <circle cx="55" cy="65" r="54" class="venn-circle venn-user"></circle>
+                    <!-- Top Right Circle: BUSINESS -->
+                    <circle cx="104" cy="65" r="55" class="venn-circle venn-business"></circle>
+                    <!-- Bottom Center Circle: TECH -->
+                    <circle cx="85" cy="104" r="55" class="venn-circle venn-tech"></circle>
+
+                    <!-- Text Labels -->
+                    <text x="24" y="42" class="venn-text">USER</text>
+                    <text x="105" y="42" class="venn-text">BUSINESS</text>
+                    <text x="85" y="132" class="venn-text" text-anchor="middle">TECH</text>
+
+                    <!-- Center Intersection: SWEET SPOT -->
+                    <text x="85" y="74" class="venn-sweet-spot" text-anchor="middle">SWEET</text>
+                    <text x="85" y="83" class="venn-sweet-spot" text-anchor="middle">SPOT</text>
+                  </svg>
+
+                  <div class="venn-annotation">
+                    <svg width="45" height="35" viewBox="0 0 45 35" class="venn-arrow-svg">
+                      <path d="M 6,30 Q 18,10 36,6" fill="none" stroke="currentColor" stroke-width="1.6"
+                        stroke-dasharray="2,2"></path>
+                      <path d="M 30,3 L 38,6 L 33,14" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+                    </svg>
+                    <p class="handwritten venn-quote">
+                      We design here. <span class="sketch-star">☆</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+          </div>
+
+        </section>
+
+        <!-- ================= SECTION 2: SELECTED WORK ================= -->
+        <section class="section-container" id="work">
+
+          <!-- Section Header -->
+          <div class="section-header">
+            <div class="section-title-wrapper">
+              <h2 class="section-title">Selected Work</h2>
+            </div>
+            <p class="section-intro">
+              Some of the things<br>
+              I've helped build.
+            </p>
+          </div>
+
+          <div class="section-body-with-sides">
+
+            <!-- Left Annotation -->
+            <aside class="side-annotation left-annotation" aria-hidden="true">
+              <span class="sketch-star">☆</span>
+              <p class="handwritten quote-solutions">
+                Not just<br>Screens.<br>
+                <span class="red-underline">Solutions.</span>
+              </p>
+            </aside>
+
+            <!-- 4 Project Showcase Cards -->
+            <div class="work-cards-grid">
+
+              <!-- Project 1: Rosterix-->
+              <div class="work-card" data-project="rosterix">
+                <div class="ui-mockup-window dark-ui">
+                  <div class="mockup-header-bar">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <span class="mockup-badge featured-badge">FEATURED</span>
+                    <span class="mockup-url">rosterix.enterprise.internal</span>
+                  </div>
+                  <div class="mockup-viewport">
+                    <div class="mockup-sidebar">
+                      <div class="mock-nav-item active"></div>
+                      <div class="mock-nav-item"></div>
+                      <div class="mock-nav-item"></div>
+                    </div>
+                    <div class="mockup-main">
+                      <div class="mock-stat-row">
+                        <div class="mock-stat-pill">
+                          <span class="stat-number">10k+</span>
+                          <span class="stat-lbl">Monthly</span>
+                        </div>
+                        <div class="mock-stat-pill">
+                          <span class="stat-number">9</span>
+                          <span class="stat-lbl">AI Models</span>
+                        </div>
+                        <div class="mock-stat-pill">
+                          <span class="stat-number">99.4%</span>
+                          <span class="stat-lbl">Trust</span>
+                        </div>
+                      </div>
+                      <div class="mock-chart-box">
+                        <svg viewBox="0 0 200 50" class="mock-sparkline">
+                          <path d="M 0,40 Q 25,20 50,30 T 100,15 T 150,25 T 200,8" fill="none" stroke="#5eead4"
+                            stroke-width="2.5" />
+                          <path d="M 0,40 Q 25,20 50,30 T 100,15 T 150,25 T 200,8 L 200,50 L 0,50 Z"
+                            fill="rgba(94,234,212,0.12)" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="work-meta">
+                  <h3 class="work-title">Rosterix</h3>
+                  <p class="work-category">Enterprise Workforce Management</p>
+                  <p class="work-desc">
+                    Rosterix is an enterprise workforce management and roster decision-making platform.
+                  </p>
+                  <div class="work-tags">
+                    <span>Product Design</span> &bull;
+                    <span>UX/UI</span> &bull; <span>Prototyping</span>
+                  </div>
+                  <a href="rosterix.html" class="case-study-link" data-id="rosterix">View Case Study &rarr;</a>
+                </div>
+              </div>
+
+              <!-- Project 2: PING -->
+              <div class="work-card" data-project="ping">
+                <div class="ui-mockup-window ai-ui">
+                  <div class="mockup-header-bar">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <span class="mockup-url">ping.internal.ai</span>
+                  </div>
+                  <div class="mockup-viewport">
+                    <div class="mock-chat-column">
+                      <div class="mock-chat-bubble user">Summarize sprint velocity</div>
+                      <div class="mock-chat-bubble ai">
+                        <div class="ai-sparkle">✦</div>
+                        <span>Sprint 42 on track. 18 story points shipped, 0 blockers.</span>
+                      </div>
+                      <div class="mock-action-tags">
+                        <span class="mock-tag">Release Notes</span>
+                        <span class="mock-tag">Metrics</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="work-meta">
+                  <h3 class="work-title">PING</h3>
+                  <p class="work-category">AI Assistant for Teams</p>
+                  <p class="work-desc">
+                    A smart assistant that brings answers, suggestions and automation into the team's everyday workflow.
+                  </p>
+                  <div class="work-tags">
+                    <span>Product Design</span> &bull; <span>AI Experience</span><br>
+                    <span>Prototyping</span> &bull; <span>Frontend</span>
+                  </div>
+                  <a href="#case-study" class="case-study-link" data-id="ping">View Case Study &rarr;</a>
+                </div>
+              </div>
+
+              <!-- Project 3: DAC -->
+              <div class="work-card" data-project="dac">
+                <div class="ui-mockup-window analytics-ui">
+                  <div class="mockup-header-bar">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <span class="mockup-url">console.dac.cloud</span>
+                  </div>
+                  <div class="mockup-viewport light-console">
+                    <div class="console-grid">
+                      <div class="console-card">
+                        <div class="metric-val">2.84M</div>
+                        <div class="mini-bar-chart">
+                          <span style="height:40%"></span>
+                          <span style="height:65%"></span>
+                          <span style="height:85%"></span>
+                          <span style="height:50%"></span>
+                          <span style="height:95%"></span>
+                        </div>
+                      </div>
+                      <div class="console-card ring-card">
+                        <div class="donut-chart-mock"></div>
+                        <div class="metric-val sm">99.98%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="work-meta">
+                  <h3 class="work-title">DAC</h3>
+                  <p class="work-category">Data &amp; Analytics Console</p>
+                  <p class="work-desc">
+                    A powerful analytics console designed for clarity, exploration and action at scale.
+                  </p>
+                  <div class="work-tags">
+                    <span>Product Design</span> &bull; <span>Data Visualization</span><br>
+                    <span>Design System</span> &bull; <span>Frontend</span>
+                  </div>
+                  <a href="#case-study" class="case-study-link" data-id="dac">View Case Study &rarr;</a>
+                </div>
+              </div>
+
+              <!-- Project 4: DESIGN SYSTEM -->
+              <div class="work-card" data-project="design-system">
+                <div class="ui-mockup-window tokens-ui">
+                  <div class="mockup-header-bar">
+                    <span class="mockup-dot red"></span>
+                    <span class="mockup-dot yellow"></span>
+                    <span class="mockup-dot green"></span>
+                    <span class="mockup-url">ds.foundation.design</span>
+                  </div>
+                  <div class="mockup-viewport dark-tokens">
+                    <div class="token-swatches">
+                      <span class="swatch sw-primary"></span>
+                      <span class="swatch sw-secondary"></span>
+                      <span class="swatch sw-accent"></span>
+                      <span class="swatch sw-neutral"></span>
+                    </div>
+                    <div class="token-btn-row">
+                      <button class="mock-btn-pri" type="button">Primary</button>
+                      <button class="mock-btn-sec" type="button">Sec</button>
+                    </div>
+                    <div class="token-inputs">
+                      <div class="mock-input-field">Search tokens...</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="work-meta">
+                  <h3 class="work-title">DESIGN SYSTEM</h3>
+                  <p class="work-category">The Foundation</p>
+                  <p class="work-desc">
+                    A scalable and maintainable design system that accelerates product development and keeps the
+                    experience consistent.
+                  </p>
+                  <div class="work-tags">
+                    <span>Design System</span> &bull; <span>Documentation</span><br>
+                    <span>Token System</span> &bull; <span>Governance</span>
+                  </div>
+                  <a href="#case-study" class="case-study-link" data-id="design-system">View Case Study &rarr;</a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Sticky Notes -->
+            <aside class="side-annotation right-annotation work-side-notes" aria-hidden="true">
+              <!-- Yellow Pinned Checklist Note -->
+              <div class="sticky-note yellow-note behind-cases-note" style="transform: rotate(-1.5deg);">
+                <div class="tape-strip top-tape"></div>
+                <h4 class="sticky-title">Behind every case study</h4>
+                <ul class="case-checklist">
+                  <li><span class="sketch-checkbox checked">☑</span> Problem Definition</li>
+                  <li><span class="sketch-checkbox checked">☑</span> Research</li>
+                  <li><span class="sketch-checkbox checked">☑</span> Strategy</li>
+                  <li><span class="sketch-checkbox checked">☑</span> Design Exploration</li>
+                  <li><span class="sketch-checkbox checked">☑</span> System &amp; UI</li>
+                  <li><span class="sketch-checkbox checked">☑</span> Handoff &amp; Impact</li>
+                </ul>
+              </div>
+
+              <!-- Pink Pinned Quote Note -->
+              <div class="sticky-note pink-note real-impact-note" style="transform: rotate(2deg);">
+                <div class="tape-strip top-tape"></div>
+                <p class="handwritten impact-text">
+                  Real impact comes<br>
+                  from decisions, not<br>
+                  deliverables.
+                </p>
+                <div class="crown-sketch">👑</div>
+              </div>
+            </aside>
+
+          </div>
+
+        </section>
+
+        <!-- ================= SECTION 3: SIDE QUESTS ================= -->
+        <section class="section-container" id="side-quests">
+
+          <!-- Section Header -->
+          <div class="section-header">
+            <div class="section-title-wrapper">
+              <h2 class="section-title">Side Quests</h2>
+            </div>
+            <p class="section-intro">
+              Experiments, plugins<br>
+              future ideas.
+            </p>
+          </div>
+
+          <div class="section-body-with-sides">
+
+            <!-- Left Star Annotation -->
+            <aside class="side-annotation left-annotation" aria-hidden="true">
+              <span class="sketch-star large">☆</span>
+            </aside>
+
+            <!-- 5 Cards Grid -->
+            <div class="side-quests-grid">
+
+              <!-- Card 1: The Last Portal (Speculative UX Case Study) -->
+              <div class="side-card featured-side-card" data-quest="The Last Portal">
+                <div class="side-card-preview portal-preview">
+                  <div class="side-preview-header">
+                    <span class="pill-label featured-pill">CASE STUDY &bull; 2028–2038</span>
+                  </div>
+                  <div class="side-preview-body portal-preview-body">
+                    <div class="agent-preview-orb">
+                      <span class="orb-dot">✦</span>
+                    </div>
+                    <div class="portal-chip-text">
+                      <span class="portal-chip-status">BOT &rlarr; BOT</span>
+                      <span class="portal-chip-sub">Negotiating Trip...</span>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="side-card-title">The Last Portal</h4>
+                <p class="side-card-desc">
+                  When the interface becomes a mind-space: Speculative UX case study on bot-to-bot travel negotiation
+                  &amp; autonomous delegation.
+                </p>
+                <a href="./sidequest/the-last-portal.html" class="side-card-link" data-title="The Last Portal">Read Case
+                  Study &rarr;</a>
+              </div>
+
+              <!-- Card 2: Auto Layout Grid -->
+              <div class="side-card" data-quest="Auto Layout Grid">
+                <div class="side-card-preview grid-preview">
+                  <div class="side-preview-header">
+                    <span class="pill-label">FIGMA PLUGIN</span>
+                  </div>
+                  <div class="side-preview-body grid-diagram">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                  </div>
+                </div>
+                <h4 class="side-card-title">Auto Layout Grid</h4>
+                <p class="side-card-desc">
+                  Build complex grids in seconds. Because manual is painful.
+                </p>
+                <a href="#plugin" class="side-card-link" data-title="Auto Layout Grid">Try Plugin &rarr;</a>
+              </div>
+
+              <!-- Card 3: Product Hub 2030 -->
+              <div class="side-card" data-quest="Product Hub 2030">
+                <div class="side-card-preview future-preview">
+                  <div class="side-preview-header">
+                    <span class="pill-label">FUTURE CONCEPT</span>
+                  </div>
+                  <div class="side-preview-body future-hub">
+                    <div class="neon-orb"></div>
+                    <div class="wire-grid"></div>
+                  </div>
+                </div>
+                <h4 class="side-card-title">Product Hub 2030</h4>
+                <p class="side-card-desc">
+                  A speculative product hub for the future of work.
+                </p>
+                <a href="#explore" class="side-card-link" data-title="Product Hub 2030">Explore &rarr;</a>
+              </div>
+
+              <!-- Card 4: Glass Morph UI -->
+              <div class="side-card" data-quest="Glass Morph UI">
+                <div class="side-card-preview glass-preview">
+                  <div class="side-preview-header">
+                    <span class="pill-label">EXPERIMENT</span>
+                  </div>
+                  <div class="side-preview-body glass-pane-container">
+                    <div class="glass-orb-bg"></div>
+                    <div class="glass-mock-card">
+                      <span>Translucency</span>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="side-card-title">Glass Morph UI</h4>
+                <p class="side-card-desc">
+                  Exploring transparency, depth and subtle interactions.
+                </p>
+                <a href="#experiment" class="side-card-link" data-title="Glass Morph UI">See Experiment &rarr;</a>
+              </div>
+
+              <!-- Card 5: 3D Dashboard -->
+              <div class="side-card" data-quest="3D Dashboard">
+                <div class="side-card-preview space-preview">
+                  <div class="side-preview-header">
+                    <span class="pill-label">EXPERIMENT</span>
+                  </div>
+                  <div class="side-preview-body spatial-space">
+                    <div class="cube-wire">
+                      <span class="wire-face front"></span>
+                      <span class="wire-face back"></span>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="side-card-title">3D Dashboard</h4>
+                <p class="side-card-desc">
+                  Exploring 3D spaces for data exploration and storytelling.
+                </p>
+                <a href="#experiment" class="side-card-link" data-title="3D Dashboard">See Experiment &rarr;</a>
+              </div>
+
+            </div>
+
+            <!-- Right Rocket Annotation -->
+            <aside class="side-annotation right-annotation" aria-hidden="true">
+              <p class="handwritten rocket-quote">
+                <span class="sketch-star">✦</span> Curiosity is<br>
+                a superpower.
+              </p>
+              <div class="rocket-sketch">
+                <svg viewBox="0 0 60 70" width="48" height="56">
+                  <path d="M 30,5 C 40,20 45,45 35,55 L 25,55 C 15,45 20,20 30,5 Z" fill="none" stroke="currentColor"
+                    stroke-width="1.8" />
+                  <circle cx="30" cy="28" r="5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M 22,45 L 10,58 L 24,54" fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M 38,45 L 50,58 L 36,54" fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M 27,56 Q 30,68 33,56" fill="none" stroke="#f59e0b" stroke-width="2" />
+                  <line x1="45" y1="20" x2="52" y2="18" stroke="currentColor" stroke-width="1.2"
+                    stroke-dasharray="2,2" />
+                  <line x1="12" y1="28" x2="6" y2="30" stroke="currentColor" stroke-width="1.2"
+                    stroke-dasharray="2,2" />
+                </svg>
+              </div>
+            </aside>
+
+          </div>
+
+        </section>
+
+        <!-- ================= SECTION 4: NOTEBOOK ================= -->
+        <section class="section-container" id="notebook">
+
+          <!-- Section Header -->
+          <div class="section-header">
+            <div class="section-title-wrapper">
+              <h2 class="section-title">Notebook</h2>
+            </div>
+            <p class="section-intro">
+              Random thoughts, observations<br>
+              and learnings.
+            </p>
+          </div>
+
+          <div class="section-body-with-sides">
+
+            <!-- Left Lightbulb Annotation -->
+            <aside class="side-annotation left-annotation" aria-hidden="true">
+              <div class="lightbulb-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M 9,18 h 6 M 10,22 h 4 M 12,2 A 7,7 0 0 0 5,9 C 5,11.5 6.5,13.5 8,15 H 16 C 17.5,13.5 19,11.5 19,9 A 7,7 0 0 0 12,2 Z" />
+                </svg>
+              </div>
+              <p class="handwritten quote-observing">
+                Ideas<br>
+                come from<br>
+                <span class="red-underline">observing.</span><br>
+                not assuming.
+              </p>
+            </aside>
+
+            <!-- 5 Pinned Sticky Notes / Index Cards -->
+            <div class="notebook-notes-grid">
+
+              <!-- Note 1: 14 MAY 2024 -->
+              <div class="sticky-note paper-card-white" style="transform: rotate(-1.5deg);">
+                <p class="note-quote">
+                  Good UX is invisible.<br>
+                  The product works,<br>
+                  the user wins.
+                </p>
+                <span class="note-star-bottom">☆</span>
+              </div>
+
+              <!-- Note 2: 02 JUN 2024 (With Paperclip) -->
+              <div class="sticky-note paper-card-white with-paperclip" style="transform: rotate(1deg);">
+                <div class="paperclip-illus">
+                  <svg width="24" height="40" viewBox="0 0 24 40">
+                    <path d="M 8,12 L 8,30 C 8,34 16,34 16,30 L 16,8 C 16,4 4,4 4,12 L 4,32 C 4,38 20,38 20,32 L 20,12"
+                      fill="none" stroke="#71717a" stroke-width="2.2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <p class="note-quote">
+                  Complexity is the<br>
+                  enemy of adoption.<br>
+                  Clarity is the<br>
+                  reason to stay.
+                </p>
+              </div>
+
+              <!-- Note 3: 21 JUN 2024 (Blue Sticky Note) -->
+              <div class="sticky-note blue-note" style="transform: rotate(-2deg);">
+                <div class="tape-strip top-tape"></div>
+                <p class="note-quote">
+                  Design systems<br>
+                  are not about<br>
+                  components.<br>
+                  They are about<br>
+                  consistency of<br>
+                  thinking.
+                </p>
+                <span class="note-star-bottom">☆</span>
+              </div>
+
+              <!-- Note 4: 05 JUL 2024 -->
+              <div class="sticky-note paper-card-white" style="transform: rotate(2deg);">
+                <p class="note-quote">
+                  Ship early.<br>
+                  Learn faster.<br>
+                  Iterate forever.
+                </p>
+                <span class="note-star-bottom">☆</span>
+              </div>
+
+              <!-- Note 5: TODAY (Yellow Sticky Note with Tape) -->
+              <div class="sticky-note yellow-note" style="transform: rotate(-1deg);">
+                <div class="tape-strip top-right-tape"></div>
+                <p class="note-quote">
+                  Design is a conversation<br>
+                  between people,<br>
+                  business and technology.<br>
+                  We just make it<br>
+                  beautiful.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Right Keyboard Hint Annotation -->
+            <aside class="side-annotation right-annotation" aria-hidden="true">
+              <button class="press-k-btn" id="press-k-btn" title="Click or Press K for an inspiring thought">
+                Press <span class="kbd-key">K</span> for<br>
+                a new thought. <span class="sketch-star">☆</span>
+              </button>
+            </aside>
+
+          </div>
+
+        </section>
+
+        <!-- ================= SECTION 5: LEADERSHIP LOG ================= -->
+        <section class="section-container" id="leadership">
+
+          <!-- Section Header -->
+          <div class="section-header">
+            <div class="section-title-wrapper">
+              <h2 class="section-title">Leadership Log</h2>
+            </div>
+            <p class="section-intro">
+              Stories from leading design and<br>
+              cross-functional teams.
+            </p>
+          </div>
+
+          <div class="section-body-with-sides">
+
+            <!-- Left Annotation -->
+            <aside class="side-annotation left-annotation" aria-hidden="true">
+              <p class="handwritten quote-trust">
+                People don't<br>
+                follow titles.<br>
+                They follow<br>
+                <span class="red-underline">trust.</span>
+              </p>
+              <span class="sketch-star">☆</span>
+            </aside>
+
+            <!-- 5 Leadership Cards -->
+            <div class="leadership-cards-grid">
+
+              <!-- Log #01 -->
+              <div class="lead-card" data-story="Aligning teams with conflicting views">
+                <span class="lead-label">LEADERSHIP LOG #01</span>
+                <div class="lead-icon team-icon">👥</div>
+                <h4 class="lead-title">Aligning teams with conflicting views</h4>
+                <p class="lead-desc">
+                  How we aligned 3 teams and found the real problem.
+                </p>
+                <a href="#story" class="lead-link" data-title="Aligning teams with conflicting views">Read Story
+                  &rarr;</a>
+              </div>
+
+              <!-- Log #02 -->
+              <div class="lead-card" data-story="Building a design critique culture">
+                <span class="lead-label">LEADERSHIP LOG #02</span>
+                <div class="lead-icon chat-icon">💬</div>
+                <h4 class="lead-title">Building a design critique culture</h4>
+                <p class="lead-desc">
+                  How we created a safe space for feedback and grow together.
+                </p>
+                <a href="#story" class="lead-link" data-title="Building a design critique culture">Read Story &rarr;</a>
+              </div>
+
+              <!-- Log #03 -->
+              <div class="lead-card" data-story="Designing at scale without chaos">
+                <span class="lead-label">LEADERSHIP LOG #03</span>
+                <div class="lead-icon process-icon">📊</div>
+                <h4 class="lead-title">Designing at scale without chaos</h4>
+                <p class="lead-desc">
+                  Process, systems and habits that bring clarity at scale.
+                </p>
+                <a href="#story" class="lead-link" data-title="Designing at scale without chaos">Read Story &rarr;</a>
+              </div>
+
+              <!-- Log #04 -->
+              <div class="lead-card" data-story="Mentorship and growth">
+                <span class="lead-label">LEADERSHIP LOG #04</span>
+                <div class="lead-icon sprout-icon">🌱</div>
+                <h4 class="lead-title">Mentorship and growth</h4>
+                <p class="lead-desc">
+                  Helping designers grow from good to truly great.
+                </p>
+                <a href="#story" class="lead-link" data-title="Mentorship and growth">Read Story &rarr;</a>
+              </div>
+
+              <!-- Log #05 -->
+              <div class="lead-card" data-story="Saying no (the right way)">
+                <span class="lead-label">LEADERSHIP LOG #05</span>
+                <div class="lead-icon scale-icon">⚖️</div>
+                <h4 class="lead-title">Saying no (the right way)</h4>
+                <p class="lead-desc">
+                  How saying no to the wrong things helps us build the right things.
+                </p>
+                <a href="#story" class="lead-link" data-title="Saying no (the right way)">Read Story &rarr;</a>
+              </div>
+
+            </div>
+
+            <!-- Right Annotation: Leadership responsibility -->
+            <aside class="side-annotation right-annotation" aria-hidden="true">
+              <p class="handwritten red-quote-responsibility">
+                <span class="red-text">Leadership</span> is not<br>
+                about being in<br>
+                charge. It's about<br>
+                <span class="red-underline">taking responsibility.</span>
+              </p>
+              <div class="crown-sketch">👑</div>
+            </aside>
+
+          </div>
+
+        </section>
+
+        <!-- ================= FOOTER / ABOUT & CONNECT ================= -->
+        <footer class="site-footer" id="about">
+
+          <div class="footer-grid">
+
+            <!-- Column 1: About Me -->
+            <div class="footer-col about-col">
+              <h3 class="footer-section-title">About Me</h3>
+              <div class="about-card">
+                <div class="avatar-wrapper">
+                  <div class="tape-strip avatar-tape"></div>
+                  <img src="/assets/avatar-CtOOC2xq.jpg" alt="Sharad Sonkar portrait" class="designer-photo"
+                    id="about-avatar" />
+                </div>
+                <div class="about-text">
+                  <p>
+                    UX/UI lead who designs enterprise and AI products that people actually enjoy using. I care as much
+                    about who gets left out of an interface as who it's built for.
+                  </p>
+                  <div class="about-location">
+                    Based in India &bull; <span class="open-to-work">Open to work</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Tech & Tools -->
+            <div class="footer-col tech-col">
+              <h3 class="footer-section-title tech-title-sketch">
+                <span>Tech</span>
+                <svg class="mouse-doodle" viewBox="0 0 20 28" width="16" height="22" aria-hidden="true">
+                  <rect x="2" y="2" width="16" height="24" rx="8" fill="none" stroke="currentColor"
+                    stroke-width="1.8" />
+                  <line x1="10" y1="2" x2="10" y2="11" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+                <span>Tools</span>
+              </h3>
+              <div class="tools-grid macropad-chassis" role="region" aria-label="Interactive mechanical tools macropad">
+                <!-- Macropad Header / Status Screen -->
+                <div class="macropad-topbar" aria-hidden="true">
+                  <div class="macropad-brand">
+                    <span class="macropad-status-dot"></span>
+                    <span>08-KEY MACROPAD</span>
+                  </div>
+                  <div class="macropad-readout" id="macropad-readout">[ HOVER TO ACTUATE ]</div>
+                </div>
+
+                <!-- Key 01: Figma -->
+                <div class="tool-badge keycap-badge" data-tool="Figma" data-sub="UI/UX Design" title="Figma"
+                  role="button" tabindex="0" aria-label="Figma">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"
+                      aria-hidden="true">
+                      <path fill="#00bcff"
+                        d="M256.599 256c0-47.128 38.205-85.333 85.333-85.333s85.333 38.206 85.333 85.333c0 47.129-38.206 85.333-85.333 85.333-47.129 0-85.333-38.205-85.333-85.333" />
+                      <path fill="#00cf7f"
+                        d="M85.932 426.667c0-47.128 38.205-85.333 85.333-85.333l45.475-24.009 39.858 24.009v85.333c0 47.129-38.205 85.333-85.333 85.333s-85.333-38.205-85.333-85.333" />
+                      <path fill="#ff7361"
+                        d="m256.599 0-46.434 80.67 46.434 89.996h84.136c47.129 0 85.333-38.205 85.333-85.333S387.863 0 340.735 0z" />
+                      <path fill="#ff4d12"
+                        d="M84.734 85.333c0 47.128 38.205 85.333 85.333 85.333l45.267 17.484 41.263-17.484V0h-86.531c-47.127 0-85.332 38.205-85.332 85.333" />
+                      <path fill="#b659ff"
+                        d="M85.932 256c0 47.129 38.205 85.333 85.333 85.333h85.333V170.666h-85.333c-47.128 0-85.333 38.206-85.333 85.334" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">Figma</span>
+                  </div>
+                </div>
+
+                <!-- Key 02: Sketch -->
+                <div class="tool-badge keycap-badge" data-tool="Sketch" data-sub="Vector UI" title="Sketch"
+                  role="button" tabindex="0" aria-label="Sketch">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"
+                      aria-hidden="true">
+                      <path d="M96 191.024v-144l160-30.048 160 30.048v144z" fill="#ffd54f" />
+                      <path d="M96 191.024 256 16.976l160 174.048z" fill="#ffecb3" />
+                      <path d="m0 191.024 256 304 256-304z" fill="#ffa000" />
+                      <path d="m96 191.024 160 304 160-304z" fill="#ffca28" />
+                      <path d="m0 191.024 96-144v144zM416 47.024v144h96z" fill="#ffc107" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">Sketch</span>
+                  </div>
+                </div>
+
+                <!-- Key 03: Adobe XD -->
+                <div class="tool-badge keycap-badge" data-tool="Adobe XD" data-sub="Prototyping" title="Adobe XD"
+                  role="button" tabindex="0" aria-label="Adobe XD">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256"
+                      aria-hidden="true">
+                      <rect width="240" height="232" x="8" y="12" fill="#470137" rx="42" />
+                      <path
+                        d="m131.37 77.64-29.52 50.72 31.81 54c.65 1.1.37 1.64-.82 1.64H113a2.46 2.46 0 0 1-2.44-1.31l-22.39-41.07H88l-21.8 41.07a2.41 2.41 0 0 1-2.12 1.31H45c-1.09 0-1.3-.54-.65-1.64l31.28-52.52-29.8-52.53c-.65-.87-.43-1.31.65-1.31h19.88a2.24 2.24 0 0 1 2.12 1.15l21 40.58h.16l20.89-40.58a2.24 2.24 0 0 1 2.11-1.15h18.08c1.2 0 1.41.55.65 1.64M179.87 186c-11.6 0-20.53-3.29-27.46-9.86S142 159.86 142 147q0-17.53 11.18-28.8a40 40 0 0 1 29.48-12.2 29.6 29.6 0 0 1 7.3.78V72.94a.83.83 0 0 1 .93-.94h18.28c.51 0 .77.31.77.94v94.75c0 4 1.73 7.41 2 10.33a1.26 1.26 0 0 1-.78 1.41c-8.97 4.38-20.73 6.57-31.29 6.57M190 170.51v-48.37c-.65-1.14-4.09-2.14-7.61-2.14a19.58 19.58 0 0 0-15.39 6.85 29.24 29.24 0 0 0-7 19.4c0 8.76 3 14.76 6.91 18.93a19.9 19.9 0 0 0 14.82 6.82c3.73 0 7.38-.56 8.27-1.49"
+                        fill="#FF59F1" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">Adobe XD</span>
+                  </div>
+                </div>
+
+                <!-- Key 04: Photoshop -->
+                <div class="tool-badge keycap-badge" data-tool="Photoshop" data-sub="Photo & Raster" title="Photoshop"
+                  role="button" tabindex="0" aria-label="Photoshop">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 17.469 17.469"
+                      aria-hidden="true">
+                      <path
+                        d="M5.925 4.982c-.442 0-.742.043-.898.087V7.91c.186.042.413.056.727.056 1.157 0 1.871-.585 1.871-1.571-.001-.884-.615-1.413-1.7-1.413"
+                        fill="#31A8FF" />
+                      <path
+                        d="M16.4.002H1.07C.479.002 0 .48 0 1.069v15.329c0 .59.479 1.069 1.07 1.069H16.4a1.07 1.07 0 0 0 1.069-1.069V1.07c0-.59-.479-1.068-1.069-1.068M8.894 8.624c-.741.7-1.842 1.014-3.125 1.014a5.4 5.4 0 0 1-.743-.043v3.442H2.869V3.541c.671-.113 1.613-.199 2.942-.199 1.341 0 2.299.256 2.94.771.617.486 1.03 1.286 1.03 2.228s-.315 1.739-.887 2.283m3.251 4.555c-.916 0-1.729-.198-2.258-.485l.385-1.556c.4.241 1.229.527 1.873.527.655 0 .927-.228.927-.586 0-.356-.214-.527-1.027-.799-1.442-.485-2-1.271-1.986-2.099 0-1.298 1.114-2.286 2.842-2.286.814 0 1.542.187 1.97.4l-.385 1.5c-.314-.172-.913-.399-1.514-.399-.527 0-.826.214-.826.571 0 .328.269.499 1.126.8 1.328.456 1.886 1.128 1.899 2.154 0 1.301-1.03 2.258-3.026 2.258"
+                        fill="#31A8FF" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">Photoshop</span>
+                  </div>
+                </div>
+
+                <!-- Key 05: Illustrator -->
+                <div class="tool-badge keycap-badge" data-tool="Illustrator" data-sub="Vector Graphics"
+                  title="Illustrator" role="button" tabindex="0" aria-label="Illustrator">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256"
+                      aria-hidden="true">
+                      <rect width="240" height="232" x="8" y="12" fill="#2D0605" rx="42" />
+                      <path
+                        d="M128.79 156H93l-9.24 26.68Q83.6 184 82.09 184h-16.8q-1.68 0-1.17-1.65l32.42-96.29A29.5 29.5 0 0 0 97.88 77a.89.89 0 0 1 1-1h23.52c.68 0 1.07.28 1.18.82l36.28 105.7c.34 1 .06 1.48-.84 1.48h-18.81a1.74 1.74 0 0 1-1.68-1zM97 138h27.88c-.67-1.47-13.21-41.93-14.11-45.34h-.16zM179.91 96a11.8 11.8 0 0 1-8.61-3.21 11.55 11.55 0 0 1-3.3-8.7 11.7 11.7 0 0 1 3.39-8.79 12 12 0 0 1 8.7-3.3 11.55 11.55 0 0 1 8.7 3.3 12.07 12.07 0 0 1 3.21 8.79 11.55 11.55 0 0 1-3.3 8.7 12.07 12.07 0 0 1-8.79 3.21M170 182.5v-77.16a1.18 1.18 0 0 1 1.34-1.34h17.32a1.19 1.19 0 0 1 1.34 1.34v77.32a1.18 1.18 0 0 1-1.34 1.34H171.5a1.33 1.33 0 0 1-1.5-1.5"
+                        fill="#FD9426" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">Illustrator</span>
+                  </div>
+                </div>
+
+                <!-- Key 06: Miro -->
+                <div class="tool-badge keycap-badge" data-tool="Miro" data-sub="Brainstorming" title="Miro"
+                  role="button" tabindex="0" aria-label="Miro">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                      aria-hidden="true">
+                      <g clip-path="url(#clip0_miro_key)">
+                        <path
+                          d="M0.179932 6.04524C0.179932 2.77562 2.83454 0.119995 6.10517 0.119995H17.9547C21.2253 0.119995 23.8799 2.7746 23.8799 6.04524V17.8948C23.8799 21.1654 21.2253 23.82 17.9547 23.82H6.10517C2.83454 23.82 0.179932 21.1654 0.179932 17.8948V6.04524Z"
+                          fill="#FFDD33" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M15.9345 4.64099H13.7845L15.5778 7.79105L11.6344 4.64099H9.4844L11.4561 8.48813L7.33436 4.64099H5.18433L7.33436 9.54191L5.18433 19.3427H7.33436L11.4561 8.8438L9.4844 19.3427H11.6344L15.5778 8.14162L13.7845 19.3427H15.9345L19.8779 7.09397L15.9345 4.64606V4.64099Z"
+                          fill="#1C1C1E" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_miro_key">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">Miro</span>
+                  </div>
+                </div>
+
+                <!-- Key 07: HTML5 -->
+                <div class="tool-badge keycap-badge" data-tool="HTML5" data-sub="Semantic Web" title="HTML5"
+                  role="button" tabindex="0" aria-label="HTML5">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"
+                      aria-hidden="true">
+                      <path fill="#dd7346" fill-rule="evenodd" d="M256 512 64.086 415.854 16 0h480l-48.094 415.854z"
+                        clip-rule="evenodd" />
+                      <path fill="#c25c31" fill-rule="evenodd" d="M256 0v512l191.906-96.146L496 0z"
+                        clip-rule="evenodd" />
+                      <path fill="#ffffff"
+                        d="m177.967 287.962 5.439 44.901L256 369.594l73.039-36.731 8.628-76.648H109.914L87.68 63.938h336.64l-7.268 63.947H159.367l7.714 63.938h242.266l-20.866 182.754L256 440.789l-132.48-66.212-9.98-86.615z" />
+                      <path fill="#d8d9d9" fill-rule="evenodd"
+                        d="M256 127.885h161.052l7.269-63.946H256zm153.347 63.938H256v64.392h81.667l-8.628 76.648L256 369.594v71.195l132.481-66.212z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">HTML5</span>
+                  </div>
+                </div>
+
+                <!-- Key 08: CSS3 -->
+                <div class="tool-badge keycap-badge" data-tool="CSS3" data-sub="Styling & Motion" title="CSS3"
+                  role="button" tabindex="0" aria-label="CSS3">
+                  <div class="keycap-dish">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512"
+                      aria-hidden="true">
+                      <path d="m32 0 40.8 460.8L256 512l183.136-51.168L480 0z" fill="#2196f3" />
+                      <path
+                        d="m392.768 150.688-5.152 57.888-15.552 173.536L256 414.208l-.096.032-116-32.128-8.096-90.752h56.832l4.224 47.072 63.072 17.024.032-.032 63.168-17.024 8.608-78.432-198.656.544-5.632-53.632 209.056-2.464 4.224-57.408-218.88.608-3.68-53.408h283.648z"
+                        fill="#fafafa" />
+                    </svg>
+                  </div>
+                  <div class="keycap-tooltip" aria-hidden="true">
+                    <span class="keycap-led-dot"></span>
+                    <span class="keycap-name">CSS3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: Let's Connect -->
+            <div class="footer-col connect-col" id="contact">
+              <h3 class="footer-section-title">Let's Connect</h3>
+              <ul class="connect-list">
+                <li>
+                  <a href="mailto:sharadsonkarofficial@gmail.com" class="connect-link">
+                    <span class="connect-icon">✉</span> sharadsonkarofficial@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/sharadsonkar/" target="_blank" rel="noreferrer"
+                    class="connect-link">
+                    <span class="connect-icon">in</span> linkedin.com/in/sharadsonkar
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 4: Friendly Note & CTA -->
+            <div class="footer-col build-col">
+              <p class="handwritten build-invite">
+                If you're working on<br>
+                something meaningful,<br>
+                I'd love to help.
+              </p>
+              <a href="mailto:sharadsonkarofficial@gmail.com" class="let-build-link">
+                Let's build it. <span class="smile-sketch">☺</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- ================= FOOTER RESUME DOWNLOAD SECTION ================= -->
+          <div class="footer-resume-banner">
+            <div class="tape-strip resume-tape-left"></div>
+            <div class="tape-strip resume-tape-right"></div>
+            <div class="footer-resume-inner">
+              <div class="footer-resume-text">
+                <div class="resume-pill-tag">
+                  <span class="resume-pill-badge">CURRICULUM VITAE</span>
+                  <span class="resume-format-text">PDF • 2-PAGE</span>
+                </div>
+                <h4 class="resume-footer-title">Download My Resume</h4>
+              </div>
+              <div class="footer-resume-cta">
+                <a href="./assets/Sharad_Sonkar_Resume.pdf" download="Sharad_Sonkar_Resume.pdf"
+                  class="btn-sketch-primary resume-footer-btn" title="Download Resume (PDF)">
+                  <svg class="download-icon" viewBox="0 0 20 20" width="16" height="16" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5" />
+                    <path d="M4 17h12" />
+                  </svg>
+                  <span>DOWNLOAD RESUME (PDF)</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </footer>
+
+      </main>
+
+    </div>
+    <!-- END CENTRAL SKETCHBOOK PAGE -->
+
+  </div>
+  <!-- END NOTEBOOK OUTER WORKSPACE -->
+
+  <!-- INTERACTIVE MODAL DIALOG FOR CASE STUDIES & NOTES -->
+  <dialog id="case-study-modal" class="sketch-modal">
+    <div class="modal-card">
+      <div class="tape-strip top-tape"></div>
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+      <div class="modal-content" id="modal-dynamic-content">
+        <!-- Content injected dynamically via main.js -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- QUICK THOUGHT POPUP TOAST -->
+  <div id="thought-toast" class="thought-toast" role="alert" aria-live="polite">
+    <span class="toast-star">✦</span>
+    <span id="toast-message">Design is thinking made visual.</span>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>

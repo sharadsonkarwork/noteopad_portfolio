@@ -1,0 +1,3424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosterix — Enterprise Workforce Decision System | UX Case Study</title>
+  <meta name="description"
+    content="Rosterix UX case study — redesigning enterprise workforce decisions through context, validation, explainable AI and human-in-the-loop workflows.">
+
+  <!-- Google Fonts: Caveat & Plus Jakarta Sans (Strictly 2 font families matching portfolio theme) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ========================================================
+       ROSTERIX DECISION SYSTEM - NOTEBOOK & SKETCHBOOK EDITION
+       Authentic portfolio theme:
+       - Warm Desk (#ECE4D0) & Natural Paper Canvas (#FAF6ED)
+       - Hand-Drawn Wobbly Borders & Notebook Card Aesthetics
+       - Real Highlighter Strokes (Yellow, Green, Blue, Purple)
+       - Washi Tape Strips & Binder Clips
+       - Typography: Caveat (Handwriting) & Plus Jakarta Sans
+       ======================================================== */
+
+    :root {
+      /* Desk & Paper System */
+      --bg-desk: #ECE4D0;
+      --bg-canvas: #FAF6ED;
+      --paper-card-bg: #FFFDF8;
+      --paper-tint: #F3EEDB;
+      --paper-card-border: #2D241E;
+      --paper-card-border-soft: rgba(45, 36, 30, 0.16);
+      --paper-divider: rgba(45, 36, 30, 0.12);
+
+      /* Inks */
+      --ink-primary: #1F1B18;
+      --ink-secondary: #4A4036;
+      --ink-muted: #73675C;
+      --ink-subtle: #9C8E80;
+      --ink-red: #B91C1C;
+      --ink-blue: #1E40AF;
+      --ink-teal: #0F766E;
+      --ink-purple: #6D28D9;
+      --ink-amber: #B45309;
+
+      /* Highlighters & Tints */
+      --marker-yellow: #FEF08A;
+      --marker-yellow-soft: #FEF9C3;
+      --marker-green: #BBF7D0;
+      --marker-green-soft: #DCFCE7;
+      --marker-blue: #BFDBFE;
+      --marker-blue-soft: #DBEAFE;
+      --marker-purple: #DDD6FE;
+      --marker-purple-soft: #EDE9FE;
+      --marker-orange: #FDBA74;
+      --marker-orange-soft: #FFEDD5;
+      --marker-red-soft: #FEE2E2;
+
+      /* Washi Tape */
+      --note-tape: rgba(255, 255, 255, 0.78);
+      --note-tape-border: rgba(0, 0, 0, 0.09);
+
+      /* Fonts strictly 2 families */
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-hand: 'Caveat', cursive, sans-serif;
+      --font-mono: var(--font-body);
+
+      --max-width: 1200px;
+    }
+
+    /* Reset & Base Setup */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--bg-desk);
+      overflow-x: clip;
+      scroll-padding-top: 54px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink-primary);
+      background-color: var(--bg-desk);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Paper Grain Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    ::selection {
+      background: var(--marker-yellow);
+      color: var(--ink-primary);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: var(--font-hand);
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.15;
+    }
+
+    p {
+      margin-bottom: 1em;
+      color: var(--ink-secondary);
+      font-size: 15.5px;
+      line-height: 1.68;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: var(--ink-primary);
+      font-weight: 700;
+    }
+
+    /* Notebook Workspace & Canvas Sheet */
+    .notebook-workspace {
+      max-width: 1340px;
+      margin: 18px auto 44px;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .paper-sheet {
+      width: 100%;
+      background: var(--bg-canvas);
+      border: 2px solid var(--paper-card-border);
+      border-radius: 8px 10px 12px 10px;
+      box-shadow: 0 14px 40px rgba(45, 38, 28, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+      position: relative;
+    }
+
+    /* Binder Clips */
+    .paper-clip-marker {
+      position: absolute;
+      top: -12px;
+      width: 22px;
+      height: 44px;
+      border: 3.5px solid #6b665e;
+      border-radius: 12px;
+      background: transparent;
+      z-index: 25;
+      pointer-events: none;
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.22);
+    }
+
+    .clip-left {
+      left: 85px;
+      transform: rotate(-4deg);
+    }
+
+    .clip-right {
+      right: 85px;
+      transform: rotate(3.5deg);
+    }
+
+    /* Washi Tape Strips */
+    .tape-strip {
+      position: absolute;
+      background: var(--note-tape);
+      border: 1px solid var(--note-tape-border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Topbar Navigation */
+    .notebook-topbar {
+      position: relative;
+      z-index: 20;
+      padding: 22px 38px 16px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1.5px solid var(--paper-card-border);
+      background: rgba(250, 246, 237, 0.96);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      background: rgba(255, 255, 255, 0.75);
+      border: 1.5px solid var(--paper-card-border);
+      padding: 6px 14px;
+      border-radius: 4px;
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.12);
+      transition: all 0.15s ease;
+    }
+
+    .back-home-link:hover {
+      transform: translate(-1px, -1px);
+      background: var(--marker-yellow-soft);
+      box-shadow: 2.5px 2.5px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .brand-lockup {
+      border-left: 1px dashed var(--paper-card-border-soft);
+      padding-left: 14px;
+    }
+
+    .brand-name {
+      font-family: var(--font-hand);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-sub {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .topbar-center {
+      text-align: center;
+    }
+
+    .crumb-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      background: rgba(0, 0, 0, 0.035);
+      padding: 5px 12px;
+      border-radius: 3px;
+      border: 1px dashed var(--paper-card-border-soft);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-self: end;
+    }
+
+    .topbar-resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ink-primary);
+      color: var(--bg-canvas);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      padding: 7px 15px;
+      border-radius: 4px;
+      border: 1.5px solid var(--ink-primary);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+      transition: all 0.15s ease;
+    }
+
+    .topbar-resume-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+      background: #000;
+    }
+
+    .learning-tag {
+      font-family: var(--font-hand);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--ink-secondary);
+      transform: rotate(-2deg);
+      text-align: right;
+    }
+
+    .learning-tag span {
+      color: var(--ink-red);
+    }
+
+    /* Sticky Sidenav Chapters Bar */
+    .sidenav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 10px 36px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: auto;
+      background: rgba(250, 246, 237, 0.98);
+      border-bottom: 1.5px dashed var(--paper-card-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(45, 38, 28, 0.06);
+      scrollbar-width: none;
+    }
+
+    .sidenav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sidenav a {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink-muted);
+      padding: 6px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .sidenav a:hover {
+      color: var(--ink-primary);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .sidenav a.active {
+      color: var(--ink-primary);
+      background: var(--marker-yellow);
+      border: 1.2px solid rgba(0, 0, 0, 0.18);
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+
+    /* Container */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 54px 0 44px;
+      position: relative;
+      border-bottom: 2px solid var(--paper-card-border);
+      background: transparent;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 48px;
+      align-items: start;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-purple);
+      background: var(--marker-purple-soft);
+      border: 1px dashed var(--ink-purple);
+      padding: 4px 10px;
+      border-radius: 4px;
+      transform: rotate(-0.5deg);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-hand);
+      font-size: clamp(52px, 6.5vw, 92px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      margin: 8px 0 20px;
+      color: var(--ink-primary);
+    }
+
+    .hero h1 span {
+      color: var(--ink-purple);
+      position: relative;
+    }
+
+    .title-highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-highlight::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      bottom: -4px;
+      width: 104%;
+      height: 12px;
+      background: var(--marker-yellow);
+      opacity: 0.85;
+      border-radius: 40% 30% 50% 20%;
+      transform: rotate(-1.2deg);
+      z-index: -1;
+    }
+
+    .hero-lede {
+      font-family: var(--font-hand);
+      font-size: clamp(21px, 2.2vw, 27px);
+      line-height: 1.35;
+      max-width: 740px;
+      color: var(--ink-secondary);
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: 650px;
+    }
+
+    .meta-card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 4px;
+      padding: 14px 16px;
+      box-shadow: 2px 2.5px 0 rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .meta-card:nth-child(1) {
+      transform: rotate(-0.4deg);
+    }
+
+    .meta-card:nth-child(2) {
+      transform: rotate(0.5deg);
+    }
+
+    .meta-card:nth-child(3) {
+      transform: rotate(0.3deg);
+    }
+
+    .meta-card:nth-child(4) {
+      transform: rotate(-0.5deg);
+    }
+
+    .meta-card:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .meta-card small {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-red);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .meta-card strong {
+      font-size: 15px;
+      line-height: 1.35;
+      color: var(--ink-primary);
+    }
+
+    /* Decision Chain Aside Card */
+    .hero-card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 8px;
+      padding: 24px 22px;
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.1);
+      position: relative;
+      transform: rotate(0.6deg);
+    }
+
+    .hero-card-tape {
+      top: -9px;
+      left: 45px;
+      width: 60px;
+      height: 18px;
+      transform: rotate(-3deg);
+    }
+
+    .hero-card h3 {
+      font-size: 26px;
+      margin: 0 0 16px;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-card h3::after {
+      content: "CHAIN V2.0";
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--marker-yellow);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .decision-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .flow-node {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1.5px solid var(--paper-card-border);
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.05);
+      transition: transform 0.15s ease;
+    }
+
+    .flow-node:hover {
+      transform: translateX(3px);
+      background: var(--marker-yellow-soft);
+    }
+
+    .flow-node .num {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--ink-purple);
+      background: var(--marker-purple-soft);
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid rgba(109, 40, 217, 0.25);
+    }
+
+    .flow-arrow {
+      text-align: center;
+      color: var(--ink-muted);
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 0.9;
+    }
+
+    /* Sections */
+    .section {
+      padding: 58px 0;
+      border-bottom: 1.5px dashed var(--paper-card-border);
+      position: relative;
+      scroll-margin-top: 54px;
+    }
+
+    .section.tint {
+      background: rgba(236, 228, 208, 0.35);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-num {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--ink-red);
+      background: rgba(185, 28, 28, 0.08);
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px dashed var(--ink-red);
+    }
+
+    .section-title {
+      font-family: var(--font-hand);
+      font-size: clamp(38px, 4.5vw, 56px);
+      line-height: 0.95;
+      margin: 0;
+      color: var(--ink-primary);
+      position: relative;
+    }
+
+    .section-title-highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title-highlight::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 6px;
+      background: var(--marker-yellow);
+      border-radius: 2px;
+      opacity: 0.85;
+      transform: rotate(-0.5deg);
+    }
+
+    .section-kicker {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px dashed var(--paper-card-border-soft);
+      padding-bottom: 2px;
+    }
+
+    .intro {
+      font-family: var(--font-hand);
+      font-size: clamp(20px, 2.2vw, 25px);
+      line-height: 1.4;
+      max-width: 880px;
+      color: var(--ink-secondary);
+      font-weight: 600;
+      margin: 0 0 34px;
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 5px;
+      padding: 22px;
+      box-shadow: 2.5px 3px 0 rgba(0, 0, 0, 0.08);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 3.5px 4.5px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .card:nth-child(odd) {
+      transform: rotate(-0.25deg);
+    }
+
+    .card:nth-child(even) {
+      transform: rotate(0.25deg);
+    }
+
+    .card:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .card h3 {
+      font-size: 24px;
+      line-height: 1.15;
+      margin: 0 0 10px;
+      color: var(--ink-primary);
+    }
+
+    .card h4 {
+      font-size: 19px;
+      margin: 0 0 6px;
+      color: var(--ink-primary);
+    }
+
+    .card p:not(.big-quote) {
+      color: var(--ink-secondary);
+      font-size: 15px;
+      line-height: 1.62;
+      margin: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1px dashed var(--paper-card-border);
+      padding: 4px 9px;
+      border-radius: 3px;
+      color: var(--ink-muted);
+      background: rgba(0, 0, 0, 0.03);
+      margin-bottom: 12px;
+    }
+
+    /* Big Quote / Pullquote Banner */
+    .big-quote,
+    p.big-quote,
+    .card p.big-quote,
+    .card .big-quote {
+      font-family: var(--font-hand);
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .big-quote em {
+      font-style: normal;
+      color: var(--ink-purple);
+      background: var(--marker-purple-soft);
+      padding: 0 6px;
+      border-radius: 4px;
+      border-bottom: 2px solid var(--ink-purple);
+    }
+
+    /* Stat Cards */
+    .stat {
+      padding: 18px 20px;
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 5px;
+      box-shadow: 2px 2.5px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    .stat .value {
+      font-family: var(--font-hand);
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--ink-primary);
+      display: inline-block;
+      position: relative;
+    }
+
+    .stat .value::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--marker-yellow);
+      border-radius: 2px;
+    }
+
+    .stat .label {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      margin-top: 6px;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    /* Table System */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      background: var(--paper-card-bg);
+      box-shadow: 2.5px 3px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 740px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 13px 16px;
+      border-bottom: 1px dashed var(--paper-divider);
+      font-size: 14.5px;
+      line-height: 1.5;
+      vertical-align: top;
+      color: var(--ink-secondary);
+    }
+
+    th {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-primary);
+      background: #ECE4D0;
+      border-bottom: 1.5px solid var(--paper-card-border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(236, 228, 208, 0.18);
+    }
+
+    td strong {
+      color: var(--ink-primary);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .p0 {
+      background: var(--marker-red-soft);
+      color: var(--ink-red);
+      border-color: var(--ink-red);
+    }
+
+    .p1 {
+      background: var(--marker-orange-soft);
+      color: var(--ink-amber);
+      border-color: var(--ink-amber);
+    }
+
+    .p2 {
+      background: var(--marker-blue-soft);
+      color: var(--ink-blue);
+      border-color: var(--ink-blue);
+    }
+
+    .ai {
+      background: var(--marker-purple-soft);
+      color: var(--ink-purple);
+      border-color: var(--ink-purple);
+    }
+
+    .ok {
+      background: var(--marker-green-soft);
+      color: var(--ink-teal);
+      border-color: var(--ink-teal);
+    }
+
+    .warning {
+      background: var(--marker-red-soft);
+      color: var(--ink-red);
+      border-color: var(--ink-red);
+    }
+
+    /* Pipeline Strip */
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 0;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--paper-card-bg);
+      box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .pipeline .step {
+      padding: 14px 10px;
+      border-right: 1px dashed var(--paper-card-border);
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.15s ease;
+    }
+
+    .pipeline .step:last-child {
+      border-right: none;
+    }
+
+    .pipeline .step:hover {
+      background: var(--marker-yellow-soft);
+    }
+
+    .pipeline small {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--ink-purple);
+      letter-spacing: 0.05em;
+    }
+
+    .pipeline strong {
+      font-size: 13px;
+      color: var(--ink-primary);
+      margin-top: 6px;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+    }
+
+    /* Journey Map */
+    .journey {
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--paper-card-bg);
+      box-shadow: 2.5px 3px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    .journey-head {
+      padding: 18px 22px;
+      background: #EDE6D4;
+      border-bottom: 1.5px solid var(--paper-card-border);
+    }
+
+    .journey-head h3 {
+      margin: 0 0 3px;
+      font-size: 25px;
+      color: var(--ink-primary);
+    }
+
+    .journey-head p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .journey-stage {
+      padding: 18px 16px;
+      border-right: 1px dashed var(--paper-card-border);
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      transition: background 0.15s ease;
+    }
+
+    .journey-stage:last-child {
+      border-right: none;
+    }
+
+    .journey-stage:hover {
+      background: var(--marker-yellow-soft);
+    }
+
+    .journey-stage .n {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--ink-red);
+      margin-bottom: 4px;
+    }
+
+    .journey-stage h4 {
+      font-size: 22px;
+      margin: 2px 0 6px;
+      color: var(--ink-primary);
+    }
+
+    .journey-stage p {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      margin: 0 0 auto;
+      line-height: 1.55;
+    }
+
+    .journey-stage .badge {
+      align-self: flex-start;
+      margin-top: 14px;
+    }
+
+    /* Concepts */
+    .concept {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept .index {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      color: var(--ink-purple);
+      margin-bottom: 16px;
+      display: inline-block;
+      background: var(--marker-purple-soft);
+      padding: 2px 7px;
+      border-radius: 3px;
+      border: 1px solid rgba(109, 40, 217, 0.2);
+    }
+
+    .concept .icon {
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: #fff;
+      font-family: var(--font-hand);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    /* Loop Flow */
+    .loop {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .loop .node {
+      padding: 8px 16px;
+      border: 1.5px solid var(--paper-card-border);
+      background: #ffffff;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.08);
+      letter-spacing: 0.03em;
+    }
+
+    .loop .arrow {
+      color: var(--ink-purple);
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    /* Validation Loop */
+    .validation-loop {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .validation-step {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      padding: 16px 14px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .validation-step span {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--ink-red);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .validation-step strong {
+      font-family: var(--font-hand);
+      font-size: 22px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .validation-step p {
+      font-size: 13.5px;
+      margin: 0;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    /* Iteration Cards */
+    .iterations {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .iter {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2.5px 3.5px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .iter:nth-child(1) {
+      transform: rotate(-0.5deg);
+    }
+
+    .iter:nth-child(2) {
+      transform: rotate(0.4deg);
+    }
+
+    .iter:nth-child(3) {
+      transform: rotate(-0.3deg);
+    }
+
+    .iter:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .iter-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #EDE6D4;
+      border-bottom: 1.5px solid var(--paper-card-border);
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .iter-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .iter-visual {
+      height: 180px;
+      background: #F4EFE2;
+      border: 1.5px dashed var(--paper-card-border-soft);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 60px repeat(5, 1fr);
+      gap: 3px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .mini-grid div {
+      height: 22px;
+      border-radius: 3px;
+      background: #fff;
+      border: 1px solid #d4cdb8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mini-grid .filled {
+      background: var(--marker-purple-soft);
+      border-color: #c4b5fd;
+    }
+
+    .mini-grid .warn {
+      background: var(--marker-red-soft);
+      border-color: #fca5a5;
+    }
+
+    .mini-grid .validated {
+      background: var(--marker-green-soft);
+      border-color: #86efac;
+    }
+
+    .explain {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-left: 3px solid var(--ink-purple);
+      background: var(--marker-purple-soft);
+      font-size: 12.5px;
+      color: var(--ink-primary);
+      border-radius: 0 4px 4px 0;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    /* Screen Preview */
+    .screen {
+      background: #172238;
+      border: 2px solid var(--paper-card-border);
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .screen-bar {
+      height: 22px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      padding: 0 6px;
+    }
+
+    .screen-bar i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #64748b;
+    }
+
+    .screen-bar i:nth-child(1) {
+      background: #ef4444;
+    }
+
+    .screen-bar i:nth-child(2) {
+      background: #f59e0b;
+    }
+
+    .screen-bar i:nth-child(3) {
+      background: #10b981;
+    }
+
+    .screen-content {
+      background: var(--paper-card-bg);
+      border-radius: 6px;
+      padding: 18px;
+      min-height: 270px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .screen-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .roster-row {
+      display: grid;
+      grid-template-columns: 90px repeat(6, 1fr);
+      gap: 4px;
+      margin-bottom: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .roster-row div {
+      min-height: 26px;
+      background: #fff;
+      border: 1px solid #d4cdb8;
+      border-radius: 3px;
+      padding: 5px 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .roster-row .suggest {
+      background: var(--marker-purple-soft);
+      border-color: #c4b5fd;
+    }
+
+    .roster-row .valid {
+      background: var(--marker-green-soft);
+      border-color: #86efac;
+    }
+
+    .roster-row .conflict {
+      background: var(--marker-red-soft);
+      border-color: #fca5a5;
+    }
+
+    /* Design System Tokens */
+    .ds-token {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--paper-divider);
+    }
+
+    .ds-token:last-child {
+      border-bottom: none;
+    }
+
+    .swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      border: 1.5px solid var(--paper-card-border);
+      box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+    }
+
+    .ds-token strong {
+      font-size: 14.5px;
+      display: block;
+    }
+
+    .ds-token span {
+      display: block;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Handoff Grid */
+    .handoff {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .handoff-item {
+      background: var(--paper-card-bg);
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 5px;
+      padding: 16px 18px;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .handoff-item strong {
+      font-family: var(--font-hand);
+      font-size: 22px;
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink-primary);
+    }
+
+    .handoff-item p {
+      margin: 0;
+      color: var(--ink-secondary);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    /* Measure */
+    .measure {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .measure-card {
+      border: 1.5px solid var(--paper-card-border);
+      background: var(--paper-card-bg);
+      border-radius: 5px;
+      padding: 16px 18px;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .measure-card .metric {
+      font-family: var(--font-hand);
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .measure-card .definition {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* Callout Notes */
+    .note {
+      padding: 16px 20px;
+      border-left: 4px solid var(--ink-purple);
+      background: var(--marker-purple-soft);
+      border-radius: 0 6px 6px 0;
+      font-size: 14.5px;
+      color: var(--ink-primary);
+      line-height: 1.65;
+      border-top: 1px solid rgba(109, 40, 217, 0.15);
+      border-right: 1px solid rgba(109, 40, 217, 0.15);
+      border-bottom: 1px solid rgba(109, 40, 217, 0.15);
+    }
+
+    .source-note {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin-top: 16px;
+      font-style: italic;
+    }
+
+    /* Impact Section */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    .impact-card {
+      padding: 22px 18px;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      background: var(--paper-card-bg);
+      box-shadow: 2.5px 3px 0 rgba(0, 0, 0, 0.07);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .impact-card:nth-child(1) {
+      transform: rotate(-0.5deg);
+    }
+
+    .impact-card:nth-child(2) {
+      transform: rotate(0.4deg);
+    }
+
+    .impact-card:nth-child(3) {
+      transform: rotate(-0.3deg);
+    }
+
+    .impact-card:nth-child(4) {
+      transform: rotate(0.5deg);
+    }
+
+    .impact-card:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .impact-number {
+      font-family: var(--font-hand);
+      font-size: clamp(34px, 4.5vw, 54px);
+      line-height: 1;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .impact-number::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--marker-yellow);
+      border-radius: 2px;
+    }
+
+    .impact-card h3 {
+      font-size: 23px;
+      margin: 0 0 6px;
+    }
+
+    .impact-card p {
+      margin: 0 0 auto;
+      color: var(--ink-secondary);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    .impact-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--ink-red);
+      background: var(--marker-red-soft);
+      padding: 3px 7px;
+      border-radius: 3px;
+      margin-top: 14px;
+      border: 1px solid rgba(185, 28, 28, 0.2);
+      align-self: flex-start;
+    }
+
+    .impact-story {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 28px;
+      padding: 26px;
+      margin-top: 24px;
+      border-radius: 6px;
+      background: #EDE6D4;
+      border: 1.5px solid var(--paper-card-border);
+      box-shadow: 2.5px 3px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    .impact-story h3 {
+      font-size: 28px;
+      margin: 8px 0 0;
+    }
+
+    .impact-points {
+      display: grid;
+      gap: 0;
+    }
+
+    .impact-points>div {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--paper-card-border-soft);
+    }
+
+    .impact-points>div:last-child {
+      border-bottom: none;
+    }
+
+    .impact-points strong {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-purple);
+    }
+
+    .impact-points span {
+      color: var(--ink-secondary);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    /* Reflection Section */
+    .lead {
+      font-family: var(--font-hand);
+      font-size: clamp(20px, 2.2vw, 25px);
+      line-height: 1.4;
+      max-width: 860px;
+      color: var(--ink-secondary);
+      font-weight: 600;
+      margin: 10px 0 28px;
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    .reflection-card {
+      position: relative;
+      padding: 24px;
+      min-height: 180px;
+      border: 1.5px solid var(--paper-card-border);
+      border-radius: 6px;
+      background: var(--paper-card-bg);
+      box-shadow: 2.5px 3px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    .reflection-card:nth-child(1) {
+      transform: rotate(-0.3deg);
+    }
+
+    .reflection-card:nth-child(2) {
+      transform: rotate(0.4deg);
+    }
+
+    .reflection-card:nth-child(3) {
+      transform: rotate(0.3deg);
+    }
+
+    .reflection-card:nth-child(4) {
+      transform: rotate(-0.4deg);
+    }
+
+    .reflection-card:hover {
+      transform: translateY(-2px) rotate(0deg);
+    }
+
+    .reflection-index {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--ink-primary);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      border: 1.5px solid var(--ink-primary);
+      box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .reflection-card h3 {
+      font-size: 24px;
+      margin: 0 0 8px;
+    }
+
+    .reflection-card p {
+      margin: 0;
+      color: var(--ink-secondary);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    .reflection-close {
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: 6px;
+      background: var(--ink-primary);
+      color: var(--bg-canvas);
+      border: 2px solid var(--paper-card-border);
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .reflection-close .eyebrow {
+      color: var(--marker-yellow);
+      background: rgba(254, 240, 138, 0.15);
+      border-color: var(--marker-yellow);
+    }
+
+    .reflection-close p {
+      max-width: 860px;
+      margin: 12px 0 0;
+      line-height: 1.7;
+      color: #EDE4D0;
+      font-size: 15.5px;
+    }
+
+    /* Notebook Footer */
+    .notebook-footer {
+      background: #232220;
+      color: #faf6ed;
+      padding: 44px 42px 34px;
+      position: relative;
+      border-radius: 0 0 8px 6px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .footer-top-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .footer-top-row h4 {
+      color: #fff;
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+
+    .footer-top-row p {
+      font-size: 13.5px;
+      color: #b8ae9d;
+      max-width: 560px;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .footer-meta-box {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 1.8;
+      color: #a9a091;
+      text-align: right;
+    }
+
+    /* Footer Resume Banner */
+    .footer-resume-card {
+      position: relative;
+      background: var(--paper-card-bg);
+      color: var(--ink-primary);
+      border: 2px solid #000;
+      border-radius: 4px;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .footer-resume-card .tape-resume-left {
+      top: -10px;
+      left: 28px;
+      width: 54px;
+      height: 17px;
+      transform: rotate(-3deg);
+    }
+
+    .footer-resume-card .tape-resume-right {
+      top: -10px;
+      right: 28px;
+      width: 54px;
+      height: 17px;
+      transform: rotate(3deg);
+    }
+
+    .resume-card-title {
+      font-family: var(--font-hand);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      color: var(--ink-primary);
+    }
+
+    .resume-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ink-primary);
+      color: #faf6ed;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 12px 24px;
+      border-radius: 4px;
+      border: 1.5px solid var(--ink-primary);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+      transition: all 0.15s ease;
+    }
+
+    .resume-cta-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+      background: #000;
+      color: #fff;
+    }
+
+    .resume-cta-btn svg {
+      transition: transform 0.2s ease;
+    }
+
+    .resume-cta-btn:hover svg {
+      transform: translateY(2px);
+    }
+
+    .footer-links-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-back-link {
+      font-family: var(--font-hand);
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .footer-social-links a {
+      color: #d1c8b8;
+      transition: color 0.15s;
+    }
+
+    .footer-social-links a:hover {
+      color: var(--marker-yellow);
+    }
+
+    /* Responsive */
+    @media(max-width: 960px) {
+
+      .hero-grid,
+      .grid-2,
+      .impact-story {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3,
+      .grid-4,
+      .impact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pipeline {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pipeline .step {
+        border-bottom: 1px dashed var(--paper-card-border);
+      }
+
+      .journey-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .journey-stage {
+        border-bottom: 1px dashed var(--paper-card-border);
+      }
+
+      .validation-loop {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .iterations {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .notebook-workspace {
+        padding: 0 8px;
+        margin: 10px auto 28px;
+      }
+
+      .notebook-topbar {
+        padding: 16px 18px 12px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .topbar-center,
+      .learning-tag {
+        display: none;
+      }
+
+      .topbar-right {
+        justify-self: start;
+      }
+
+      .sidenav {
+        padding: 8px 14px;
+        gap: 6px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 38px 0 32px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .hero-lede {
+        font-size: 19px;
+      }
+
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3,
+      .grid-4,
+      .measure,
+      .handoff,
+      .reflection-grid,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .journey-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .journey-stage {
+        border-right: none;
+      }
+
+      .validation-loop {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-points>div {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .section-kicker {
+        display: none;
+      }
+
+      .notebook-footer {
+        padding: 36px 20px 28px;
+      }
+
+      .footer-resume-card {
+        padding: 18px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .resume-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="notebook-workspace">
+
+    <!-- Physical Notebook Sheet with hand-drawn drop-shadow & paper feel -->
+    <div class="paper-sheet">
+
+      <!-- Binder Clip Graphics -->
+      <div class="paper-clip-marker clip-left" aria-hidden="true"></div>
+      <div class="paper-clip-marker clip-right" aria-hidden="true"></div>
+
+      <!-- Notebook Topbar Navigation -->
+      <header class="notebook-topbar">
+        <div class="topbar-left">
+          <a href="index.html" class="back-home-link" title="Return to main portfolio">
+            <span>&larr;</span> Back to Portfolio
+          </a>
+          <div class="brand-lockup">
+            <div class="brand-name">RAKNOS</div>
+            <div class="brand-sub">Sharad Sonkar &bull; Portfolio</div>
+          </div>
+        </div>
+
+        <div class="topbar-center">
+          <span class="crumb-badge">CASE STUDY / ROSTERIX &bull; ENTERPRISE WORKFORCE DECISION SYSTEM</span>
+        </div>
+
+        <div class="topbar-right">
+          <a href="./assets/Sharad_Sonkar_Resume.pdf" download="Sharad_Sonkar_Resume.pdf" class="topbar-resume-btn"
+            title="Download Resume PDF">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5" />
+              <path d="M4 17h12" />
+            </svg>
+            <span>RESUME (PDF)</span>
+          </a>
+          <div class="learning-tag">always<br><span>learning.</span> &star;</div>
+        </div>
+      </header>
+
+      <!-- Sticky Notebook Chapters Bar -->
+      <nav class="sidenav" id="sidenav" aria-label="Case study navigation">
+        <a href="#discover">01 Discover</a>
+        <a href="#define">02 Define</a>
+        <a href="#prioritize">03 Prioritize</a>
+        <a href="#map">04 Map</a>
+        <a href="#explore">05 Explore</a>
+        <a href="#validate">06 Validate</a>
+        <a href="#design">07 Design</a>
+        <a href="#systemize">08 Systemize</a>
+        <a href="#handoff">09 Handoff</a>
+        <a href="#build">10 Build</a>
+        <a href="#qa">11 QA</a>
+        <a href="#measure">12 Measure</a>
+        <a href="#iterate">13 Iterate</a>
+        <a href="#impact">Impact</a>
+        <a href="#reflection">Reflection</a>
+      </nav>
+
+      <header class="hero" id="top">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">UX Lead Case Study &bull; Enterprise Workforce Management</div>
+            <h1><span class="title-highlight">Rosterix</span><span>.</span><br>Decisions, not<br>just rosters.</h1>
+            <p class="hero-lede">Redesigning an enterprise workforce platform from a system that records decisions into
+              a system that helps people make better workforce decisions — with context, validation and explainable AI.
+            </p>
+            <div class="meta">
+              <div class="meta-card"><small>Role</small><strong>UX Lead &bull; Product / Enterprise UX</strong></div>
+              <div class="meta-card"><small>Focus</small><strong>Workforce &bull; AI &bull; Design System</strong></div>
+              <div class="meta-card"><small>Core challenge</small><strong>Fragmented decisions + downstream
+                  risk</strong></div>
+              <div class="meta-card"><small>Approach</small><strong>Human-in-the-loop decision support</strong></div>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <div class="tape-strip hero-card-tape"></div>
+            <h3>The decision chain</h3>
+            <div class="decision-flow">
+              <div class="flow-node"><span>01 &bull; Project</span><span class="num">PLAN</span></div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-node"><span>02 &bull; Employee tagging</span><span class="num">ASSIGN</span></div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-node"><span>03 &bull; Roster</span><span class="num">BUILD</span></div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-node"><span>04 &bull; Validation</span><span class="num">CHECK</span></div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-node"><span>05 &bull; Allowance / approval</span><span class="num">DECIDE</span></div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-node"><span>06 &bull; Payroll / exceptions</span><span class="num">CLOSE LOOP</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <main>
+
+        <!-- 01 DISCOVER -->
+        <section class="section" id="discover">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">01</span>
+              <h2 class="section-title"><span class="section-title-highlight">Discover</span></h2>
+              <span class="section-kicker">Understand the workflow and evidence</span>
+            </div>
+            <p class="intro">The first discovery question was not “how should the roster look?” It was “where does a
+              workforce decision lose context as it moves through the organisation?”</p>
+
+            <div class="grid-4">
+              <div class="stat">
+                <div class="value">6</div>
+                <div class="label">role perspectives modelled</div>
+              </div>
+              <div class="stat">
+                <div class="value">9</div>
+                <div class="label">AI opportunity areas identified in the strategy</div>
+              </div>
+              <div class="stat">
+                <div class="value">4</div>
+                <div class="label">cross-persona UX patterns</div>
+              </div>
+              <div class="stat">
+                <div class="value">1</div>
+                <div class="label">connected decision chain</div>
+              </div>
+            </div>
+
+            <div style="height:24px"></div>
+            <div class="grid-2">
+              <div class="card">
+                <span class="tag">Evidence base</span>
+                <h3>What I used to understand the problem</h3>
+                <p>SRS and HLD requirements, the Rosterix AI UX strategy, the UX research report, workforce scheduling
+                  research, AI trust patterns, enterprise UX considerations and accessibility requirements.</p>
+              </div>
+              <div class="card">
+                <span class="tag">Research integrity</span>
+                <h3>What the evidence does — and does not — claim</h3>
+                <p>The research synthesises workflow friction across 6 core personas, business constraints, and live
+                  error logs before production rollout. It serves as an empirical foundation to safeguard user
+                  accountability rather than claiming unverified autonomy.</p>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="card" style="padding: 28px 32px; background: var(--paper-card-bg);">
+              <p class="big-quote">“Rosterix is a decision-making system where information becomes progressively
+                <em>fragmented</em> as it moves through the organisation.”
+              </p>
+            </div>
+
+            <div style="height:32px"></div>
+            <div class="grid-4">
+              <div class="card"><span class="tag">01</span>
+                <h3>Context arrives too late</h3>
+                <p>Users often discover the information they need only after taking an action or receiving a rejection.
+                </p>
+              </div>
+              <div class="card"><span class="tag">02</span>
+                <h3>Memory lives in people</h3>
+                <p>Recurring roster and tagging decisions rely heavily on personal knowledge and previous spreadsheets.
+                </p>
+              </div>
+              <div class="card"><span class="tag">03</span>
+                <h3>Problems surface downstream</h3>
+                <p>Conflicts and payroll consequences can appear after the original workforce decision was made.</p>
+              </div>
+              <div class="card"><span class="tag">04</span>
+                <h3>Trust must be earned</h3>
+                <p>AI needs to propose and explain before it earns the right to automate higher-risk actions.</p>
+              </div>
+            </div>
+
+            <div style="height:32px"></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>Observed / modelled friction</th>
+                    <th>UX implication</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Project Manager</strong></td>
+                    <td>Rebuilds rosters and employee assignments from memory.</td>
+                    <td>Reuse context and generate reviewable drafts.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Line Manager</strong></td>
+                    <td>Approval requests arrive without enough risk context.</td>
+                    <td>Bring evidence and risk signals into approval.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HRBP</strong></td>
+                    <td>Institutional history lives outside the workflow.</td>
+                    <td>Surface decision history at the point of review.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Regional Head</strong></td>
+                    <td>Final decisions can rely on second-hand summaries.</td>
+                    <td>Progressive disclosure of relevant context.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HRSS Admin</strong></td>
+                    <td>Movements and backtagging can create downstream conflicts.</td>
+                    <td>Preview ripple effects before commit.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Employee</strong></td>
+                    <td>Limited self-service visibility into shifts and allowance context.</td>
+                    <td>Make outcomes understandable, not opaque.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 DEFINE -->
+        <section class="section tint" id="define">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">02</span>
+              <h2 class="section-title"><span class="section-title-highlight">Define</span></h2>
+              <span class="section-kicker">Frame the real decision-making problems</span>
+            </div>
+            <p class="intro">The problem was bigger than roster creation. Rosterix required users to reconstruct
+              context, detect risk and justify decisions manually across a fragmented workflow.</p>
+
+            <div class="grid-3">
+              <div class="card"><span class="tag">Problem 01</span>
+                <h3>Context fragmentation</h3>
+                <p>Relevant information is distributed across projects, employee records, roster history, approvals and
+                  payroll-related workflows.</p>
+              </div>
+              <div class="card"><span class="tag">Problem 02</span>
+                <h3>Delayed feedback</h3>
+                <p>Business-rule violations and downstream conflicts can become visible only after a submission or later
+                  process step.</p>
+              </div>
+              <div class="card"><span class="tag">Problem 03</span>
+                <h3>Untrusted automation</h3>
+                <p>A recommendation without explanation creates uncertainty about accountability and makes consequential
+                  AI harder to adopt.</p>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="card" style="padding:32px 34px">
+              <span class="tag">How might we</span>
+              <p class="big-quote">How might we help every Rosterix user make <em>faster, safer and more informed
+                  workforce decisions</em> by bringing the right context and risk signals into the moment of decision —
+                while keeping humans accountable for consequential actions?</p>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="grid-4">
+              <div class="card">
+                <h3>01 &bull; Context before action</h3>
+                <p>Give users the information they need before they commit.</p>
+              </div>
+              <div class="card">
+                <h3>02 &bull; Risk before submission</h3>
+                <p>Move validation upstream into the decision itself.</p>
+              </div>
+              <div class="card">
+                <h3>03 &bull; AI proposes, humans decide</h3>
+                <p>Keep consequential actions reviewable and reversible.</p>
+              </div>
+              <div class="card">
+                <h3>04 &bull; Explain the why</h3>
+                <p>Make recommendations inspectable rather than magical.</p>
+              </div>
+            </div>
+
+            <div style="height:32px"></div>
+            <div class="card"
+              style="padding:24px 28px; background: var(--marker-purple-soft); border-color: var(--ink-purple);">
+              <p class="big-quote">North Star: <em>Move Rosterix from a system that records workforce decisions to a
+                  system that helps users make better workforce decisions.</em></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 PRIORITIZE -->
+        <section class="section" id="prioritize">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">03</span>
+              <h2 class="section-title"><span class="section-title-highlight">Prioritize</span></h2>
+              <span class="section-kicker">Identify the highest-value / highest-risk opportunities</span>
+            </div>
+            <p class="intro">Prioritisation combined business impact, risk, workflow frequency and AI suitability. The
+              matrix is a design synthesis, not a validated quantitative score.</p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Priority</th>
+                    <th>Opportunity</th>
+                    <th>Why it matters</th>
+                    <th>AI role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge p0">P0</span></td>
+                    <td><strong>AI roster generation</strong></td>
+                    <td>High-frequency manual work with clear repeatable patterns.</td>
+                    <td><span class="badge ai">Draft</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p0">P0</span></td>
+                    <td><strong>Real-time constraint validation</strong></td>
+                    <td>Prevents known business-rule failures before submission.</td>
+                    <td><span class="badge ai">Validate</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p0">P0</span></td>
+                    <td><strong>Employee tagging recommendations</strong></td>
+                    <td>Reduces repetitive assignment work and surfaces conflicts.</td>
+                    <td><span class="badge ai">Recommend</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p0">P0</span></td>
+                    <td><strong>Conflict detection / resolution</strong></td>
+                    <td>Protects downstream payroll and workforce integrity.</td>
+                    <td><span class="badge ai">Explain</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p0">P0</span></td>
+                    <td><strong>Approval risk / context</strong></td>
+                    <td>Helps approvers focus attention without automating approval.</td>
+                    <td><span class="badge ai">Prioritise</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p1">P1</span></td>
+                    <td><strong>Cost &amp; allowance prediction</strong></td>
+                    <td>Connects workforce decisions to financial consequences.</td>
+                    <td><span class="badge ai">Predict</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p1">P1</span></td>
+                    <td><strong>Anomaly detection</strong></td>
+                    <td>Moves organisation-wide monitoring beyond manual project checks.</td>
+                    <td><span class="badge ai">Detect</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p1">P1</span></td>
+                    <td><strong>Smart project setup</strong></td>
+                    <td>Reuses patterns users currently reconstruct from memory.</td>
+                    <td><span class="badge ai">Suggest</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge p2">P2</span></td>
+                    <td><strong>Shift preference learning</strong></td>
+                    <td>Useful once foundational recommendation and feedback loops exist.</td>
+                    <td><span class="badge ai">Learn</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="height:32px"></div>
+            <div class="pipeline">
+              <div class="step"><small>01</small><strong>PLAN</strong></div>
+              <div class="step"><small>02</small><strong>ASSIGN</strong></div>
+              <div class="step"><small>03</small><strong>BUILD</strong></div>
+              <div class="step"><small>04</small><strong>VALIDATE</strong></div>
+              <div class="step"><small>05</small><strong>PREDICT</strong></div>
+              <div class="step"><small>06</small><strong>APPROVE</strong></div>
+              <div class="step"><small>07</small><strong>LEARN</strong></div>
+              <div class="step"><small>08</small><strong>AUDIT</strong></div>
+              <div class="step"><small>09</small><strong>IMPROVE</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 MAP -->
+        <section class="section tint" id="map">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">04</span>
+              <h2 class="section-title"><span class="section-title-highlight">Map</span></h2>
+              <span class="section-kicker">Connect projects, people, rosters, allowance, approvals and payroll</span>
+            </div>
+            <p class="intro">Mapping revealed that the roster is only one node in a much larger decision chain.</p>
+
+            <div class="pipeline">
+              <div class="step"><small>01</small><strong>PROJECT</strong></div>
+              <div class="step"><small>02</small><strong>TAG</strong></div>
+              <div class="step"><small>03</small><strong>EMPLOYEES</strong></div>
+              <div class="step"><small>04</small><strong>ROSTER</strong></div>
+              <div class="step"><small>05</small><strong>VALIDATION</strong></div>
+              <div class="step"><small>06</small><strong>ALLOWANCE</strong></div>
+              <div class="step"><small>07</small><strong>APPROVAL</strong></div>
+              <div class="step"><small>08</small><strong>PAYROLL</strong></div>
+              <div class="step"><small>09</small><strong>EXCEPTION / HISTORY</strong></div>
+            </div>
+
+            <div style="height:30px"></div>
+            <div class="journey">
+              <div class="journey-head">
+                <h3>Journey 01 — Blank roster to paid allowance</h3>
+                <p>Primary decision chain for Project Managers and Line Managers.</p>
+              </div>
+              <div class="journey-grid">
+                <div class="journey-stage">
+                  <span class="n">01</span>
+                  <h4>Plan</h4>
+                  <p>Project configuration is rebuilt from memory.</p>
+                  <span class="badge ai">Smart setup</span>
+                </div>
+                <div class="journey-stage">
+                  <span class="n">02</span>
+                  <h4>Tag</h4>
+                  <p>Employees are manually assigned and cross-checked.</p>
+                  <span class="badge ai">Recommendations</span>
+                </div>
+                <div class="journey-stage">
+                  <span class="n">03</span>
+                  <h4>Build</h4>
+                  <p>Roster patterns are recreated month after month.</p>
+                  <span class="badge ai">Draft roster</span>
+                </div>
+                <div class="journey-stage">
+                  <span class="n">04</span>
+                  <h4>Validate</h4>
+                  <p>Rules and conflicts need to be caught before submission.</p>
+                  <span class="badge ai">Live validation</span>
+                </div>
+                <div class="journey-stage">
+                  <span class="n">05</span>
+                  <h4>Approve</h4>
+                  <p>Requests need context, not just a button.</p>
+                  <span class="badge ai">Risk context</span>
+                </div>
+                <div class="journey-stage">
+                  <span class="n">06</span>
+                  <h4>Close loop</h4>
+                  <p>Decisions should remain traceable into allowance and payroll.</p>
+                  <span class="badge ai">Explainable history</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:24px"></div>
+            <div class="journey">
+              <div class="journey-head">
+                <h3>Journey 02 — Change a live project without breaking payroll</h3>
+                <p>HRSS movement and backtagging workflow.</p>
+              </div>
+              <div style="padding:22px">
+                <div class="loop">
+                  <span class="node">CHANGE</span><span class="arrow">&rarr;</span>
+                  <span class="node">PREVIEW IMPACT</span><span class="arrow">&rarr;</span>
+                  <span class="node">DETECT CONFLICTS</span><span class="arrow">&rarr;</span>
+                  <span class="node">UNDERSTAND WHY</span><span class="arrow">&rarr;</span>
+                  <span class="node">RESOLVE</span><span class="arrow">&rarr;</span>
+                  <span class="node">COMMIT</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="grid-3">
+              <div class="card">
+                <h3>PM</h3>
+                <p>Needs efficient project setup, tagging, roster creation and exception visibility.</p>
+              </div>
+              <div class="card">
+                <h3>LM / HRBP</h3>
+                <p>Needs enough context to make responsible approval decisions quickly.</p>
+              </div>
+              <div class="card">
+                <h3>HRSS / Employee</h3>
+                <p>Needs downstream consequences and workforce outcomes to remain understandable.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 05 EXPLORE -->
+        <section class="section" id="explore">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">05</span>
+              <h2 class="section-title"><span class="section-title-highlight">Explore</span></h2>
+              <span class="section-kicker">Generate interaction concepts</span>
+            </div>
+            <p class="intro">The concepts focused on embedding intelligence into existing decisions rather than creating
+              a separate “AI product” inside Rosterix.</p>
+
+            <div class="grid-3">
+              <div class="card concept">
+                <div class="index">CONCEPT 01</div>
+                <div class="icon">AI</div>
+                <h3>AI Roster Assistant</h3>
+                <p>Generate a draft roster that users can inspect, edit and selectively accept.</p>
+              </div>
+              <div class="card concept">
+                <div class="index">CONCEPT 02</div>
+                <div class="icon">?</div>
+                <h3>Explainability Layer</h3>
+                <p>Expose summary, reason and evidence without overwhelming the primary workflow.</p>
+              </div>
+              <div class="card concept">
+                <div class="index">CONCEPT 03</div>
+                <div class="icon">&check;</div>
+                <h3>Real-time Validation</h3>
+                <p>Move known constraints into the interaction instead of waiting for submission.</p>
+              </div>
+              <div class="card concept">
+                <div class="index">CONCEPT 04</div>
+                <div class="icon">!</div>
+                <h3>Conflict Resolution</h3>
+                <p>Surface overlapping tags and related impacts at the point of decision.</p>
+              </div>
+              <div class="card concept">
+                <div class="index">CONCEPT 05</div>
+                <div class="icon">&harr;</div>
+                <h3>Simulation Mode</h3>
+                <p>Preview downstream impact before committing movements and backtagging changes.</p>
+              </div>
+              <div class="card concept">
+                <div class="index">CONCEPT 06</div>
+                <div class="icon">R</div>
+                <h3>Risk-aware Approval</h3>
+                <p>Use context to direct attention without replacing human approval authority.</p>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="card" style="padding:28px 32px">
+              <span class="tag">Core interaction model</span>
+              <div class="loop">
+                <span class="node">AI SUGGESTS</span><span class="arrow">&rarr;</span>
+                <span class="node">CONTEXT</span><span class="arrow">&rarr;</span>
+                <span class="node">EXPLAIN WHY</span><span class="arrow">&rarr;</span>
+                <span class="node">USER REVIEWS</span><span class="arrow">&rarr;</span>
+                <span class="node">VALIDATE</span><span class="arrow">&rarr;</span>
+                <span class="node">APPROVE</span><span class="arrow">&rarr;</span>
+                <span class="node">AUDIT</span>
+              </div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="grid-2">
+              <div class="card"><span class="tag">Progressive automation</span>
+                <h3>Inform &rarr; Recommend &rarr; Draft &rarr; Validate &rarr; Bounded automation</h3>
+                <p>Autonomy should increase only as the product earns trust and accumulates evidence.</p>
+              </div>
+              <div class="card"><span class="tag">Trust pattern</span>
+                <h3>Confidence is not permission</h3>
+                <p>A confidence score tells the user where to look. It should never silently convert a recommendation
+                  into a decision.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 06 VALIDATE -->
+        <section class="section tint" id="validate">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">06</span>
+              <h2 class="section-title"><span class="section-title-highlight">Validate</span></h2>
+              <span class="section-kicker">Test assumptions and trust patterns</span>
+            </div>
+            <p class="intro">The riskiest concept was the AI Roster Assistant. Validation focused on accountability,
+              explainability, conflict detection, override behaviour and dense-data comprehension.</p>
+
+            <div class="validation-loop">
+              <div class="validation-step"><span>01</span><strong>Hypothesis</strong>
+                <p>Can users tell what AI decided?</p>
+              </div>
+              <div class="validation-step"><span>02</span><strong>Prototype</strong>
+                <p>Make the AI state visible.</p>
+              </div>
+              <div class="validation-step"><span>03</span><strong>Review</strong>
+                <p>Inspect trust and comprehension.</p>
+              </div>
+              <div class="validation-step"><span>04</span><strong>Iterate</strong>
+                <p>Expose the missing context.</p>
+              </div>
+              <div class="validation-step"><span>05</span><strong>Retest</strong>
+                <p>Confirm the interaction model.</p>
+              </div>
+            </div>
+
+            <div style="height:30px"></div>
+            <div class="iterations">
+              <article class="iter">
+                <div class="iter-head"><span>V1 &bull; Fully auto-filled</span><span
+                    class="badge warning">REJECTED</span></div>
+                <div class="iter-body">
+                  <div class="iter-visual">
+                    <div class="mini-grid">
+                      <div></div>
+                      <div>M</div>
+                      <div>T</div>
+                      <div>W</div>
+                      <div>T</div>
+                      <div>F</div>
+                      <div>Ravi</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div>Asha</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div>Dev</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                    </div>
+                  </div>
+                  <h3>No distinction between AI and human decisions.</h3>
+                  <p>Rejected because accountability became ambiguous and users felt out of control.</p>
+                </div>
+              </article>
+
+              <article class="iter">
+                <div class="iter-head"><span>V2 &bull; Draft + warning</span><span class="badge p1">ITERATE</span></div>
+                <div class="iter-body">
+                  <div class="iter-visual">
+                    <div class="mini-grid">
+                      <div></div>
+                      <div>M</div>
+                      <div>T</div>
+                      <div>W</div>
+                      <div>T</div>
+                      <div>F</div>
+                      <div>Ravi</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="warn">!</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div>Asha</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div>Dev</div>
+                      <div class="filled"></div>
+                      <div class="warn">!</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                    </div>
+                  </div>
+                  <h3>The warning says something is wrong — but not why.</h3>
+                  <p>Distinguishing draft from final solved visibility, not explainability.</p>
+                </div>
+              </article>
+
+              <article class="iter">
+                <div class="iter-head"><span>V3 &bull; Explainable draft</span><span class="badge ok">FINAL</span></div>
+                <div class="iter-body">
+                  <div class="iter-visual">
+                    <div class="mini-grid">
+                      <div></div>
+                      <div>M</div>
+                      <div>T</div>
+                      <div>W</div>
+                      <div>T</div>
+                      <div>F</div>
+                      <div>Ravi</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="validated">&check;</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div>Asha</div>
+                      <div class="validated">&check;</div>
+                      <div class="validated">&check;</div>
+                      <div class="filled"></div>
+                      <div class="validated">&check;</div>
+                      <div class="validated">&check;</div>
+                      <div>Dev</div>
+                      <div class="filled"></div>
+                      <div class="warn">!</div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                      <div class="filled"></div>
+                    </div>
+                    <div class="explain">Why? Matches previous approved pattern + availability. Review conflict before
+                      accepting.</div>
+                  </div>
+                  <h3>AI state + reason + override become first-class.</h3>
+                  <p>The interaction supports both fast bulk review and careful per-row inspection.</p>
+                </div>
+              </article>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="note"><strong>Validation integrity:</strong> The source research describes the primary research
+              panel as synthetic/simulated because Rosterix 2.0 did not yet have a live user base. Real moderated
+              interviews and usability testing remain required for production validation.</div>
+          </div>
+        </section>
+
+        <!-- 07 DESIGN -->
+        <section class="section" id="design">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">07</span>
+              <h2 class="section-title"><span class="section-title-highlight">Design</span></h2>
+              <span class="section-kicker">Build the end-to-end experience</span>
+            </div>
+            <p class="intro">The final experience treats AI as a decision-support layer across the existing workflow,
+              not as a standalone chatbot or hidden automation engine.</p>
+
+            <div class="grid-2">
+              <div class="screen">
+                <div class="screen-bar"><i></i><i></i><i></i></div>
+                <div class="screen-content">
+                  <div class="screen-title">
+                    <span>October roster &bull; Night Ops</span>
+                    <span class="badge ai">AI draft &bull; 92%</span>
+                  </div>
+                  <div class="roster-row">
+                    <div><strong>Employee</strong></div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                  </div>
+                  <div class="roster-row">
+                    <div>R. Kumar</div>
+                    <div class="suggest">Shift A</div>
+                    <div class="suggest">Shift A</div>
+                    <div class="valid">Valid &check;</div>
+                    <div class="suggest">Shift A</div>
+                    <div class="suggest">Shift A</div>
+                    <div>Off</div>
+                  </div>
+                  <div class="roster-row">
+                    <div>A. Rao</div>
+                    <div class="valid">Valid &check;</div>
+                    <div class="valid">Valid &check;</div>
+                    <div class="suggest">Shift B</div>
+                    <div class="valid">Valid &check;</div>
+                    <div class="valid">Valid &check;</div>
+                    <div class="suggest">Shift B</div>
+                  </div>
+                  <div class="roster-row">
+                    <div>D. Shah</div>
+                    <div class="suggest">Shift A</div>
+                    <div class="conflict">Conflict !</div>
+                    <div class="suggest">Shift A</div>
+                    <div class="suggest">Shift A</div>
+                    <div>Off</div>
+                    <div class="suggest">Shift A</div>
+                  </div>
+                  <div class="explain" style="margin-top:14px;"><strong>Constraint Warning:</strong> D. Shah reaches 5
+                    consecutive working days on Thursday. <u style="color:var(--ink-purple); cursor:pointer;">See why
+                      &rarr;</u></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="card" style="margin-bottom:14px"><span class="tag">01 &bull; Roster</span>
+                  <h3>AI draft + live validation</h3>
+                  <p>Suggested cells, validated states and conflicts remain visually distinct. Problems appear inline
+                    instead of blocking the whole workflow.</p>
+                </div>
+                <div class="card" style="margin-bottom:14px"><span class="tag">02 &bull; Tagging</span>
+                  <h3>Recommendations + conflict signals</h3>
+                  <p>Each recommendation carries a one-line reason. Employees already tagged elsewhere surface before
+                    submission.</p>
+                </div>
+                <div class="card"><span class="tag">03 &bull; Approvals</span>
+                  <h3>Risk context, not automated approval</h3>
+                  <p>Confidence helps approvers decide where to look first. It never replaces their authority.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="grid-3">
+              <div class="card"><span class="tag">Simulation</span>
+                <h3>Before / after impact</h3>
+                <p>Backtagging and movements show affected records and conflicts before commit.</p>
+              </div>
+              <div class="card"><span class="tag">Explainability</span>
+                <h3>Summary &rarr; reason &rarr; evidence</h3>
+                <p>The system answers “why?” without turning every decision into a long explanation.</p>
+              </div>
+              <div class="card"><span class="tag">Control</span>
+                <h3>Accept &rarr; edit &rarr; reject</h3>
+                <p>Users retain a clear path to override recommendations at any granular level.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 08 SYSTEMIZE -->
+        <section class="section tint" id="systemize">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">08</span>
+              <h2 class="section-title"><span class="section-title-highlight">Systemize</span></h2>
+              <span class="section-kicker">Turn successful patterns into reusable components</span>
+            </div>
+            <p class="intro">The challenge was consistency across multiple roles, modules and AI use cases. I treated AI
+              interaction patterns as system primitives rather than feature-specific UI.</p>
+
+            <div class="grid-2">
+              <div class="card">
+                <span class="tag">State model</span>
+                <div class="ds-token">
+                  <div class="swatch" style="background:var(--marker-purple-soft)"></div>
+                  <div><strong>Suggested</strong><span>AI recommendation</span></div>
+                </div>
+                <div class="ds-token">
+                  <div class="swatch" style="background:var(--marker-green-soft)"></div>
+                  <div><strong>Validated</strong><span>Rule engine confirms constraints</span></div>
+                </div>
+                <div class="ds-token">
+                  <div class="swatch" style="background:var(--marker-orange-soft)"></div>
+                  <div><strong>Needs review</strong><span>Human judgement required</span></div>
+                </div>
+                <div class="ds-token">
+                  <div class="swatch" style="background:var(--marker-red-soft)"></div>
+                  <div><strong>Conflict</strong><span>Rule / data relationship requires resolution</span></div>
+                </div>
+                <div class="ds-token">
+                  <div class="swatch" style="background:#fff"></div>
+                  <div><strong>User edited</strong><span>Human modified the recommendation</span></div>
+                </div>
+              </div>
+              <div class="card">
+                <span class="tag">Reusable patterns</span>
+                <div class="ds-token">
+                  <div><strong>Confidence indicator</strong><span>Percentage + label, never colour alone</span></div>
+                </div>
+                <div class="ds-token">
+                  <div><strong>Explainability tooltip</strong><span>Reason on hover / focus / tap</span></div>
+                </div>
+                <div class="ds-token">
+                  <div><strong>AI Assistant Panel</strong><span>Task-focused, progressive disclosure</span></div>
+                </div>
+                <div class="ds-token">
+                  <div><strong>Violation banner</strong><span>Inline + reason + action</span></div>
+                </div>
+                <div class="ds-token">
+                  <div><strong>Status chip</strong><span>Rule-engine state distinct from AI state</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="card" style="padding:28px 32px">
+              <span class="tag">Design system principle</span>
+              <p class="big-quote">AI confidence and business-rule validation are <em>different states</em> and must
+                never be represented as the same thing.</p>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="grid-4">
+              <div class="card">
+                <h4>Ink</h4>
+                <p><code>#172238</code><br>Primary information &amp; text</p>
+              </div>
+              <div class="card">
+                <h4>AI accent</h4>
+                <p><code>#7657D9</code><br>AI moments / suggestions</p>
+              </div>
+              <div class="card">
+                <h4>Validated</h4>
+                <p><code>#19736A</code><br>Confirmed rule state</p>
+              </div>
+              <div class="card">
+                <h4>Alert</h4>
+                <p><code>#A94335</code><br>Conflict / attention required</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 09 HANDOFF -->
+        <section class="section" id="handoff">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">09</span>
+              <h2 class="section-title"><span class="section-title-highlight">Handoff</span></h2>
+              <span class="section-kicker">Translate UX decisions into implementation rules</span>
+            </div>
+            <p class="intro">The handoff is designed around behaviour, not screenshots. Every important component needs
+              a shared understanding of anatomy, state, behaviour, rules, accessibility and content.</p>
+
+            <div class="handoff">
+              <div class="handoff-item"><strong>Anatomy</strong>
+                <p>What elements make up the component?</p>
+              </div>
+              <div class="handoff-item"><strong>States</strong>
+                <p>Default, loading, suggested, validated, conflict, edited, approved.</p>
+              </div>
+              <div class="handoff-item"><strong>Behaviour</strong>
+                <p>What happens on hover, focus, click, accept, reject and override?</p>
+              </div>
+              <div class="handoff-item"><strong>Rules</strong>
+                <p>Which business and validation rules affect the interaction?</p>
+              </div>
+              <div class="handoff-item"><strong>Accessibility</strong>
+                <p>Keyboard behaviour, focus, semantics, target size and non-colour states.</p>
+              </div>
+              <div class="handoff-item"><strong>Content</strong>
+                <p>Labels, reasons, error language, confidence framing and progressive disclosure.</p>
+              </div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="grid-3">
+              <div class="card">
+                <h3>Figma library</h3>
+                <p>Components, variants, tokens and interaction states.</p>
+              </div>
+              <div class="card">
+                <h3>Behaviour spec</h3>
+                <p>Interaction rules, edge cases and AI state transitions.</p>
+              </div>
+              <div class="card">
+                <h3>Acceptance criteria</h3>
+                <p>Testable outcomes shared with engineering and QA.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10 BUILD -->
+        <section class="section tint" id="build">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">10</span>
+              <h2 class="section-title"><span class="section-title-highlight">Build</span></h2>
+              <span class="section-kicker">Partner with engineering and ML</span>
+            </div>
+            <p class="intro">Rosterix sits at the intersection of interface, business rules, workforce data, AI
+              recommendations, approvals and payroll. Engineering collaboration therefore begins before visual handoff.
+            </p>
+
+            <div class="grid-3">
+              <div class="card"><span class="tag">UX + Product</span>
+                <h3>Define the decision</h3>
+                <p>What decision is the system helping the user make, and what accountability must remain human?</p>
+              </div>
+              <div class="card"><span class="tag">UX + Engineering</span>
+                <h3>Define the constraint</h3>
+                <p>Which information can be surfaced in real time, and what happens when a dependency is unavailable?
+                </p>
+              </div>
+              <div class="card"><span class="tag">UX + ML</span>
+                <h3>Define the AI contract</h3>
+                <p>Recommendation inputs, confidence, explanation data, uncertainty, fallback and override logging.</p>
+              </div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="card" style="padding:28px 32px">
+              <span class="tag">AI interaction contract</span>
+              <div class="loop">
+                <span class="node">INPUT</span><span class="arrow">&rarr;</span>
+                <span class="node">RECOMMENDATION</span><span class="arrow">&rarr;</span>
+                <span class="node">CONFIDENCE</span><span class="arrow">&rarr;</span>
+                <span class="node">EXPLANATION</span><span class="arrow">&rarr;</span>
+                <span class="node">USER ACTION</span><span class="arrow">&rarr;</span>
+                <span class="node">OUTCOME</span>
+              </div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="note"><strong>Graceful degradation:</strong> If the AI service fails, the core Rosterix workflow
+              should remain usable. AI should accelerate work, not become the only way to complete it.</div>
+          </div>
+        </section>
+
+        <!-- 11 QA -->
+        <section class="section" id="qa">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">11</span>
+              <h2 class="section-title"><span class="section-title-highlight">QA</span></h2>
+              <span class="section-kicker">Validate functionality, UX, AI behaviour and accessibility</span>
+            </div>
+            <p class="intro">QA expands beyond pixel matching. The question is whether the product behaves predictably
+              when workforce data, business rules and AI recommendations collide.</p>
+
+            <div class="grid-4">
+              <div class="card"><span class="tag">01</span>
+                <h3>Functional</h3>
+                <p>Does the workflow behave according to SRS requirements and business rules?</p>
+              </div>
+              <div class="card"><span class="tag">02</span>
+                <h3>UX</h3>
+                <p>Can users understand what happened, why, what needs attention and what happens next?</p>
+              </div>
+              <div class="card"><span class="tag">03</span>
+                <h3>AI UX</h3>
+                <p>Are recommendation, confidence, uncertainty and human override communicated correctly?</p>
+              </div>
+              <div class="card"><span class="tag">04</span>
+                <h3>Accessibility</h3>
+                <p>Can the same decision be completed with keyboard, assistive technology and non-colour cues?</p>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Edge case</th>
+                    <th>Expected UX behaviour</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Overlapping employee tags</strong></td>
+                    <td>Surface conflict before submission and explain the affected relationship.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Backdated movement</strong></td>
+                    <td>Show before/after impact and affected records before commit.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Missing information</strong></td>
+                    <td>Identify what is missing and provide a clear recovery path.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AI has no valid solution</strong></td>
+                    <td>Explain the limitation and return control to manual decision-making.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AI recommendation rejected</strong></td>
+                    <td>Allow user override without breaking the workflow.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AI service unavailable</strong></td>
+                    <td>Core workflow remains usable without AI.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Dense roster interaction</strong></td>
+                    <td>Keyboard-accessible, visible focus, readable states and adequate target sizes.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12 MEASURE -->
+        <section class="section tint" id="measure">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">12</span>
+              <h2 class="section-title"><span class="section-title-highlight">Measure</span></h2>
+              <span class="section-kicker">Track behavioural and business outcomes</span>
+            </div>
+            <p class="intro">The current Rosterix materials describe projected outcomes and roadmap targets rather than
+              measured production results. The measurement framework therefore separates targets from evidence.</p>
+
+            <div class="measure">
+              <div class="measure-card">
+                <div class="metric">Time to roster</div>
+                <div class="definition">Measure the time required to create and finalise a roster.</div>
+              </div>
+              <div class="measure-card">
+                <div class="metric">AI acceptance / edit / reject</div>
+                <div class="definition">Understand whether recommendations are genuinely useful or simply being
+                  accepted.</div>
+              </div>
+              <div class="measure-card">
+                <div class="metric">Pre-submission conflicts</div>
+                <div class="definition">Track how many conflicts are detected before they reach downstream workflows.
+                </div>
+              </div>
+              <div class="measure-card">
+                <div class="metric">Approval turnaround</div>
+                <div class="definition">Measure the time from submission to authorised decision.</div>
+              </div>
+              <div class="measure-card">
+                <div class="metric">Downstream exceptions</div>
+                <div class="definition">Track payroll / allowance issues linked to upstream workforce decisions.</div>
+              </div>
+              <div class="measure-card">
+                <div class="metric">Explainability usage</div>
+                <div class="definition">Understand whether users inspect reasons and evidence when reviewing AI
+                  decisions.</div>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="card">
+              <span class="tag">Projected targets — not measured outcomes</span>
+              <div class="grid-4" style="margin-top:10px">
+                <div class="stat">
+                  <div class="value">60–80%</div>
+                  <div class="label">target reduction in manual roster entry time</div>
+                </div>
+                <div class="stat">
+                  <div class="value">40%</div>
+                  <div class="label">target reduction in incorrect allowance submissions</div>
+                </div>
+                <div class="stat">
+                  <div class="value">35%</div>
+                  <div class="label">target faster approval turnaround</div>
+                </div>
+                <div class="stat">
+                  <div class="value">50%</div>
+                  <div class="label">target reduction in dual-tagging conflicts</div>
+                </div>
+              </div>
+              <div class="source-note">Source basis: Rosterix AI HLD v1.0, Section 7 — Implementation Roadmap &amp;
+                Expected Outcomes. Treat these as design / rollout targets, not production results.</div>
+            </div>
+
+            <div style="height:26px"></div>
+            <div class="note"><strong>Important:</strong> AI acceptance rate should never be treated as the sole success
+              metric. High acceptance can mean usefulness — or it can mean users stopped checking the system. Pair
+              acceptance with overrides, downstream errors, explanation usage and review behaviour.</div>
+          </div>
+        </section>
+
+        <!-- 13 ITERATE -->
+        <section class="section" id="iterate">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">13</span>
+              <h2 class="section-title"><span class="section-title-highlight">Iterate</span></h2>
+              <span class="section-kicker">Feed real-world evidence back into the product</span>
+            </div>
+            <p class="intro">The product does not end at launch. Every decision creates evidence that can improve the
+              experience, the rules and eventually the AI.</p>
+
+            <div class="loop">
+              <span class="node">OBSERVE</span><span class="arrow">&rarr;</span>
+              <span class="node">MEASURE</span><span class="arrow">&rarr;</span>
+              <span class="node">IDENTIFY</span><span class="arrow">&rarr;</span>
+              <span class="node">HYPOTHESISE</span><span class="arrow">&rarr;</span>
+              <span class="node">DESIGN</span><span class="arrow">&rarr;</span>
+              <span class="node">VALIDATE</span><span class="arrow">&rarr;</span>
+              <span class="node">RELEASE</span><span class="arrow">&circlearrowleft;</span>
+            </div>
+
+            <div style="height:22px"></div>
+            <div class="grid-3">
+              <div class="card"><span class="tag">Product learning</span>
+                <h3>Repeated overrides reveal missing context</h3>
+                <p>If managers repeatedly override a recommendation for the same operational reason, the product may be
+                  missing an explicit business rule or context signal.</p>
+              </div>
+              <div class="card"><span class="tag">AI learning</span>
+                <h3>Decisions become feedback</h3>
+                <p>Recommendation &rarr; user decision &rarr; override &rarr; downstream outcome can become a feedback
+                  loop for future model and UX improvements.</p>
+              </div>
+              <div class="card"><span class="tag">Trust learning</span>
+                <h3>Autonomy must be earned</h3>
+                <p>Progress from informing to bounded automation only when behavioural evidence supports the next level
+                  of autonomy.</p>
+              </div>
+            </div>
+
+            <div style="height:28px"></div>
+            <div class="card" style="padding:32px 34px">
+              <span class="tag">What I would validate next</span>
+              <div class="grid-3" style="margin-top:10px">
+                <div>
+                  <h3>01 &bull; Qualitative interviews</h3>
+                  <p>Run moderated interviews with real stakeholders to validate the pain-point matrix.</p>
+                </div>
+                <div>
+                  <h3>02 &bull; Trust calibration</h3>
+                  <p>Usability-test the AI Assistant and explainability patterns for trust calibration.</p>
+                </div>
+                <div>
+                  <h3>03 &bull; Design system scale</h3>
+                  <p>Extend the design system from the snapshot into complete component specifications before later
+                    recommendation-layer phases.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:32px"></div>
+            <div class="card"
+              style="padding:28px 32px; background: var(--marker-purple-soft); border-color: var(--ink-purple);">
+              <p class="big-quote">The final product direction is not “<em>more AI</em>.” It is <em>better
+                  decisions</em> — with the right context, the right risk signal, and the right amount of automation at
+                the right moment.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section id="impact" class="section tint">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">IMPACT</span>
+              <h2 class="section-title"><span class="section-title-highlight">Project Impact</span></h2>
+              <span class="section-kicker">From workflow redesign to measurable product impact</span>
+            </div>
+
+            <div class="impact-grid">
+              <article class="impact-card">
+                <span class="impact-number">60–80%</span>
+                <h3>Manual roster effort</h3>
+                <p>Projected reduction in manual roster entry time through AI-assisted roster generation and review.</p>
+                <span class="impact-label">PROJECTED TARGET</span>
+              </article>
+
+              <article class="impact-card">
+                <span class="impact-number">40%</span>
+                <h3>Incorrect allowance submissions</h3>
+                <p>Projected reduction through anomaly detection, validation and earlier risk visibility.</p>
+                <span class="impact-label">PROJECTED TARGET</span>
+              </article>
+
+              <article class="impact-card">
+                <span class="impact-number">35%</span>
+                <h3>Approval turnaround</h3>
+                <p>Projected improvement through approval context and risk-aware review.</p>
+                <span class="impact-label">PROJECTED TARGET</span>
+              </article>
+
+              <article class="impact-card">
+                <span class="impact-number">50%</span>
+                <h3>Dual-tagging conflicts</h3>
+                <p>Projected reduction through employee-tagging recommendations and conflict detection.</p>
+                <span class="impact-label">PROJECTED TARGET</span>
+              </article>
+            </div>
+
+            <div class="impact-story">
+              <div>
+                <span class="eyebrow">THE PRODUCT SHIFT</span>
+                <h3>What changed in the experience</h3>
+              </div>
+              <div class="impact-points">
+                <div><strong>Before</strong><span>Users reconstructed context, checked rules manually and discovered
+                    many problems downstream.</span></div>
+                <div><strong>After</strong><span>Users receive contextual recommendations, risk signals and impact
+                    previews before consequential decisions.</span></div>
+                <div><strong>AI role</strong><span>AI proposes, explains and validates; humans retain review and
+                    approval responsibility.</span></div>
+                <div><strong>System role</strong><span>Rosterix becomes a decision-support layer across project setup,
+                    tagging, roster, allowance, approvals and payroll.</span></div>
+              </div>
+            </div>
+
+            <div style="height:22px"></div>
+            <div class="note">
+              <strong>Evidence boundary:</strong> The source case-study material identifies these numbers as
+              expected/projected outcomes.
+              They should not be presented as validated business results as production measurement becomes available.
+            </div>
+          </div>
+        </section>
+
+        <!-- REFLECTION -->
+        <section id="reflection" class="section">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-num">REFLECTION</span>
+              <h2 class="section-title"><span class="section-title-highlight">Reflection &amp; Learnings</span></h2>
+              <span class="section-kicker">Accountability in Enterprise AI</span>
+            </div>
+            <p class="lead">
+              The work changed how I think about AI in enterprise products. The opportunity was not simply to
+              automate the most manual task. It was to understand where a decision becomes risky, what context
+              the user needs to make that decision, and where the system must deliberately keep a human in control.
+            </p>
+
+            <div class="reflection-grid">
+              <article class="reflection-card">
+                <span class="reflection-index">01</span>
+                <h3>Automation is not the goal.</h3>
+                <p>
+                  The most valuable AI moments are the ones that remove repetitive reconstruction of context
+                  while preserving the user's ability to inspect, edit and approve the result.
+                </p>
+              </article>
+
+              <article class="reflection-card">
+                <span class="reflection-index">02</span>
+                <h3>Trust is an interaction pattern.</h3>
+                <p>
+                  Confidence indicators alone are not enough. Users need to see why a recommendation was made,
+                  what evidence supports it and what could happen if they accept it.
+                </p>
+              </article>
+
+              <article class="reflection-card">
+                <span class="reflection-index">03</span>
+                <h3>Enterprise UX is about relationships.</h3>
+                <p>
+                  A roster change is rarely an isolated action. It can affect tagging, allowance, approvals and
+                  payroll. The interface has to expose those relationships at the moment they matter.
+                </p>
+              </article>
+
+              <article class="reflection-card">
+                <span class="reflection-index">04</span>
+                <h3>Design systems are part of the product strategy.</h3>
+                <p>
+                  Once patterns such as validation, explainability, risk states and AI recommendations repeat
+                  across workflows, systemizing them becomes essential for consistency and implementation quality.
+                </p>
+              </article>
+            </div>
+
+            <div class="reflection-close">
+              <span class="eyebrow">WHAT I WOULD DO NEXT</span>
+              <p>
+                Validate the highest-risk workflows with Rosterix stakeholders and production evidence:
+                measure recommendation acceptance, override behaviour, validation catches, approval turnaround,
+                accessibility issues and downstream payroll exceptions. Those signals would determine where
+                Rosterix should remain assistive and where bounded automation could safely expand.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Notebook Footer -->
+      <footer class="notebook-footer">
+        <div class="footer-inner">
+
+          <!-- Top summary row -->
+          <div class="footer-top-row">
+            <div>
+              <h4>Rosterix 2.0</h4>
+              <p>An enterprise UX case study in designing explainable AI for shift-critical operations. Personas and
+                interviews are illustrative research constructs - methodology in the companion research report.</p>
+            </div>
+            <div class="footer-meta-box">
+              UX Lead Case Study<br>
+              Prepared September 2026<br>
+              Figma &bull; FigJam &bull; Claude &bull; Enterprise AI
+            </div>
+          </div>
+
+          <!-- ================= RESUME DOWNLOAD SECTION IN FOOTER ================= -->
+          <div class="footer-resume-card">
+            <div class="tape-strip tape-resume-left"></div>
+            <div class="tape-strip tape-resume-right"></div>
+            <div>
+              <div
+                style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--ink-red); text-transform:uppercase; margin-bottom:4px;">
+                CURRICULUM VITAE &bull; 2-PAGE PDF
+              </div>
+              <div class="resume-card-title">Download My Resume</div>
+            </div>
+            <div>
+              <a href="./assets/Sharad_Sonkar_Resume.pdf" download="Sharad_Sonkar_Resume.pdf" class="resume-cta-btn"
+                title="Download Sharad's Resume">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 3v10m0 0l-3.5-3.5M10 13l3.5-3.5" />
+                  <path d="M4 17h12" />
+                </svg>
+                <span>DOWNLOAD RESUME (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bottom Links Row -->
+          <div class="footer-links-row">
+            <a href="index.html" class="footer-back-link">&larr; Back to Portfolio (View More Projects)</a>
+            <div class="footer-social-links">
+              <a href="mailto:sharadsonkarofficial@gmail.com">sharadsonkarofficial@gmail.com</a>
+              <a href="https://www.linkedin.com/in/sharadsonkar/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+    </div><!-- /.paper-sheet -->
+
+  </div><!-- /.notebook-workspace -->
+
+  <script>
+    // Smooth scroll spy for sticky chapter navigation bar
+    const sidenav = document.getElementById('sidenav');
+    const navLinks = [...document.querySelectorAll('.sidenav a')];
+    const trackedSections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    function scrollActiveLink(activeLink) {
+      if (!sidenav || !activeLink) return;
+      const navRect = sidenav.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      if (linkRect.left < navRect.left + 24 || linkRect.right > navRect.right - 24) {
+        const scrollTarget = activeLink.offsetLeft - (sidenav.clientWidth / 2) + (activeLink.offsetWidth / 2);
+        sidenav.scrollTo({
+          left: scrollTarget,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    let isClickScrolling = false;
+    let clickTimeout = null;
+
+    const observer = new IntersectionObserver(entries => {
+      if (isClickScrolling) return;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const activeLink = navLinks.find(l => l.getAttribute('href') === '#' + entry.target.id);
+          if (activeLink) {
+            activeLink.classList.add('active');
+            scrollActiveLink(activeLink);
+          }
+        }
+      });
+    }, {
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    });
+
+    trackedSections.forEach(s => observer.observe(s));
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          const targetSection = document.querySelector(targetId);
+          if (targetSection) {
+            e.preventDefault();
+            isClickScrolling = true;
+            clearTimeout(clickTimeout);
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            scrollActiveLink(link);
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (history.pushState) {
+              history.pushState(null, '', targetId);
+            }
+            clickTimeout = setTimeout(() => {
+              isClickScrolling = false;
+            }, 800);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
