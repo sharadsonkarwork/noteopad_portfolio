@@ -6,7 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        rosterix: resolve(__dirname, 'rosterix_casestudy.html'),
+        rosterix: resolve(__dirname, 'rosterix.html'),
         theLastPortal: resolve(__dirname, 'sidequest/the-last-portal.html'),
       },
     },

@@ -32,7 +32,7 @@ const MODAL_DATA = {
       <p><strong>The Challenge:</strong> Shift rosters were rebuilt from memory every month, conflicts surfaced only after saves or payroll queries, and every escalation level was deciding with less context than the level before it.</p>
       <p><strong>The Solution:</strong> Designed an intuitive shift matrix, conflict resolution system, and an explainable AI layer across 9 mission-critical use cases without compromising audit rigor.</p>
       <p><strong>The Impact:</strong> 9 AI workflows designed, 5 user tiers unified, and high trust earned across 10k+ monthly shift approvals.</p>
-      <p style="margin-top: 1rem;"><a href="rosterix_casestudy.html" class="case-study-link" style="font-weight: 700; text-decoration: underline;">Read Full Case Study &rarr;</a></p>
+      <p style="margin-top: 1rem;"><a href="rosterix.html" class="case-study-link" style="font-weight: 700; text-decoration: underline;">Read Full Case Study &rarr;</a></p>
     `
   },
   "monalisa": {
@@ -810,7 +810,7 @@ function initApp() {
       const href = link.getAttribute("href");
       if (href && !href.startsWith("#")) {
         playMechanicalClick();
-        return; // Allow standard navigation to case study pages like rosterix_casestudy.html
+        return; // Allow standard navigation to case study pages like rosterix.html
       }
       e.preventDefault();
       const id = link.getAttribute("data-id");
@@ -825,7 +825,7 @@ function initApp() {
     rosterixCard.addEventListener("click", (e) => {
       if (e.target.tagName !== "A") {
         playMechanicalClick();
-        window.location.href = "rosterix_casestudy.html";
+        window.location.href = "rosterix.html";
       }
     });
   }
