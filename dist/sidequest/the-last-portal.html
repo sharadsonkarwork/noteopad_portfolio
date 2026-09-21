@@ -8,11 +8,11 @@
   <meta name="description"
     content="Speculative UX case study merging autonomous AI agent negotiation, explainable AI, intent-first interfaces, and human-in-the-loop travel design.">
 
-  <!-- Google Fonts: Caveat & Plus Jakarta Sans (Strictly 2 font families) -->
+  <!-- Google Fonts: Caveat & Outfit (Strictly 2 font families) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <style>
@@ -28,6 +28,41 @@
        ======================================================== */
 
     :root {
+  /* ============================================================
+     TYPE SCALE  (rem-based modular scale, base 16px = 1rem)
+     One source of truth for every font-size in the portal.
+     rem (not px) so text honors the user's browser font setting
+     — WCAG 2.2 SC 1.4.4 Resize Text.
+     ------------------------------------------------------------
+     --text-6xs 7px   --text-md   14px   --text-4xl 28px
+     --text-5xs 8px   --text-base 16px   --text-5xl 32px
+     --text-4xs 9px   --text-lg   18px   --text-6xl 40px
+     --text-3xs 10px  --text-xl   20px   --text-7xl 46px
+     --text-2xs 11px  --text-2xl  22px   --text-8xl 52px
+     --text-xs  12px  --text-3xl  24px   --text-9xl 64px
+     --text-sm  13px
+     ============================================================ */
+  --text-6xs: 0.4375rem;  /* 7px  - micro mockup labels (decorative) */
+  --text-5xs: 0.5rem;     /* 8px  - mockup labels (decorative) */
+  --text-4xs: 0.5625rem;  /* 9px  - mockup / fine meta */
+  --text-3xs: 0.625rem;   /* 10px - micro tags */
+  --text-2xs: 0.875rem;   /* 14px - small labels (min readable floor) */
+  --text-xs:  0.875rem;   /* 14px - captions/meta (min readable floor) */
+  --text-rare: 0.75rem;   /* 12px - RARE fine print only */
+  --text-sm:  0.875rem;   /* 14px - dense / secondary body */
+  --text-md:  1rem;       /* 16px - card body (matches base) */
+  --text-base: 1rem;      /* 16px - default body */
+  --text-lg:  1.125rem;   /* 18px - lead / large body */
+  --text-xl:  1.25rem;    /* 20px - subheadings */
+  --text-2xl: 1.375rem;   /* 22px - card titles */
+  --text-3xl: 1.5rem;     /* 24px - small section titles */
+  --text-4xl: 1.75rem;    /* 28px - section titles */
+  --text-5xl: 2rem;       /* 32px - large section titles */
+  --text-6xl: 2.5rem;     /* 40px - display */
+  --text-7xl: 2.875rem;   /* 46px - display */
+  --text-8xl: 3.25rem;    /* 52px - hero */
+  --text-9xl: 4rem;       /* 64px - hero */
+
       /* Color System */
       --bg-desk: #ECE4D0;
       --bg-canvas: #FAF6ED;
@@ -68,7 +103,7 @@
       --note-tape-border: rgba(0, 0, 0, 0.09);
 
       /* Typography - Strictly 2 Font Families */
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-hand: 'Caveat', cursive, sans-serif;
       --font-patrick: var(--font-hand);
       --font-mono: var(--font-body);
@@ -86,7 +121,7 @@
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
+      font-size: var(--text-base);
       background-color: var(--bg-desk);
       overflow-x: clip;
       scroll-padding-top: 58px;
@@ -138,7 +173,7 @@
     p {
       margin-bottom: 1em;
       color: var(--ink-secondary);
-      font-size: 15px;
+      font-size: var(--text-md);
       line-height: 1.65;
     }
 
@@ -246,7 +281,7 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-2xs);
       font-weight: 700;
       color: var(--ink-primary);
       background: rgba(255, 255, 255, 0.85);
@@ -270,14 +305,14 @@
 
     .brand-name {
       font-family: var(--font-hand);
-      font-size: 26px;
+      font-size: var(--text-3xl);
       font-weight: 700;
       line-height: 1;
       letter-spacing: 0.02em;
     }
 
     .brand-sub {
-      font-size: 11px;
+      font-size: var(--text-2xs);
       color: var(--ink-muted);
       font-weight: 500;
     }
@@ -289,7 +324,7 @@
     .crumb-badge {
       display: inline-block;
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: var(--text-rare);
       font-weight: 700;
       letter-spacing: 0.08em;
       color: var(--ink-muted);
@@ -313,7 +348,7 @@
       background: var(--ink-primary);
       color: var(--bg-canvas);
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: var(--text-rare);
       font-weight: 700;
       padding: 6px 12px;
       border-radius: 4px;
@@ -323,7 +358,7 @@
 
     .learning-tag {
       font-family: var(--font-hand);
-      font-size: 20px;
+      font-size: var(--text-xl);
       font-weight: 600;
       line-height: 1;
       color: var(--ink-secondary);
@@ -356,7 +391,7 @@
     .sidenav a {
       text-decoration: none;
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: var(--text-rare);
       font-weight: 700;
       letter-spacing: 0.03em;
       color: var(--ink-muted);
@@ -395,7 +430,7 @@
     .hero-tag-pill {
       display: inline-block;
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: var(--text-rare);
       font-weight: 700;
       letter-spacing: 0.04em;
       color: var(--ink-secondary);
@@ -413,8 +448,8 @@
 
     .hero h1 {
       font-family: var(--font-hand);
-      font-size: clamp(52px, 7vw, 96px);
-      line-height: 0.88;
+      font-size: clamp(2.5rem, 9vw, 6rem);
+      line-height: 0.9;
       letter-spacing: -0.01em;
       margin-bottom: 22px;
       max-width: 900px;
@@ -445,7 +480,7 @@
       right: 0;
       top: 10px;
       font-family: var(--font-hand);
-      font-size: 23px;
+      font-size: var(--text-2xl);
       font-weight: 600;
       line-height: 1.15;
       color: var(--ink-red);
@@ -470,7 +505,7 @@
 
     .hero-sub {
       font-family: var(--font-hand);
-      font-size: 24px;
+      font-size: var(--text-3xl);
       font-weight: 600;
       line-height: 1.35;
       max-width: 820px;
@@ -509,7 +544,7 @@
 
     .hero-meta-label {
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: var(--text-rare);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -518,7 +553,7 @@
     }
 
     .hero-meta-val {
-      font-size: 13px;
+      font-size: var(--text-sm);
       line-height: 1.45;
       color: var(--ink-primary);
       font-weight: 500;
@@ -553,7 +588,7 @@
 
     .stat-number {
       font-family: var(--font-hand);
-      font-size: 42px;
+      font-size: var(--text-6xl);
       font-weight: 700;
       line-height: 1;
       color: var(--ink-primary);
@@ -574,7 +609,7 @@
     }
 
     .stat-caption {
-      font-size: 12px;
+      font-size: var(--text-xs);
       line-height: 1.4;
       color: var(--ink-secondary);
     }
@@ -603,13 +638,13 @@
 
     .section-num {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: var(--text-sm);
       font-weight: 700;
       color: var(--ink-red);
     }
 
     .section-title {
-      font-size: 42px;
+      font-size: var(--text-6xl);
       line-height: 1;
       position: relative;
     }
@@ -627,7 +662,7 @@
 
     .section-kicker {
       font-family: var(--font-hand);
-      font-size: 22px;
+      font-size: var(--text-2xl);
       color: var(--ink-muted);
       font-weight: 600;
     }
@@ -669,7 +704,7 @@
       border-radius: 2px;
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
       font-family: var(--font-hand);
-      font-size: 19px;
+      font-size: var(--text-lg);
       line-height: 1.35;
       color: var(--ink-primary);
     }
@@ -691,8 +726,14 @@
     }
 
     /* Comparison Table: Broken Inventory vs. Mind-Space */
+    .table-scroll {
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .table-compare {
       width: 100%;
+      min-width: 440px;
       border-collapse: separate;
       border-spacing: 0;
       border: 1.5px solid var(--paper-card-border);
@@ -705,14 +746,14 @@
     .table-compare th, .table-compare td {
       padding: 14px 18px;
       border-bottom: 1px solid var(--paper-divider);
-      font-size: 14px;
+      font-size: var(--text-md);
       text-align: left;
     }
 
     .table-compare th {
       background: #F4EEDF;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-2xs);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -770,7 +811,7 @@
 
     .story-num {
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: var(--text-rare);
       font-weight: 700;
       color: var(--ink-red);
       letter-spacing: 0.05em;
@@ -778,7 +819,7 @@
 
     .story-tag {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: var(--text-rare);
       font-weight: 700;
       padding: 2px 7px;
       background: rgba(0, 0, 0, 0.06);
@@ -808,14 +849,14 @@
 
     .story-title {
       font-family: var(--font-display);
-      font-size: 16px;
+      font-size: var(--text-base);
       font-weight: 700;
       margin-bottom: 6px;
       color: var(--ink-primary);
     }
 
     .story-desc {
-      font-size: 13.5px;
+      font-size: var(--text-sm);
       color: var(--ink-secondary);
       line-height: 1.5;
       margin-bottom: 12px;
@@ -827,7 +868,7 @@
       align-items: center;
       gap: 5px;
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: var(--text-rare);
       font-weight: 600;
       color: var(--ink-muted);
       border-top: 1px dashed var(--paper-divider);
@@ -869,7 +910,7 @@
 
     .chrome-title {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-2xs);
       color: #9CA3AF;
       letter-spacing: 0.05em;
     }
@@ -884,7 +925,7 @@
     .console-tab {
       padding: 12px 18px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-2xs);
       font-weight: 600;
       color: #9CA3AF;
       border: none;
@@ -940,7 +981,7 @@
     .terminal-bubble {
       padding: 12px 16px;
       border-radius: 8px;
-      font-size: 13px;
+      font-size: var(--text-sm);
       line-height: 1.55;
       position: relative;
       max-width: 85%;
@@ -969,7 +1010,7 @@
 
     .bubble-label {
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: var(--text-4xs);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 4px;
@@ -1009,7 +1050,7 @@
       top: 12px;
       right: 12px;
       font-family: var(--font-mono);
-      font-size: 8.5px;
+      font-size: var(--text-5xs);
       font-weight: 700;
       padding: 2px 6px;
       border-radius: 3px;
@@ -1046,7 +1087,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: var(--text-md);
       font-weight: 700;
       flex-shrink: 0;
     }
@@ -1059,13 +1100,13 @@
       flex: 1;
     }
     .factor-title {
-      font-size: 14.5px;
+      font-size: var(--text-md);
       font-weight: 700;
       margin-bottom: 3px;
       color: var(--ink-primary);
     }
     .factor-desc {
-      font-size: 13.5px;
+      font-size: var(--text-sm);
       color: var(--ink-secondary);
       line-height: 1.5;
       margin-bottom: 0;
@@ -1094,7 +1135,7 @@
 
     .day-pill {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: var(--text-xs);
       font-weight: 700;
       text-align: center;
       padding: 6px 10px;
@@ -1106,11 +1147,11 @@
 
     .day-details h4 {
       font-family: var(--font-display);
-      font-size: 15px;
+      font-size: var(--text-md);
       margin-bottom: 4px;
     }
     .day-details p {
-      font-size: 13px;
+      font-size: var(--text-sm);
       margin-bottom: 0;
       color: var(--ink-secondary);
     }
@@ -1124,7 +1165,7 @@
       display: flex;
       justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: var(--text-rare);
       color: var(--ink-muted);
     }
     .intensity-slider {
@@ -1160,7 +1201,7 @@
       border: 1px solid transparent;
       color: #9CA3AF;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-2xs);
       font-weight: 700;
       border-radius: 4px;
       cursor: pointer;
@@ -1190,7 +1231,7 @@
       justify-content: space-between;
       padding: 8px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 13px;
+      font-size: var(--text-sm);
     }
     .snapshot-row:last-child {
       border-bottom: none;
@@ -1229,14 +1270,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: var(--text-3xl);
       background: var(--marker-yellow-soft);
       box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.1);
     }
 
     .persona-quote {
       font-family: var(--font-hand);
-      font-size: 21px;
+      font-size: var(--text-xl);
       line-height: 1.25;
       color: var(--ink-secondary);
       margin-bottom: 14px;
@@ -1296,12 +1337,12 @@
 
     .footer-top-row h4 {
       color: #fff;
-      font-size: 32px;
+      font-size: var(--text-5xl);
       margin-bottom: 6px;
     }
 
     .footer-top-row p {
-      font-size: 12px;
+      font-size: var(--text-xs);
       color: #b8ae9d;
       max-width: 560px;
       margin: 0;
@@ -1309,7 +1350,7 @@
 
     .footer-meta-box {
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: var(--text-rare);
       line-height: 1.8;
       color: #a9a091;
       text-align: right;
@@ -1327,7 +1368,7 @@
 
     .footer-back-link {
       font-family: var(--font-hand);
-      font-size: 22px;
+      font-size: var(--text-2xl);
       font-weight: 700;
       color: #fff;
       text-decoration: underline;
@@ -1342,7 +1383,7 @@
       display: flex;
       gap: 18px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: var(--text-2xs);
     }
 
     .footer-social-links a {
@@ -1512,27 +1553,27 @@
 
             <div>
               <div class="paper-card">
-                <h4 style="font-family:var(--font-mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-red); margin-bottom:12px;">
+                <h4 style="font-family:var(--font-mono); font-size: var(--text-xs); letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-red); margin-bottom:12px;">
                   Five Critical Friction Points Today
                 </h4>
                 <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
-                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                  <li style="display:flex; gap:10px; font-size: var(--text-sm);">
                     <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">01.</span>
                     <span><strong>Preference Repetition:</strong> Every airline, OTA, and hotel asks for the same seat, diet, and loyalty credentials from scratch.</span>
                   </li>
-                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                  <li style="display:flex; gap:10px; font-size: var(--text-sm);">
                     <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">02.</span>
                     <span><strong>Comparison Paralysis:</strong> 68% of business travelers report anxiety sorting through 200+ conflicting search filters.</span>
                   </li>
-                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                  <li style="display:flex; gap:10px; font-size: var(--text-sm);">
                     <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">03.</span>
                     <span><strong>Zero Personalized Negotiation:</strong> Static checkout pages give everyone the same price with zero real-time loyalty bundling.</span>
                   </li>
-                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                  <li style="display:flex; gap:10px; font-size: var(--text-sm);">
                     <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">04.</span>
                     <span><strong>Fragmented Confirmation:</strong> Boarding passes in Apple Wallet, hotel codes in email, and restaurant reservations in SMS.</span>
                   </li>
-                  <li style="display:flex; gap:10px; font-size:13.5px;">
+                  <li style="display:flex; gap:10px; font-size: var(--text-sm);">
                     <span style="font-family:var(--font-mono); font-weight:700; color:var(--ink-red);">05.</span>
                     <span><strong>Zero Cross-Trip Memory:</strong> Platforms forget past anxiety triggers (e.g. 6 AM departures) and push them repeatedly.</span>
                   </li>
@@ -1542,6 +1583,7 @@
           </div>
 
           <!-- Comparison Table -->
+          <div class="table-scroll">
           <table class="table-compare" aria-label="Comparison between current paradigm and agentic mind-space">
             <thead>
               <tr>
@@ -1578,6 +1620,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
       </section>
 
@@ -1607,13 +1650,13 @@
                   <rect width="320" height="180" rx="4" fill="#0C0D14" />
                   <circle cx="160" cy="90" r="45" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" />
                   <circle cx="160" cy="90" r="28" fill="url(#orbGrad)" />
-                  <text x="160" y="94" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="14" fill="white" text-anchor="middle">✦</text>
+                  <text x="160" y="94" font-family="'Outfit', sans-serif" font-weight="700" font-size="14" fill="white" text-anchor="middle">✦</text>
                   <rect x="30" y="24" width="130" height="26" rx="4" fill="rgba(255,255,255,0.06)" />
-                  <text x="38" y="41" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#93C5FD">📅 June 10–15 Open</text>
+                  <text x="38" y="41" font-family="'Outfit', sans-serif" font-size="9" fill="#93C5FD">📅 June 10–15 Open</text>
                   <rect x="170" y="24" width="120" height="26" rx="4" fill="rgba(255,255,255,0.06)" />
-                  <text x="178" y="41" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#34D399">💰 Travel Fund: ₹2.1L</text>
+                  <text x="178" y="41" font-family="'Outfit', sans-serif" font-size="9" fill="#34D399">💰 Travel Fund: ₹2.1L</text>
                   <rect x="50" y="138" width="220" height="24" rx="12" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" />
-                  <text x="160" y="154" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#E0E7FF" text-anchor="middle">"Plan a 5-day vacation. Warm, good food."</text>
+                  <text x="160" y="154" font-family="'Outfit', sans-serif" font-size="9" fill="#E0E7FF" text-anchor="middle">"Plan a 5-day vacation. Warm, good food."</text>
                   <defs>
                     <linearGradient id="orbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stop-color="#3B82F6" />
@@ -1645,15 +1688,15 @@
                   <!-- Human Agent -->
                   <circle cx="65" cy="90" r="28" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
                   <text x="65" y="94" font-size="14" text-anchor="middle">👤</text>
-                  <text x="65" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="8" fill="#93C5FD" text-anchor="middle">ARJUN'S AGENT</text>
+                  <text x="65" y="132" font-family="'Outfit', sans-serif" font-weight="600" font-size="8" fill="#93C5FD" text-anchor="middle">ARJUN'S AGENT</text>
                   <!-- Handshake line -->
                   <line x1="98" y1="90" x2="222" y2="90" stroke="#10B981" stroke-width="2" stroke-dasharray="5,3" />
                   <rect x="120" y="78" width="80" height="24" rx="4" fill="#0F172A" stroke="#10B981" />
-                  <text x="160" y="93" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="8" fill="#34D399" text-anchor="middle">AUTH TOKEN &check;</text>
+                  <text x="160" y="93" font-family="'Outfit', sans-serif" font-weight="600" font-size="8" fill="#34D399" text-anchor="middle">AUTH TOKEN &check;</text>
                   <!-- Portal Bot -->
                   <circle cx="255" cy="90" r="28" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
                   <text x="255" y="94" font-size="14" text-anchor="middle">🌐</text>
-                  <text x="255" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="8" fill="#34D399" text-anchor="middle">PORTAL GATEWAY</text>
+                  <text x="255" y="132" font-family="'Outfit', sans-serif" font-weight="600" font-size="8" fill="#34D399" text-anchor="middle">PORTAL GATEWAY</text>
                 </svg>
               </div>
               <div class="story-body">
@@ -1677,11 +1720,11 @@
                 <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
                   <rect width="320" height="180" rx="4" fill="#0C0D14" />
                   <rect x="25" y="25" width="270" height="130" rx="6" fill="#131422" stroke="#28293D" />
-                  <text x="40" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#F59E0B">PREFERENCE_MANIFEST_V3.JSON</text>
-                  <text x="40" y="72" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Seat: Window &bull; Meal: Vegetarian</text>
-                  <text x="40" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Crowd Index: Max 2.5/5 (Prefers Pondicherry vibe)</text>
-                  <text x="40" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Flight Fatigue Constraint: De-rank departures &lt; 07:00</text>
-                  <text x="40" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#34D399">&bull; Culinary Score: Weight seafood, markets, local-first</text>
+                  <text x="40" y="48" font-family="'Outfit', sans-serif" font-weight="600" font-size="9" fill="#F59E0B">PREFERENCE_MANIFEST_V3.JSON</text>
+                  <text x="40" y="72" font-family="'Outfit', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Seat: Window &bull; Meal: Vegetarian</text>
+                  <text x="40" y="92" font-family="'Outfit', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Crowd Index: Max 2.5/5 (Prefers Pondicherry vibe)</text>
+                  <text x="40" y="112" font-family="'Outfit', sans-serif" font-size="8.5" fill="#E2E8F0">&bull; Flight Fatigue Constraint: De-rank departures &lt; 07:00</text>
+                  <text x="40" y="132" font-family="'Outfit', sans-serif" font-size="8.5" fill="#34D399">&bull; Culinary Score: Weight seafood, markets, local-first</text>
                 </svg>
               </div>
               <div class="story-body">
@@ -1705,13 +1748,13 @@
                 <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
                   <rect width="320" height="180" rx="4" fill="#0C0D14" />
                   <rect x="20" y="24" width="130" height="32" rx="4" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" />
-                  <text x="28" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#93C5FD">"Request late check-out"</text>
+                  <text x="28" y="44" font-family="'Outfit', sans-serif" font-size="8" fill="#93C5FD">"Request late check-out"</text>
                   <rect x="170" y="44" width="130" height="32" rx="4" fill="rgba(16,185,129,0.2)" stroke="#10B981" />
-                  <text x="178" y="64" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#34D399">"13:00 granted with bundle"</text>
+                  <text x="178" y="64" font-family="'Outfit', sans-serif" font-size="8" fill="#34D399">"13:00 granted with bundle"</text>
                   <rect x="20" y="88" width="130" height="32" rx="4" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" />
-                  <text x="28" y="108" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#93C5FD">"Counter: 5% loyalty tier"</text>
+                  <text x="28" y="108" font-family="'Outfit', sans-serif" font-size="8" fill="#93C5FD">"Counter: 5% loyalty tier"</text>
                   <rect x="170" y="108" width="130" height="32" rx="4" fill="rgba(16,185,129,0.2)" stroke="#10B981" />
-                  <text x="178" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#34D399">"Deal: ₹14,320 saved ₹2,180"</text>
+                  <text x="178" y="128" font-family="'Outfit', sans-serif" font-size="8" fill="#34D399">"Deal: ₹14,320 saved ₹2,180"</text>
                 </svg>
               </div>
               <div class="story-body">
@@ -1735,12 +1778,12 @@
                 <svg viewBox="0 0 320 180" fill="none" style="width:100%; height:100%;">
                   <rect width="320" height="180" rx="4" fill="#0C0D14" />
                   <rect x="45" y="18" width="230" height="144" rx="8" fill="#181824" stroke="#3B82F6" />
-                  <text x="60" y="40" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#F59E0B">DECISION SNAPSHOT &bull; 94% MATCH</text>
+                  <text x="60" y="40" font-family="'Outfit', sans-serif" font-weight="600" font-size="9" fill="#F59E0B">DECISION SNAPSHOT &bull; 94% MATCH</text>
                   <text x="60" y="60" font-size="9" fill="#E2E8F0">✈ IndiGo 6E-4491 &bull; 10:30 (Low Fatigue)</text>
                   <text x="60" y="78" font-size="9" fill="#E2E8F0">🏨 Bairro Alto Hotel &bull; 4 Nights</text>
                   <text x="60" y="96" font-size="9" fill="#34D399">Total: ₹1,84,200 (Refundable)</text>
                   <rect x="60" y="116" width="200" height="30" rx="4" fill="#10B981" />
-                  <text x="160" y="135" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#064E3B" text-anchor="middle">[TAP TO CONFIRM TRIP]</text>
+                  <text x="160" y="135" font-family="'Outfit', sans-serif" font-weight="700" font-size="10" fill="#064E3B" text-anchor="middle">[TAP TO CONFIRM TRIP]</text>
                 </svg>
               </div>
               <div class="story-body">
@@ -1765,8 +1808,8 @@
                   <rect width="320" height="180" rx="4" fill="#0C0D14" />
                   <circle cx="160" cy="65" r="32" fill="rgba(16,185,129,0.15)" stroke="#10B981" />
                   <text x="160" y="74" font-size="24" fill="#34D399" text-anchor="middle">&check;</text>
-                  <text x="160" y="120" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="white" text-anchor="middle">MISSION PREP: 14 DAYS OUT</text>
-                  <text x="160" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#9CA3AF" text-anchor="middle">Calendar Locked &bull; Visa Clear &bull; Packing Ready</text>
+                  <text x="160" y="120" font-family="'Outfit', sans-serif" font-weight="700" font-size="11" fill="white" text-anchor="middle">MISSION PREP: 14 DAYS OUT</text>
+                  <text x="160" y="140" font-family="'Outfit', sans-serif" font-size="8.5" fill="#9CA3AF" text-anchor="middle">Calendar Locked &bull; Visa Clear &bull; Packing Ready</text>
                 </svg>
               </div>
               <div class="story-body">
@@ -1805,7 +1848,7 @@
                 <span class="chrome-dot dot-green"></span>
               </div>
               <div class="chrome-title">TERMINAL &bull; AGENT-TO-AGENT TRACE RUNNER v4.2</div>
-              <div style="font-family:var(--font-mono); font-size:10px; color:#34D399;">● LIVE PROTOCOL</div>
+              <div style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#34D399;">● LIVE PROTOCOL</div>
             </div>
 
             <div class="console-nav-tabs" role="tablist">
@@ -1862,46 +1905,46 @@
 
               <!-- Panel 3 -->
               <div class="console-panel" id="panel-matrix">
-                <p style="font-family:var(--font-mono); font-size:11px; color:#9CA3AF; margin-bottom:12px;">
+                <p style="font-family:var(--font-mono); font-size: var(--text-2xs); color:#9CA3AF; margin-bottom:12px;">
                   AGENT TRADEOFF MATRIX &bull; EVALUATED 3 COMPETING BUNDLES
                 </p>
                 <div class="negotiate-matrix">
                   <div class="hotel-offer-card selected">
                     <span class="hotel-status-badge badge-win">SELECTED (94% MATCH)</span>
                     <div>
-                      <h4 style="color:white; font-size:14px; margin-bottom:4px;">Taj Lands End + IndiGo Bundle</h4>
-                      <p style="color:#9CA3AF; font-size:12px; margin-bottom:10px;">0.4 km to venue &bull; Late checkout &check; &bull; Veg curated</p>
-                      <div style="font-family:var(--font-mono); font-size:11px; color:#34D399; margin-bottom:8px;">Fatigue Index: 1.2/5 (Low)</div>
+                      <h4 style="color:white; font-size: var(--text-md); margin-bottom:4px;">Taj Lands End + IndiGo Bundle</h4>
+                      <p style="color:#9CA3AF; font-size: var(--text-xs); margin-bottom:10px;">0.4 km to venue &bull; Late checkout &check; &bull; Veg curated</p>
+                      <div style="font-family:var(--font-mono); font-size: var(--text-2xs); color:#34D399; margin-bottom:8px;">Fatigue Index: 1.2/5 (Low)</div>
                     </div>
                     <div style="border-top:1px solid #28293D; padding-top:10px; display:flex; justify-content:space-between; align-items:baseline;">
-                      <span style="font-size:11px; color:#9CA3AF;">Total</span>
-                      <span style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#34D399;">₹14,320</span>
+                      <span style="font-size: var(--text-2xs); color:#9CA3AF;">Total</span>
+                      <span style="font-family:var(--font-mono); font-size: var(--text-base); font-weight:700; color:#34D399;">₹14,320</span>
                     </div>
                   </div>
 
                   <div class="hotel-offer-card">
                     <span class="hotel-status-badge badge-alt">FALLBACK (78% MATCH)</span>
                     <div>
-                      <h4 style="color:white; font-size:14px; margin-bottom:4px;">JW Marriott BKC</h4>
-                      <p style="color:#9CA3AF; font-size:12px; margin-bottom:10px;">1.4 km to venue &bull; Late checkout &cross; (₹1,500 fee)</p>
-                      <div style="font-family:var(--font-mono); font-size:11px; color:#F59E0B; margin-bottom:8px;">Fatigue Index: 2.4/5 (Medium)</div>
+                      <h4 style="color:white; font-size: var(--text-md); margin-bottom:4px;">JW Marriott BKC</h4>
+                      <p style="color:#9CA3AF; font-size: var(--text-xs); margin-bottom:10px;">1.4 km to venue &bull; Late checkout &cross; (₹1,500 fee)</p>
+                      <div style="font-family:var(--font-mono); font-size: var(--text-2xs); color:#F59E0B; margin-bottom:8px;">Fatigue Index: 2.4/5 (Medium)</div>
                     </div>
                     <div style="border-top:1px solid #28293D; padding-top:10px; display:flex; justify-content:space-between; align-items:baseline;">
-                      <span style="font-size:11px; color:#9CA3AF;">Total</span>
-                      <span style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#F3F4F6;">₹16,800</span>
+                      <span style="font-size: var(--text-2xs); color:#9CA3AF;">Total</span>
+                      <span style="font-family:var(--font-mono); font-size: var(--text-base); font-weight:700; color:#F3F4F6;">₹16,800</span>
                     </div>
                   </div>
 
                   <div class="hotel-offer-card">
                     <span class="hotel-status-badge badge-rej">REJECTED (42% MATCH)</span>
                     <div>
-                      <h4 style="color:white; font-size:14px; margin-bottom:4px;">Trident Nariman Point</h4>
-                      <p style="color:#9CA3AF; font-size:12px; margin-bottom:10px;">18 km from venue &bull; Severe peak traffic bottleneck</p>
-                      <div style="font-family:var(--font-mono); font-size:11px; color:#EF4444; margin-bottom:8px;">Fatigue Index: 4.6/5 (Severe)</div>
+                      <h4 style="color:white; font-size: var(--text-md); margin-bottom:4px;">Trident Nariman Point</h4>
+                      <p style="color:#9CA3AF; font-size: var(--text-xs); margin-bottom:10px;">18 km from venue &bull; Severe peak traffic bottleneck</p>
+                      <div style="font-family:var(--font-mono); font-size: var(--text-2xs); color:#EF4444; margin-bottom:8px;">Fatigue Index: 4.6/5 (Severe)</div>
                     </div>
                     <div style="border-top:1px solid #28293D; padding-top:10px; display:flex; justify-content:space-between; align-items:baseline;">
-                      <span style="font-size:11px; color:#9CA3AF;">Total</span>
-                      <span style="font-family:var(--font-mono); font-size:16px; font-weight:700; color:#EF4444;">₹12,400</span>
+                      <span style="font-size: var(--text-2xs); color:#9CA3AF;">Total</span>
+                      <span style="font-family:var(--font-mono); font-size: var(--text-base); font-weight:700; color:#EF4444;">₹12,400</span>
                     </div>
                   </div>
                 </div>
@@ -1912,13 +1955,13 @@
                 <div style="max-width:540px; margin:0 auto; background:#181928; border:1.5px solid #3B82F6; border-radius:8px; padding:20px;">
                   <div style="display:flex; justify-content:space-between; margin-bottom:14px;">
                     <div>
-                      <h4 style="color:white; font-size:16px;">Trip Confirmation &bull; Mumbai Tech Summit</h4>
-                      <p style="color:#9CA3AF; font-size:12px; margin:0;">Mar 14 &ndash; 16 &bull; Negotiated by Personal AI</p>
+                      <h4 style="color:white; font-size: var(--text-base);">Trip Confirmation &bull; Mumbai Tech Summit</h4>
+                      <p style="color:#9CA3AF; font-size: var(--text-xs); margin:0;">Mar 14 &ndash; 16 &bull; Negotiated by Personal AI</p>
                     </div>
-                    <span style="font-family:var(--font-mono); font-size:11px; color:#34D399; background:rgba(16,185,129,0.15); padding:4px 8px; border-radius:4px; height:fit-content;">94% MATCH</span>
+                    <span style="font-family:var(--font-mono); font-size: var(--text-2xs); color:#34D399; background:rgba(16,185,129,0.15); padding:4px 8px; border-radius:4px; height:fit-content;">94% MATCH</span>
                   </div>
 
-                  <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); padding:12px 0;">
+                  <div style="display:flex; flex-direction:column; gap:8px; font-size: var(--text-xs); border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); padding:12px 0;">
                     <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Flight:</span><span>IndiGo 6E-4491 &bull; 10:30 Departure (Window Seat)</span></div>
                     <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Stay:</span><span>Taj Lands End &bull; Deluxe King &bull; 2 Nights</span></div>
                     <div style="display:flex; justify-content:space-between;"><span style="color:#9CA3AF;">Perks:</span><span style="color:#34D399;">13:00 Late Checkout &bull; Breakfast Included</span></div>
@@ -1927,13 +1970,13 @@
 
                   <div style="display:flex; justify-content:space-between; align-items:center; margin:16px 0 14px;">
                     <div>
-                      <div style="font-size:11px; color:#9CA3AF; text-transform:uppercase;">Total Negotiated Price</div>
-                      <div style="font-size:22px; font-weight:700; color:#34D399; font-family:var(--font-mono);">₹14,320</div>
+                      <div style="font-size: var(--text-2xs); color:#9CA3AF; text-transform:uppercase;">Total Negotiated Price</div>
+                      <div style="font-size: var(--text-2xl); font-weight:700; color:#34D399; font-family:var(--font-mono);">₹14,320</div>
                     </div>
-                    <div style="text-align:right; font-size:11px; color:#F59E0B;">Saved ₹2,180 vs. manual booking</div>
+                    <div style="text-align:right; font-size: var(--text-2xs); color:#F59E0B;">Saved ₹2,180 vs. manual booking</div>
                   </div>
 
-                  <button id="btn-demo-confirm" style="width:100%; padding:12px; background:#10B981; color:#064E3B; font-weight:700; font-family:var(--font-mono); font-size:12px; border:none; border-radius:6px; cursor:pointer; transition:transform 0.15s ease;">
+                  <button id="btn-demo-confirm" style="width:100%; padding:12px; background:#10B981; color:#064E3B; font-weight:700; font-family:var(--font-mono); font-size: var(--text-xs); border:none; border-radius:6px; cursor:pointer; transition:transform 0.15s ease;">
                     [TAP TO CONFIRM WITH TOUCH ID]
                   </button>
                 </div>
@@ -1971,11 +2014,11 @@
             <div class="why-transparency-card">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:10px; border-bottom:1.5px solid var(--paper-card-border);">
                 <div>
-                  <h4 style="font-family:var(--font-mono); font-size:12px; text-transform:uppercase; color:var(--ink-primary); margin:0;">
+                  <h4 style="font-family:var(--font-mono); font-size: var(--text-xs); text-transform:uppercase; color:var(--ink-primary); margin:0;">
                     Decision Trace Audit &bull; Lisbon Selection
                   </h4>
                 </div>
-                <span style="font-family:var(--font-mono); font-size:10px; background:var(--marker-green-soft); color:#065F46; padding:2px 8px; border-radius:3px; font-weight:700;">94% MATCH</span>
+                <span style="font-family:var(--font-mono); font-size: var(--text-3xs); background:var(--marker-green-soft); color:#065F46; padding:2px 8px; border-radius:3px; font-weight:700;">94% MATCH</span>
               </div>
 
               <div class="why-factor-row">
@@ -2029,8 +2072,8 @@
 
           <div class="timeline-container">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; padding-bottom:12px; border-bottom:1.5px solid var(--paper-card-border);">
-              <h4 style="font-family:var(--font-display); font-size:16px;">5-Day Auto-Structured Canvas &bull; Lisbon Horizon</h4>
-              <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">Drag sliders to reshape day rhythms</span>
+              <h4 style="font-family:var(--font-display); font-size: var(--text-base);">5-Day Auto-Structured Canvas &bull; Lisbon Horizon</h4>
+              <span style="font-family:var(--font-mono); font-size: var(--text-2xs); color:var(--ink-muted);">Drag sliders to reshape day rhythms</span>
             </div>
 
             <!-- Day 1 -->
@@ -2120,10 +2163,10 @@
               </p>
 
               <div class="paper-card" style="margin-top:20px;">
-                <h4 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-red); margin-bottom:10px;">
+                <h4 style="font-family:var(--font-mono); font-size: var(--text-2xs); text-transform:uppercase; color:var(--ink-red); margin-bottom:10px;">
                   The 3 Autonomy Postures
                 </h4>
-                <div style="font-size:13.5px; display:flex; flex-direction:column; gap:10px;">
+                <div style="font-size: var(--text-sm); display:flex; flex-direction:column; gap:10px;">
                   <div>🤖 <strong>Fully Auto:</strong> Agent executes transactions silently within pre-approved budget boundaries.</div>
                   <div style="background:var(--marker-yellow-soft); padding:6px 10px; border-radius:4px; border-left:3px solid #D97706;">
                     👁️ <strong>Review Each (Recommended):</strong> Agent negotiates everything but requires a 1-tap confirmation before checkout.
@@ -2136,8 +2179,8 @@
             <!-- Autonomy Interactive Box -->
             <div class="autonomy-control-box">
               <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-family:var(--font-mono); font-size:11px; color:#F59E0B;">ACTIVE POSTURE CONTROLLER</span>
-                <span id="posture-indicator" style="font-family:var(--font-mono); font-size:10px; color:#34D399;">HUMAN-IN-THE-LOOP</span>
+                <span style="font-family:var(--font-mono); font-size: var(--text-2xs); color:#F59E0B;">ACTIVE POSTURE CONTROLLER</span>
+                <span id="posture-indicator" style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#34D399;">HUMAN-IN-THE-LOOP</span>
               </div>
 
               <div class="autonomy-toggle-group" role="radiogroup" aria-label="Select autonomy level">
@@ -2169,7 +2212,7 @@
                 </div>
               </div>
 
-              <p id="autonomy-explainer" style="font-size:12px; color:#9CA3AF; margin-top:14px; line-height:1.5;">
+              <p id="autonomy-explainer" style="font-size: var(--text-xs); color:#9CA3AF; margin-top:14px; line-height:1.5;">
                 Currently set to <strong>Review Each</strong>: Arjun's agent will prepare the complete hotel, flight, and dining package, then freeze for a single tap approval.
               </p>
             </div>
@@ -2192,66 +2235,66 @@
               <!-- Layer 1 -->
               <div style="background:#1E293B; color:white; padding:18px 24px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #3B82F6;">
                 <div>
-                  <div style="font-family:var(--font-mono); font-size:10px; color:#93C5FD; text-transform:uppercase;">LAYER 01 &bull; HUMAN REASONING</div>
-                  <div style="font-weight:700; font-size:16px;">The User (Arjun) &bull; Intent Expression &amp; Apex Review</div>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#93C5FD; text-transform:uppercase;">LAYER 01 &bull; HUMAN REASONING</div>
+                  <div style="font-weight:700; font-size: var(--text-base);">The User (Arjun) &bull; Intent Expression &amp; Apex Review</div>
                 </div>
-                <span style="font-family:var(--font-mono); font-size:11px; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:3px;">Touch ID / Voice</span>
+                <span style="font-family:var(--font-mono); font-size: var(--text-2xs); background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:3px;">Touch ID / Voice</span>
               </div>
 
               <!-- Arrow -->
-              <div style="text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-muted);">
+              <div style="text-align:center; font-family:var(--font-mono); font-size: var(--text-xs); color:var(--ink-muted);">
                 &darr; Natural Intent Broadcast ("Warm place, good food, flexible budget")
               </div>
 
               <!-- Layer 2 -->
               <div style="background:#0F172A; color:white; padding:18px 24px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #10B981;">
                 <div>
-                  <div style="font-family:var(--font-mono); font-size:10px; color:#6EE7B7; text-transform:uppercase;">LAYER 02 &bull; ON-DEVICE PERSONAL AGENT</div>
-                  <div style="font-weight:700; font-size:16px;">Local Behavioral Profile Model (Encrypted Keychain Storage)</div>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#6EE7B7; text-transform:uppercase;">LAYER 02 &bull; ON-DEVICE PERSONAL AGENT</div>
+                  <div style="font-weight:700; font-size: var(--text-base);">Local Behavioral Profile Model (Encrypted Keychain Storage)</div>
                 </div>
-                <span style="font-family:var(--font-mono); font-size:11px; background:rgba(16,185,129,0.2); color:#34D399; padding:4px 8px; border-radius:3px;">Zero Cloud Leak</span>
+                <span style="font-family:var(--font-mono); font-size: var(--text-2xs); background:rgba(16,185,129,0.2); color:#34D399; padding:4px 8px; border-radius:3px;">Zero Cloud Leak</span>
               </div>
 
               <!-- Arrow -->
-              <div style="text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-muted);">
+              <div style="text-align:center; font-family:var(--font-mono); font-size: var(--text-xs); color:var(--ink-muted);">
                 &darr; Ephemeral Preference Manifest &amp; Dynamic Negotiation Tokens
               </div>
 
               <!-- Layer 3 -->
               <div style="background:#111827; color:white; padding:18px 24px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #F59E0B;">
                 <div>
-                  <div style="font-family:var(--font-mono); font-size:10px; color:#FCD34D; text-transform:uppercase;">LAYER 03 &bull; AGENT-FIRST GATEWAY</div>
-                  <div style="font-weight:700; font-size:16px;">Federated Portal AI Gateway &bull; Micro-Auction Matching Engine</div>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#FCD34D; text-transform:uppercase;">LAYER 03 &bull; AGENT-FIRST GATEWAY</div>
+                  <div style="font-weight:700; font-size: var(--text-base);">Federated Portal AI Gateway &bull; Micro-Auction Matching Engine</div>
                 </div>
-                <span style="font-family:var(--font-mono); font-size:11px; background:rgba(245,158,11,0.2); color:#FBBF24; padding:4px 8px; border-radius:3px;">288ms Response</span>
+                <span style="font-family:var(--font-mono); font-size: var(--text-2xs); background:rgba(245,158,11,0.2); color:#FBBF24; padding:4px 8px; border-radius:3px;">288ms Response</span>
               </div>
 
               <!-- Arrow -->
-              <div style="text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--ink-muted);">
+              <div style="text-align:center; font-family:var(--font-mono); font-size: var(--text-xs); color:var(--ink-muted);">
                 &darr; Multi-Merchant Protocol APIs
               </div>
 
               <!-- Layer 4 -->
               <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;">
                 <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
-                  <div style="font-size:20px; margin-bottom:4px;">✈️</div>
-                  <div style="font-size:12px; font-weight:700;">Airlines API</div>
-                  <div style="font-size:10px; color:var(--ink-muted);">Seat lock &bull; GDS</div>
+                  <div style="font-size: var(--text-xl); margin-bottom:4px;">✈️</div>
+                  <div style="font-size: var(--text-xs); font-weight:700;">Airlines API</div>
+                  <div style="font-size: var(--text-3xs); color:var(--ink-muted);">Seat lock &bull; GDS</div>
                 </div>
                 <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
-                  <div style="font-size:20px; margin-bottom:4px;">🏨</div>
-                  <div style="font-size:12px; font-weight:700;">Hotels API</div>
-                  <div style="font-size:10px; color:var(--ink-muted);">Room upgrade logic</div>
+                  <div style="font-size: var(--text-xl); margin-bottom:4px;">🏨</div>
+                  <div style="font-size: var(--text-xs); font-weight:700;">Hotels API</div>
+                  <div style="font-size: var(--text-3xs); color:var(--ink-muted);">Room upgrade logic</div>
                 </div>
                 <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
-                  <div style="font-size:20px; margin-bottom:4px;">🍽️</div>
-                  <div style="font-size:12px; font-weight:700;">Dining API</div>
-                  <div style="font-size:10px; color:var(--ink-muted);">Table availability</div>
+                  <div style="font-size: var(--text-xl); margin-bottom:4px;">🍽️</div>
+                  <div style="font-size: var(--text-xs); font-weight:700;">Dining API</div>
+                  <div style="font-size: var(--text-3xs); color:var(--ink-muted);">Table availability</div>
                 </div>
                 <div style="background:#F4EEDF; border:1px solid var(--paper-card-border); padding:12px; border-radius:4px; text-align:center;">
-                  <div style="font-size:20px; margin-bottom:4px;">🚖</div>
-                  <div style="font-size:12px; font-weight:700;">Transit API</div>
-                  <div style="font-size:10px; color:var(--ink-muted);">Last-mile transfers</div>
+                  <div style="font-size: var(--text-xl); margin-bottom:4px;">🚖</div>
+                  <div style="font-size: var(--text-xs); font-weight:700;">Transit API</div>
+                  <div style="font-size: var(--text-3xs); color:var(--ink-muted);">Last-mile transfers</div>
                 </div>
               </div>
 
@@ -2288,28 +2331,28 @@
             <div class="paper-card" style="background:#0E101A; color:white; border-color:#28293D;">
               <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid #28293D; padding-bottom:10px;">
                 <div>
-                  <div style="font-family:var(--font-mono); font-size:10px; color:#10B981; letter-spacing:0.08em; text-transform:uppercase;">COMPANION STATUS: ACTIVE</div>
-                  <div style="font-family:var(--font-display); font-size:18px; font-weight:700; color:white;">14 Days Until Departure &bull; Lisbon</div>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#10B981; letter-spacing:0.08em; text-transform:uppercase;">COMPANION STATUS: ACTIVE</div>
+                  <div style="font-family:var(--font-display); font-size: var(--text-lg); font-weight:700; color:white;">14 Days Until Departure &bull; Lisbon</div>
                 </div>
-                <span style="font-family:var(--font-mono); font-size:12px; color:#34D399; font-weight:700;">PREP: 75% &check;</span>
+                <span style="font-family:var(--font-mono); font-size: var(--text-xs); color:#34D399; font-weight:700;">PREP: 75% &check;</span>
               </div>
 
-              <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+              <div style="display:flex; flex-direction:column; gap:10px; font-size: var(--text-sm);">
                 <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
                   <span>🛫 <strong>Flight 6E-4491:</strong> Seats confirmed (12A/12B Window)</span>
-                  <span style="font-family:var(--font-mono); font-size:10px; color:#34D399;">LOCKED</span>
+                  <span style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#34D399;">LOCKED</span>
                 </div>
                 <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
                   <span>🏨 <strong>Bairro Alto Hotel:</strong> Early check-in requested at 13:00</span>
-                  <span style="font-family:var(--font-mono); font-size:10px; color:#F59E0B;">PENDING</span>
+                  <span style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#F59E0B;">PENDING</span>
                 </div>
                 <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
                   <span>🧳 <strong>Packing List:</strong> Tailored for 24°C coastal winds + comfortable shoes</span>
-                  <span style="font-family:var(--font-mono); font-size:10px; color:#34D399;">SYNCED</span>
+                  <span style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#34D399;">SYNCED</span>
                 </div>
                 <div style="background:#171926; padding:10px 14px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
                   <span>🍽️ <strong>Tasca do Chico (Fado):</strong> Booking queue opens in 4 days</span>
-                  <span style="font-family:var(--font-mono); font-size:10px; color:#60A5FA;">AUTO-QUEUE</span>
+                  <span style="font-family:var(--font-mono); font-size: var(--text-3xs); color:#60A5FA;">AUTO-QUEUE</span>
                 </div>
               </div>
             </div>
@@ -2337,14 +2380,14 @@
               <div class="persona-avatar-row">
                 <div class="persona-avatar">🧑‍💼</div>
                 <div>
-                  <h4 style="font-size:16px; margin:0;">Arjun, 34</h4>
-                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">Senior Consultant &bull; Bengaluru</div>
+                  <h4 style="font-size: var(--text-base); margin:0;">Arjun, 34</h4>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-2xs); color:var(--ink-muted);">Senior Consultant &bull; Bengaluru</div>
                 </div>
               </div>
               <blockquote class="persona-quote">
                 "I travel 3 times a month. I want maximum speed and corporate compliance without spending my Sunday comparing flights."
               </blockquote>
-              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+              <ul style="list-style:none; font-size: var(--text-sm); display:flex; flex-direction:column; gap:6px;">
                 <li>&bull; <strong>Goal:</strong> Zero-click logistics with 1-tap review.</li>
                 <li>&bull; <strong>Frustration:</strong> Re-entering passport numbers and expense codes.</li>
                 <li>&bull; <strong>Posture:</strong> Prefers <em>Review Each</em> on domestic, <em>Manual</em> on international.</li>
@@ -2356,14 +2399,14 @@
               <div class="persona-avatar-row">
                 <div class="persona-avatar" style="background:var(--marker-blue-soft);">👩‍🎨</div>
                 <div>
-                  <h4 style="font-size:16px; margin:0;">Meera, 28</h4>
-                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">UX Designer &bull; Remote Worker</div>
+                  <h4 style="font-size: var(--text-base); margin:0;">Meera, 28</h4>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-2xs); color:var(--ink-muted);">UX Designer &bull; Remote Worker</div>
                 </div>
               </div>
               <blockquote class="persona-quote">
                 "I'm hesitant to trust an AI with hotel bookings. What if it picks a noisy sterile corporate hotel instead of a local gem?"
               </blockquote>
-              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+              <ul style="list-style:none; font-size: var(--text-sm); display:flex; flex-direction:column; gap:6px;">
                 <li>&bull; <strong>Goal:</strong> Complete transparency into why an option was chosen.</li>
                 <li>&bull; <strong>Frustration:</strong> Algorithmic black boxes with sponsored biases.</li>
                 <li>&bull; <strong>Posture:</strong> Relies heavily on the <em>"Why This?"</em> audit pane.</li>
@@ -2375,14 +2418,14 @@
               <div class="persona-avatar-row">
                 <div class="persona-avatar" style="background:var(--marker-green-soft);">👴</div>
                 <div>
-                  <h4 style="font-size:16px; margin:0;">Rajan, 61</h4>
-                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-muted);">Retired Engineer &bull; Hyderabad</div>
+                  <h4 style="font-size: var(--text-base); margin:0;">Rajan, 61</h4>
+                  <div style="font-family:var(--font-mono); font-size: var(--text-2xs); color:var(--ink-muted);">Retired Engineer &bull; Hyderabad</div>
                 </div>
               </div>
               <blockquote class="persona-quote">
                 "I prefer to book things myself, but I hate small fonts, hidden baggage fees, and countdown timers."
               </blockquote>
-              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+              <ul style="list-style:none; font-size: var(--text-sm); display:flex; flex-direction:column; gap:6px;">
                 <li>&bull; <strong>Goal:</strong> Calm assistance with voice confirmation fallback.</li>
                 <li>&bull; <strong>Frustration:</strong> Dark patterns, sudden price surges, small touch targets.</li>
                 <li>&bull; <strong>Posture:</strong> Uses <em>Manual Posture</em> with WCAG high-contrast mode.</li>
@@ -2406,10 +2449,10 @@
           <!-- Core UX Laws Applied -->
           <div class="grid-2col" style="margin-bottom:32px;">
             <div class="paper-card">
-              <h4 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-red); margin-bottom:12px;">
+              <h4 style="font-family:var(--font-mono); font-size: var(--text-2xs); text-transform:uppercase; color:var(--ink-red); margin-bottom:12px;">
                 Applied Behavioral Laws
               </h4>
-              <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;">
+              <div style="display:flex; flex-direction:column; gap:12px; font-size: var(--text-sm);">
                 <div>
                   <strong>Hick's Law (Choice Minimization):</strong> Decision latency increases logarithmically with the number of choices. We never show 47 options; we present a top-3 tradeoff matrix.
                 </div>
@@ -2426,10 +2469,10 @@
             </div>
 
             <div class="paper-card">
-              <h4 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-primary); margin-bottom:12px;">
+              <h4 style="font-family:var(--font-mono); font-size: var(--text-2xs); text-transform:uppercase; color:var(--ink-primary); margin-bottom:12px;">
                 Projected Quantitative Impact
               </h4>
-              <div style="display:flex; flex-direction:column; gap:12px; font-size:13.5px;">
+              <div style="display:flex; flex-direction:column; gap:12px; font-size: var(--text-sm);">
                 <div style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--paper-divider); padding-bottom:8px;">
                   <span>Average Screens per Booking:</span>
                   <strong style="color:#10B981;">Reduced from 11 &rarr; 1 canvas</strong>
@@ -2459,10 +2502,10 @@
 
             <div style="width:60px; height:2px; background:#3B82F6; margin:24px auto;"></div>
 
-            <div style="font-family:var(--font-mono); font-size:12px; color:#9CA3AF; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">
+            <div style="font-family:var(--font-mono); font-size: var(--text-xs); color:#9CA3AF; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">
               THE FUTURE PORTAL IS NOT A SEARCH FORM.
             </div>
-            <div style="font-family:var(--font-hand); font-size:32px; color:#34D399;">
+            <div style="font-family:var(--font-hand); font-size: var(--text-5xl); color:#34D399;">
               It is a collaborative mind-space.
             </div>
           </div>
