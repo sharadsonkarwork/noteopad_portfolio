@@ -3016,7 +3016,8 @@ body.loading-locked {
   }
 
   .brand-title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
+    letter-spacing: 1px;
   }
 
   .mobile-menu-toggle {
@@ -3043,12 +3044,10 @@ body.loading-locked {
     display: flex;
   }
 
+  /* Hide the "always learning" tag on phones so the name and hamburger
+     distribute cleanly across the header */
   .learning-tag-group {
-    margin-left: auto;
-  }
-
-  .header-quote {
-    font-size: var(--text-base);
+    display: none;
   }
 
   .statement-line {

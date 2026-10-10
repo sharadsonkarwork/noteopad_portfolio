@@ -13,18 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Reading progress bar (consistent across all case studies) */
-    #progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      width: 0%;
-      background: linear-gradient(90deg, #DC2626, #F59E0B, #10B981, #3B82F6);
-      z-index: 9000;
-      transition: width 0.1s linear;
-    }
-
     /* ========================================================
        ROSTERIX 2.0 NOTEBOOK EDITION - STYLESHEET
        Matches Raknos Editorial Designer Portfolio Aesthetic:
@@ -1985,8 +1973,6 @@
 
 <body>
 
-<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100"></div>
-
 <div class="notebook-workspace">
 
   <!-- Physical Notebook Sheet -->
@@ -3164,21 +3150,6 @@
 <!-- END NOTEBOOK WORKSPACE -->
 
 <script>
-  // Reading progress bar
-  (function () {
-    const bar = document.getElementById('progress-bar');
-    if (!bar) return;
-    const update = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      const p = total > 0 ? (window.scrollY / total) * 100 : 0;
-      bar.style.width = p + '%';
-      bar.setAttribute('aria-valuenow', Math.round(p));
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-
   // Active Chapter Intersection Observer & Smooth Navigation
   const links = document.querySelectorAll('.sidenav a');
   const sidenav = document.getElementById('sidenav');

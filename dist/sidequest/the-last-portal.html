@@ -201,18 +201,6 @@
       top: 1rem;
     }
 
-    /* Reading Progress Bar */
-    #progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #DC2626, #F59E0B, #10B981, #3B82F6);
-      z-index: 500;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
     /* Notebook Workspace & Canvas Sheet */
     .notebook-workspace {
       max-width: 1320px;
@@ -1416,7 +1404,6 @@
 <body>
 
   <a href="#main" class="skip-link">Skip to Case Study Content</a>
-  <div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
 
   <div class="notebook-workspace">
 
@@ -2546,15 +2533,6 @@
   </div>
 
   <script>
-    // ─── Reading Progress Bar ───
-    const bar = document.getElementById('progress-bar');
-    window.addEventListener('scroll', () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
-      bar.style.width = progress + '%';
-      bar.setAttribute('aria-valuenow', Math.round(progress));
-    });
-
     // ─── Sticky Chapter Sidenav Highlight ───
     const navLinks = document.querySelectorAll('.sidenav a');
     const sections = document.querySelectorAll('.section');

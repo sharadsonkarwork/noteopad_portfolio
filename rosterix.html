@@ -16,18 +16,6 @@
     rel="stylesheet">
 
   <style>
-    /* Reading progress bar (consistent across all case studies) */
-    #progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      width: 0%;
-      background: linear-gradient(90deg, #DC2626, #F59E0B, #10B981, #3B82F6);
-      z-index: 9000;
-      transition: width 0.1s linear;
-    }
-
     /* ========================================================
        ROSTERIX DECISION SYSTEM - NOTEBOOK & SKETCHBOOK EDITION
        Authentic portfolio theme:
@@ -2009,8 +1997,6 @@
 
 <body>
 
-  <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100"></div>
-
   <div class="notebook-workspace">
 
     <!-- Physical Notebook Sheet with hand-drawn drop-shadow & paper feel -->
@@ -3410,21 +3396,6 @@
   </div><!-- /.notebook-workspace -->
 
   <script>
-    // Reading progress bar
-    (function () {
-      const bar = document.getElementById('progress-bar');
-      if (!bar) return;
-      const update = () => {
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        const p = total > 0 ? (window.scrollY / total) * 100 : 0;
-        bar.style.width = p + '%';
-        bar.setAttribute('aria-valuenow', Math.round(p));
-      };
-      window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      update();
-    })();
-
     // Smooth scroll spy for sticky chapter navigation bar
     const sidenav = document.getElementById('sidenav');
     const navLinks = [...document.querySelectorAll('.sidenav a')];
