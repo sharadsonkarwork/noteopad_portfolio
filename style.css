@@ -3044,9 +3044,9 @@ body.loading-locked {
     display: flex;
   }
 
-  /* Hide the "always learning" tag on phones so the name and hamburger
-     distribute cleanly across the header */
-  .learning-tag-group {
+  /* Hide the header-right ("always learning") block on phones so the name
+     and hamburger distribute cleanly across the header */
+  .header-right {
     display: none;
   }
 
