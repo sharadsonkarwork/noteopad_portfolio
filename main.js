@@ -187,6 +187,9 @@ const MODAL_DATA = {
 
 /* ================= HERO DIAGRAM PROGRESSIVE ANIMATION ================= */
 function initDiagramAnimation() {
+  // Hero diagram is now a static image; the animated SVG was removed.
+  if (!document.getElementById("solve-problems-diagram")) return;
+
   const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const ovalPath = document.querySelector(".oval-stroke-path");
@@ -281,6 +284,9 @@ function initDiagramAnimation() {
 
 /* ================= HERO DIAGRAM HOVER INTERACTIONS & PARALLAX ================= */
 function initDiagramInteractions() {
+  // Hero diagram is now a static image; nothing to wire up.
+  if (!document.getElementById("solve-problems-diagram")) return;
+
   const satelliteNodes = document.querySelectorAll(".node-satellite");
   const centerNode = document.getElementById("node-center");
 

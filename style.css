@@ -763,181 +763,14 @@ body.loading-locked {
   justify-content: center;
 }
 
-.diagram-interactive-canvas {
-  position: relative;
-  width: 440px;
-  height: 300px;
-}
-
-/* Connecting SVG Arrows */
-.diagram-connecting-arrows {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.diagram-arrow-path {
-  fill: none;
-  stroke: var(--paper-card-border);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  transition: stroke 0.25s ease, stroke-width 0.25s ease;
-}
-
-.diagram-arrow-path.active {
-  stroke: var(--ink-red);
-  stroke-width: 2.2;
-}
-
-/* Central Oval Node */
-.node-center {
-  position: absolute;
-  top: 108px;
-  left: 150px;
-  width: 140px;
-  height: 76px;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  transition: transform 0.25s var(--ease-spring);
-}
-
-.center-oval-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.oval-stroke-path {
-  fill: var(--bg-canvas);
-  stroke: var(--paper-card-border);
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke 0.2s ease;
-}
-
-.center-text-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  font-weight: 800;
-  font-size: var(--text-sm);
-  line-height: 1.18;
-  letter-spacing: 0.5px;
-  color: var(--ink-primary);
-}
-
-.center-line-1,
-.center-line-2 {
+/* Static hand-drawn mind-map hero image (replaces the old animated SVG) */
+.hero-diagram-img {
   display: block;
-}
-
-/* Satellite Nodes */
-.node-satellite {
-  position: absolute;
-  z-index: 4;
-  cursor: pointer;
-  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease;
-}
-
-.node-box-inner {
-  padding: 6px 12px;
-  border: 1.5px solid var(--paper-card-border);
-  border-radius: 4px;
-  background-color: var(--paper-card-bg);
-  text-align: center;
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  line-height: 1.22;
-  color: var(--ink-primary);
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.04);
-  transition: all 0.2s ease;
-}
-
-.node-box-inner span {
-  display: block;
-}
-
-.node-satellite:hover {
-  transform: translateY(-2px);
-}
-
-.node-satellite:hover .node-box-inner {
-  border-color: var(--ink-primary);
-  box-shadow: 2px 5px 12px rgba(40, 30, 20, 0.12);
-}
-
-/* Satellite Positions matching Reference 2 */
-.node-user-research {
-  top: 18px;
-  left: 45px;
-}
-
-.node-user-research .node-box-inner {
-  background-color: #F0FDF4;
-}
-
-.node-interaction-design {
-  top: 18px;
-  left: 280px;
-}
-
-.node-interaction-design .node-box-inner {
-  background-color: #EFF6FF;
-}
-
-.node-ui-design {
-  top: 130px;
-  left: 345px;
-}
-
-.node-ui-design .node-box-inner {
-  background-color: #FFF5F5;
-  padding: 8px 12px;
-}
-
-.node-build-prototype {
-  top: 230px;
-  left: 170px;
-}
-
-.node-build-prototype .node-box-inner {
-  background-color: #FAF6ED;
-}
-
-.node-design-systems {
-  top: 170px;
-  left: 40px;
-}
-
-.node-design-systems .node-box-inner {
-  background-color: #FEFCE8;
-}
-
-/* Red Handwritten Note under the Diagram */
-.diagram-red-note {
-  position: absolute;
-  top: 228px;
-  left: 275px;
-  transform: rotate(-3deg);
-  z-index: 3;
-}
-
-.red-quote-text {
-  font-family: var(--font-hand);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--ink-red);
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin: 0 auto;
+  mix-blend-mode: multiply;
 }
 
 /* Hero Right Column: Exploring, Thought, Focus Mode */
@@ -2853,12 +2686,6 @@ body.loading-locked {
     font-size: var(--text-7xl);
   }
 
-  .diagram-interactive-canvas {
-    width: 400px;
-    height: 280px;
-    transform: scale(0.92);
-    transform-origin: center center;
-  }
 
   .section-body-with-sides {
     grid-template-columns: 120px 1fr 140px;
@@ -2973,9 +2800,6 @@ body.loading-locked {
     width: 100%;
   }
 
-  .diagram-interactive-canvas {
-    transform: scale(1);
-  }
 
   .bring-cards-grid,
   .work-cards-grid {
@@ -3065,15 +2889,6 @@ body.loading-locked {
     overflow: visible;
   }
 
-  .diagram-interactive-canvas {
-    /* keep the 440px coordinate system the nodes are positioned in,
-       and scale the whole diagram down so no node clips off-screen */
-    width: 440px;
-    height: 210px;
-    transform: scale(0.66);
-    transform-origin: top center;
-    margin: 0 auto;
-  }
 
   .bring-cards-grid,
   .work-cards-grid,
@@ -3128,13 +2943,6 @@ body.loading-locked {
     font-size: var(--text-5xl);
   }
 
-  .diagram-interactive-canvas {
-    width: 440px;
-    height: 190px;
-    transform: scale(0.58);
-    transform-origin: top center;
-    margin: 0 auto;
-  }
 
   .hero-bio {
     font-size: var(--text-sm);
@@ -3257,7 +3065,4 @@ body.loading-locked {
     transform: none !important;
   }
 
-  .diagram-arrow-path {
-    stroke-dashoffset: 0 !important;
-  }
 }
