@@ -20,8 +20,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <script type="module" crossorigin src="/assets/main-D-56I5Eq.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-B96ZhgWe.css">
+
+  <!-- Decide (before paint) whether to show the intro curtain loader:
+       show on first visit this session and on refresh, but skip it when the
+       visitor returns to the home page from another page in the same tab. -->
+  <script>
+    (function () {
+      var show = true;
+      try {
+        var isReload = false;
+        var navs = performance.getEntriesByType && performance.getEntriesByType('navigation');
+        if (navs && navs.length) isReload = navs[0].type === 'reload';
+        else if (performance.navigation) isReload = performance.navigation.type === 1;
+        var seen = sessionStorage.getItem('heroLoaderSeen') === '1';
+        show = isReload || !seen;
+        sessionStorage.setItem('heroLoaderSeen', '1');
+      } catch (e) { show = true; }
+      window.__showLoader = show;
+      if (!show) document.documentElement.classList.add('skip-loader');
+    })();
+  </script>
+  <script type="module" crossorigin src="/assets/main-Bxb0yVKS.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BFv3QPcj.css">
 </head>
 
 <body class="theme-paper loading-locked">

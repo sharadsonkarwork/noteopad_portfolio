@@ -579,6 +579,15 @@ const GREETINGS = [
 
 /* ================= THEATRICAL CURTAIN LOADER ================= */
 function initLoader() {
+  // Skip the intro curtain on in-session return navigation (shown on first
+  // visit and on refresh only; decided by the inline script in index.html).
+  if (typeof window !== "undefined" && window.__showLoader === false) {
+    const cl = document.getElementById("curtain-loader");
+    if (cl) cl.style.display = "none";
+    document.body.classList.remove("loading-locked");
+    return;
+  }
+
   const greetingWord = document.getElementById("greeting-word");
   const greetingLang = document.getElementById("greeting-lang");
   const loaderProgress = document.getElementById("loader-progress");

@@ -122,6 +122,17 @@ body.loading-locked {
   height: 100vh !important;
 }
 
+/* Skip the intro curtain on in-session return navigation (it is shown only
+   on first visit and on refresh — see the decision script in index.html) */
+html.skip-loader #curtain-loader {
+  display: none !important;
+}
+
+html.skip-loader body.loading-locked {
+  overflow: auto !important;
+  height: auto !important;
+}
+
 /* ================= THEATRICAL CURTAIN LOADER ================= */
 .curtain-loader {
   position: fixed;
