@@ -2866,8 +2866,10 @@ body.loading-locked {
   }
 }
 
-/* Tablet Landscape / Compact Desktop (1080px) */
-@media (max-width: 1080px) {
+/* Tablet Landscape / Compact Desktop (<=1200px)
+   Stacks the hero here: the 3-column layout can't fit the fixed-width
+   mind-map below ~1200px, which pushed the right column off-screen. */
+@media (max-width: 1200px) {
   .notebook-outer-canvas {
     padding: 16px 12px 40px;
   }
@@ -2876,13 +2878,29 @@ body.loading-locked {
     padding: 24px 20px 48px;
   }
 
+  /* Stack the hero below 1080px: the 2-column (center + 210px rail) layout
+     can't fit the fixed-width mind-map plus the right rail, which pushed the
+     Focus Mode / right column off-screen. Stacking keeps everything in frame
+     and centered. */
   .hero-section {
-    grid-template-columns: 1fr 210px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-col.hero-center-group {
+    grid-template-columns: 1fr;
     gap: 24px;
   }
 
   .hero-col.hero-left {
     display: none;
+  }
+
+  /* keep the stacked right rail (Exploring / Thought / Focus Mode) a
+     consistent width so the widgets line up instead of some stretching
+     full-width while the sticky note stays narrow */
+  .hero-col.hero-right {
+    max-width: 440px;
   }
 
   .section-body-with-sides {
