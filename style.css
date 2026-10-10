@@ -2892,6 +2892,16 @@ body.loading-locked {
     gap: 24px;
   }
 
+  /* Let the stacked hero columns shrink below the mind-map's fixed 440px
+     layout box. Without this, that box forces the column (and therefore the
+     Focus Mode / right rail) to 440px, which overflows and gets clipped on
+     phones (html overflow-x:hidden hides the scrollbar, so it just looks cut). */
+  .hero-section > .hero-col,
+  .hero-col.hero-center-group,
+  .hero-diagram-pane {
+    min-width: 0;
+  }
+
   .hero-col.hero-left {
     display: none;
   }
@@ -2901,6 +2911,7 @@ body.loading-locked {
      full-width while the sticky note stays narrow */
   .hero-col.hero-right {
     max-width: 440px;
+    width: 100%;
   }
 
   .section-body-with-sides {
